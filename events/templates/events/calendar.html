@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1 class="text-3xl font-bold mb-6">
+    {% trans "Events Calendar" %} – {{ month }}/{{ year }}
+  </h1>
+
+  <div class="overflow-x-auto">
+    <table class="calendar w-full border-collapse">
+      {{ calendar|safe }}
+    </table>
+  </div>
+{% endblock %}

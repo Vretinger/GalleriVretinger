@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section text-center py-5">
+  <div class="container">
+    <h1 class="hero-title display-3 fw-bold">{% trans "Welcome to Vretinger Gallery" %}</h1>
+    <p class="hero-subtitle lead">{% trans "A creative home for artists, workshops, and events." %}</p>
+  </div>
+</section>
+
+<!-- Intro Section -->
+<section class="intro-section py-5 bg-teal text-dark">
+  <div class="container d-flex flex-column flex-md-row align-items-center">
+    <div class="intro-image col-md-6 mb-4 mb-md-0">
+      <img src="{% static 'images/portrait.jpg' %}" alt="{% trans 'Gallery Interior' %}" class="img-fluid rounded shadow">
+    </div>
+    <div class="intro-text col-md-6 px-3">
+      <h2 class="intro-title">{% trans "More than a gallery — a space for expression" %}</h2>
+      <p class="intro-description">
+        {% trans "Vretinger Gallery is a cozy and professional environment where artists showcase their work and host events. With a flexible layout and welcoming vibe, it's perfect for exhibits, creative workshops, and cultural meetups." %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Current Event Section -->
+<section class="current-event-section py-5">
+  <div class="container">
+    {% if current_event %}
+      <div class="current-event-overview d-flex flex-column flex-md-row align-items-center gap-4">
+        <div class="event-image flex-shrink-0" style="max-width: 50%;">
+          <img src="{{ current_event.image.url }}" alt="{{ current_event.title }}" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="event-info flex-grow-1">
+          <h3 class="event-title">{{ current_event.title }}</h3>
+          <p class="event-description">{{ current_event.description|truncatewords:50 }}</p>
+          <a href="{% url 'event_detail' current_event.id %}" class="btn btn-primary mt-3">{% trans "Read More" %}</a>
+        </div>
+      </div>
+    {% else %}
+      <section class="gallery-showcase">
+        <div class="background-image"></div>
+        
+        <div class="overlay-content container text-center">
+          <h1 class="gallery-title">{% trans "Welcome to Vretinger Gallery" %}</h1>
+          <p class="gallery-description">
+            {% trans "Experience the warmth and creativity of our gallery space, filled with inspiring artworks from our featured artist." %}
+          </p>
+        </div>
+
+        <div class="artwork-grid container">
+          <div class="artwork-item">
+            <img src="{% static 'images/Lemons.jpg' %}" alt="{% trans 'Lemons' %}" />
+            <p class="artwork-title">{% trans "Lemons" %}</p>
+          </div>
+          <div class="artwork-item">
+            <img src="{% static 'images/ColorsStrpes.jpg' %}" alt="{% trans 'Colors And Stripes' %}" />
+            <p class="artwork-title">{% trans "Colors And Stripes" %}</p>
+          </div>
+          <div class="artwork-item">
+            <img src="{% static 'images/Lion.jpg' %}" alt="{% trans 'Lion' %}" />
+            <p class="artwork-title">{% trans "Lion" %}</p>
+          </div>
+          <!-- Add more artworks as needed -->
+        </div>
+      </section>
+
+    {% endif %}
+  </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="upcoming-events-section py-5">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">{% trans "Upcoming Events" %}</h2>
+    <div class="row">
+      {% for event in upcoming_events %}
+        <div class="col-md-4 mb-4">
+          <div class="upcoming-event-card card h-100 shadow-sm">
+            <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ event.title }}</h5>
+              <p class="card-text">{{ event.description|truncatewords:20 }}</p>
+              <p class="text-muted">{{ event.date|date:"F j, Y" }}</p>
+              <a href="{% url 'event_detail' event.id %}" class="btn btn-outline-primary">{% trans "Details" %}</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-center no-upcoming-events-message">{% trans "No upcoming events yet. Stay tuned!" %}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

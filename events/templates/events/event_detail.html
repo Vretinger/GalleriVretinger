@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1 class="text-3xl font-bold mb-4">{{ event.title }}</h1>
+  <p class="text-gray-600 mb-2">{{ event.date }}</p>
+
+  {% if event.image %}
+    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="rounded-xl mb-4 max-w-full h-auto">
+  {% endif %}
+
+  <p>{{ event.description }}</p>
+
+  <a href="{% url 'event_list' %}" class="text-blue-600 mt-4 inline-block">
+    ← {% trans "Back to events" %}
+  </a>
+{% endblock %}

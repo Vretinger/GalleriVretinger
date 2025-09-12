@@ -1,0 +1,21 @@
+.current-event {
+  margin: 2rem auto;
+  max-width: 600px;
+
+  img {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+
+  h5 {
+    margin-top: 1rem;
+  }
+
+  p {
+    color: #555;
+  }
+}
+
+.upcoming-event-card {
+  margin-bottom: 1.5rem;
+}

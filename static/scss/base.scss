@@ -1,0 +1,73 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f8f9fa; // light gray background
+  color: #212529; // bootstrap body text color
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: #222;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.language-switcher {
+  position: fixed;
+  right: 5px; /* push all the way to the right edge with some margin */
+  z-index: 1050; /* above navbar */
+}
+
+.language-switcher .dropdown-menu {
+    min-width: auto; /* shrink to fit content */
+    padding: 0.5rem; /* less inner padding */
+}
+
+.language-switcher .dropdown-item {
+    display: inline-flex; /* shrink to content size */
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* smaller clickable area */
+    width: auto;
+}
+
+
+
+.flag-icon {
+      width: 1.5em;
+      height: 1em;
+      display: inline-block;
+      background-size: contain;
+      background-position: 50%;
+      background-repeat: no-repeat;
+    }
+
+.navbar .container {
+  position: relative; /* ensure positioning context */
+}    
+
+.navbar {
+  background-color: #343a40; // dark gray background
+  color: #ffffff; // white text
+
+  .navbar-brand {
+    color: #ffffff;
+
+    &:hover {
+      color: #f8f9fa; // light gray on hover
+    }
+  }
+
+  .nav-link {
+    color: #ffffff;
+
+    &:hover {
+      color: #f8f9fa; // light gray on hover
+    }
+  }
+}

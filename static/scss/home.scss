@@ -1,0 +1,217 @@
+// home.scss
+
+$teal: #3f524f;
+$light-bg: #e5d4c3;
+
+/* Hero Section */
+.hero-section {
+  background-color: $light-bg;
+  color: #222;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+
+  .hero-title {
+    color: $teal;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .hero-subtitle {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: darken($teal, 15%);
+  }
+}
+
+/* Intro Section */
+.intro-section {
+  background-color: $teal;
+  color: white;
+
+  .intro-image img {
+    border: 4px solid white;
+  }
+
+  .intro-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .intro-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Current Event Section */
+.current-event-section {
+  background-color: #d3bca4;
+  padding: 2rem 0;
+}
+.current-event-overview {
+  // Responsive flex layout
+  @media (max-width: 767px) {
+    flex-direction: column !important;
+  }
+
+  .event-image img {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .event-info {
+    h3.event-title {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    p.event-description {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    a.btn {
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($primary, 10%);
+      }
+    }
+  }
+}
+
+.gallery-showcase {
+  position: relative;
+  padding: 4rem 1rem 3rem;
+  color: #fff;
+  text-align: center;
+  background-color: #222; /* fallback color */
+  min-height: 50vh;
+
+  .background-image {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('../images/gallery_interior.jpg') center center/cover no-repeat;
+    filter: brightness(0.4);
+    z-index: 0;
+    background-color: rgba(255,0,0,0.3);
+  }
+
+  .overlay-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+
+    .gallery-title {
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+      margin-bottom: 1rem;
+    }
+
+    .gallery-description {
+      font-size: 1.3rem;
+      line-height: 1.5;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    }
+  }
+
+  .artwork-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    .artwork-item {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      color: #222;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        max-height: 350px;
+      }
+
+      .artwork-title {
+        padding: 0.5rem 1rem 1rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.btn-primary {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #004085;
+  box-shadow: 0 4px 12px rgba(0,64,133,0.6);
+}
+
+
+
+/* Upcoming Events Section */
+.upcoming-events-section {
+  background-color: #1a2954;
+
+  h2 {
+    color: gray;
+    font-weight: 700;
+  }
+
+  .upcoming-event-card {
+    border: none;
+    border-radius: 10px;
+
+    img {
+      border-radius: 10px 10px 0 0;
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 1rem 1.25rem;
+    }
+
+    .btn-outline-primary {
+      border-color: $teal;
+      color: $teal;
+
+      &:hover {
+        background-color: $teal;
+        color: white;
+      }
+    }
+  }
+
+  .no-upcoming-events-message {
+    color: gray;
+    font-style: italic;
+  }
+}

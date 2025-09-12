@@ -1,0 +1,162 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Vretinger Gallery{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/flag-icons.min.css' %}">
+
+
+
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+  <div class="d-flex w-100 align-items-center">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" height="40" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/gallery/">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="/events/">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+
+          <!-- Language switcher inside collapse for small screens -->
+          <li class="nav-item d-lg-none mt-2">
+            <div class="dropdown language-switcher">
+              <button
+                class="btn btn-secondary dropdown-toggle w-100"
+                type="button"
+                id="languageDropdownSm"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="fi fi-gb"></span>
+              </button>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="languageDropdownSm"
+              >
+                <li>
+                  <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="language" value="en" />
+                    <button type="submit" class="dropdown-item">
+                      <span class="fi fi-gb"></span> English
+                    </button>
+                  </form>
+                </li>
+                <li>
+                  <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <input type="hidden" name="language" value="sv" />
+                    <button type="submit" class="dropdown-item">
+                      <span class="fi fi-se"></span> Svenska
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button
+        class="navbar-toggler ms-auto"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+      <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div class="dropdown language-switcher d-none d-lg-block" style="margin-left:auto; margin-right:0;">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="languageDropdownLg"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {% if LANGUAGE_CODE == 'en' %}
+          <span class="fi fi-gb"></span>
+        {% elif LANGUAGE_CODE == 'sv' %}
+          <span class="fi fi-se"></span>
+        {% else %}
+          <span class="fi fi-gb"></span> {# fallback #}
+        {% endif %}
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="languageDropdownLg">
+        <li>
+          <form action="{% url 'set_language' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <input type="hidden" name="language" value="en" />
+            <button type="submit" class="dropdown-item">
+              <span class="fi fi-gb"></span>
+            </button>
+          </form>
+        </li>
+        <li>
+          <form action="{% url 'set_language' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <input type="hidden" name="language" value="sv" />
+            <button type="submit" class="dropdown-item">
+              <span class="fi fi-se"></span>
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+
+
+    <!-- Page content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+            
+            <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                <h5 class="fw-bold">Galleri Vretinger</h5>
+                <small class="text-muted">A space for artists and creativity</small>
+            </div>
+
+            <div class="col-md-4 text-center mb-3 mb-md-0">
+                <a href="{% url 'home' %}" class="text-white mx-2">Home</a>
+                <a href="/events/" class="text-white mx-2">Events</a>
+                <a href="/contact/" class="text-white mx-2">Contact</a>
+            </div>
+
+            <div class="col-md-4 text-center text-md-end">
+                <small class="text-muted">&copy; {{ now|date:"Y" }} Galleri Vretinger. All rights reserved.</small>
+            </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

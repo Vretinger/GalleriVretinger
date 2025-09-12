@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Gallery</h1>
+  <div class="gallery-grid">
+    {% for artwork in artworks %}
+      <div class="artwork-card">
+        <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" style="max-width: 300px;">
+        <h3>{{ artwork.title }}</h3>
+        <p>{{ artwork.description }}</p>
+        <small>Uploaded: {{ artwork.created_at|date:"F j, Y" }}</small>
+      </div>
+    {% empty %}
+      <p>No artworks uploaded yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
