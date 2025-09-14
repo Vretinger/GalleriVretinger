@@ -1,6 +1,10 @@
 from django import forms
 from events.models import Event
 
+class DateSelectionForm(forms.Form):
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
 class BookingEventForm(forms.Form):
     # Booking fields
     start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))

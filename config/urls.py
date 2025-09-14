@@ -13,4 +13,5 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('i18n/setlang/', set_language, name='set_language'),
+    path("users/", include("users.urls")),
 ]

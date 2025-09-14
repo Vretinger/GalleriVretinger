@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+</head>
+<body>
+  <h2>Select rental period</h2>
+
+  <div id="calendar"
+     data-booked-dates-url="{% url 'booked_dates' %}"
+     data-save-dates-url="{% url 'save_selected_dates' %}"
+     data-csrf-token="{{ csrf_token }}">
+</div>
+
+
+  <!-- hidden inputs for form submission -->
+  <form action="{% url 'booking_details' %}" method="get">
+      <input type="hidden" id="rental_start" name="rental_start">
+      <input type="hidden" id="rental_end" name="rental_end">
+      <button type="submit" id="continueBtn" disabled>Continue</button>
+  </form>
+
+  <script src="{% static 'js/booking_stage1.js' %}"></script>
+</body>
+</html>
