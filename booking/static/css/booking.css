@@ -1,0 +1,86 @@
+/* ==========================
+   Calendar Container
+   ========================== */
+#calendar {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ==========================
+   Selected Dates (blue)
+   ========================== */
+.fc-bg-event {
+  background-color: rgba(30, 144, 255, 0.4) !important; /* semi-transparent DodgerBlue */
+  border-radius: 6px;
+}
+
+/* ==========================
+   Booked Dates (red)
+   ========================== */
+.fc-daygrid-event {
+  background-color: rgba(220, 53, 69, 0.85) !important; /* Bootstrap red */
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+}
+
+/* ==========================
+   Today Highlight
+   ========================== */
+.fc-day-today {
+  background: #ffa60080 !important;
+  border: 1px solid #8b5b00 !important;
+}
+
+/* ==========================
+   Header (Month Navigation)
+   ========================== */
+.fc-toolbar-title {
+  font-size: 1.4rem !important;
+  font-weight: 600;
+  color: #333;
+}
+
+.fc-button {
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-size: 0.85rem !important;
+  background: #007bff !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.fc-button:hover {
+  background: #0056b3 !important;
+}
+
+/* ==========================
+   Continue Button
+   ========================== */
+#continueBtn {
+  display: block;
+  margin: 1rem auto 0 auto;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: #007bff;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+#continueBtn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+#continueBtn:hover:enabled {
+  background: #0056b3;
+}
