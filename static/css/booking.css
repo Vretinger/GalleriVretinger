@@ -1,0 +1,108 @@
+.booking-container {
+  padding: 2rem;
+  min-height: 95vh;
+  /* Stage 2 disabled/enabled state */
+  /* Image previews */
+  /* Event Preview Container */
+  /* Inputs and buttons */
+}
+.booking-container h2, .booking-container h3 {
+  color: #3f524f;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.booking-container #stage2 {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.booking-container #stage2.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.booking-container #preview-images img {
+  max-width: 150px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.booking-container #event-preview {
+  border: 2px solid #3f524f;
+  border-radius: 12px;
+  min-height: 300px;
+  overflow: auto;
+  position: relative;
+  /* Artwork grid */
+}
+.booking-container #event-preview #preview-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.booking-container #event-preview #preview-section {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  background-color: rgba(63, 82, 79, 0.4);
+  border-radius: 8px;
+}
+.booking-container #event-preview #preview-section h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+.booking-container #event-preview #preview-section p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+.booking-container #event-preview .artwork-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.booking-container #event-preview .artwork-grid img {
+  border-radius: 6px;
+  max-width: 200px;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.booking-container #event-preview .artwork-grid img:hover {
+  transform: scale(1.05);
+}
+.booking-container input, .booking-container textarea {
+  border-radius: 6px;
+  border: 1px solid rgb(135.1103448276, 162.8896551724, 158.5034482759);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.booking-container input:focus, .booking-container textarea:focus {
+  border-color: #3f524f;
+  box-shadow: 0 0 6px rgba(63, 82, 79, 0.4);
+}
+.booking-container .btn-primary {
+  background-color: #3f524f;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.booking-container .btn-primary:hover {
+  background-color: rgb(40.8413793103, 53.1586206897, 51.2137931034);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.booking-container .btn-secondary {
+  border-radius: 30px;
+  padding: 0.4rem 1.2rem;
+}
+
+/*# sourceMappingURL=booking.css.map */

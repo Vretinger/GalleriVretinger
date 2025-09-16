@@ -12033,7 +12033,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   transition: background-color 0.3s ease;
 }
 .current-event-overview .event-info a.btn:hover {
-  background-color: rgb(1.762295082, 87.2336065574, 213.237704918);
+  background-color: rgb(0, 98.4, 204);
 }
 
 .gallery-showcase {

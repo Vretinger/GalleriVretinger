@@ -1,23 +1,23 @@
 /* Hero Section */
 .hero-section {
-  background-color: #f8f9fa;
+  background-color: #e5d4c3;
   color: #222;
   padding-top: 4rem !important;
   padding-bottom: 4rem !important;
 }
 .hero-section .hero-title {
-  color: #008080;
+  color: #3f524f;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 .hero-section .hero-subtitle {
   margin-top: 1rem;
   font-size: 1.25rem;
-  color: rgb(0, 51.5, 51.5);
+  color: rgb(29.7620689655, 38.7379310345, 37.3206896552);
 }
 
 /* Intro Section */
 .intro-section {
-  background-color: #008080;
+  background-color: #3f524f;
   color: white;
 }
 .intro-section .intro-image img {
@@ -33,6 +33,11 @@
 }
 
 /* Current Event Section */
+.current-event-section {
+  background-color: #d3bca4;
+  padding: 2rem 0;
+}
+
 @media (max-width: 767px) {
   .current-event-overview {
     flex-direction: column !important;
@@ -62,13 +67,19 @@
   border-radius: 30px;
   transition: background-color 0.3s ease;
 }
+.current-event-overview .event-info a.btn:hover {
+  background-color: rgb(0, 98.4, 204);
+}
 
 .gallery-showcase {
   position: relative;
-  min-height: 400px; /* or height: 400px; */
+  padding: 4rem 1rem 3rem;
+  color: #fff;
+  text-align: center;
+  background-color: #222; /* fallback color */
+  min-height: 50vh;
 }
-
-.background-image {
+.gallery-showcase .background-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,27 +88,26 @@
   background: url("../images/gallery_interior.jpg") center center/cover no-repeat;
   filter: brightness(0.4);
   z-index: 0;
-  /* Remove transparent background color once visible */
+  background-color: rgba(255, 0, 0, 0.3);
 }
-
-.overlay-content {
+.gallery-showcase .overlay-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto 2rem;
 }
-.overlay-content .gallery-title {
-  color: hotpink !important;
-  font-weight: 900;
+.gallery-showcase .overlay-content .gallery-title {
   font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
 }
-.overlay-content .gallery-description {
+.gallery-showcase .overlay-content .gallery-description {
   font-size: 1.3rem;
   line-height: 1.5;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
-
-.artwork-grid {
+.gallery-showcase .artwork-grid {
   position: relative;
   z-index: 1;
   display: grid;
@@ -106,7 +116,7 @@
   max-width: 1100px;
   margin: 0 auto;
 }
-.artwork-grid .artwork-item {
+.gallery-showcase .artwork-grid .artwork-item {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   overflow: hidden;
@@ -114,18 +124,18 @@
   color: #222;
   transition: transform 0.3s ease;
 }
-.artwork-grid .artwork-item:hover {
+.gallery-showcase .artwork-grid .artwork-item:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
-.artwork-grid .artwork-item img {
+.gallery-showcase .artwork-grid .artwork-item img {
   width: 100%;
   height: auto;
   display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+  max-height: 350px;
 }
-.artwork-grid .artwork-item .artwork-title {
+.gallery-showcase .artwork-grid .artwork-item .artwork-title {
   padding: 0.5rem 1rem 1rem;
   font-weight: 600;
 }
@@ -141,7 +151,11 @@
 
 /* Upcoming Events Section */
 .upcoming-events-section {
-  background-color: #f8f9fa;
+  background-color: #1a2954;
+}
+.upcoming-events-section h2 {
+  color: gray;
+  font-weight: 700;
 }
 .upcoming-events-section .upcoming-event-card {
   border: none;
@@ -150,22 +164,23 @@
 .upcoming-events-section .upcoming-event-card img {
   border-radius: 10px 10px 0 0;
   height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 100%;
 }
 .upcoming-events-section .upcoming-event-card .card-body {
   padding: 1rem 1.25rem;
 }
 .upcoming-events-section .upcoming-event-card .btn-outline-primary {
-  border-color: #008080;
-  color: #008080;
+  border-color: #3f524f;
+  color: #3f524f;
 }
 .upcoming-events-section .upcoming-event-card .btn-outline-primary:hover {
-  background-color: #008080;
+  background-color: #3f524f;
   color: white;
 }
 .upcoming-events-section .no-upcoming-events-message {
   color: gray;
   font-style: italic;
-}/*# sourceMappingURL=home.css.map */
+}
+
+/*# sourceMappingURL=home.css.map */

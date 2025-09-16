@@ -10,9 +10,7 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/flag-icons.min.css' %}">
-
-
-
+    <link href="{% static 'css/booking.css' %}" rel="stylesheet">
 </head>
 <body>
     <!-- Sticky Navbar -->
@@ -28,6 +26,8 @@
           <li class="nav-item"><a class="nav-link" href="/gallery/">Gallery</a></li>
           <li class="nav-item"><a class="nav-link" href="/events/">Events</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/booking/calendar/">booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">login/signup</a></li>
 
           <!-- Language switcher inside collapse for small screens -->
           <li class="nav-item d-lg-none mt-2">
@@ -158,5 +158,6 @@
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     {% block extra_js %}{% endblock %}
 </body>
 </html>
