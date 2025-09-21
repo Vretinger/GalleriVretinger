@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <h2>Confirm Your Booking</h2>
+  
+  <p><strong>Rental period:</strong> {{ rental_start }} → {{ rental_end }}</p>
+  <p><strong>Event period:</strong> {{ event_start }} → {{ event_end }}</p>
+  <p><strong>Event title:</strong> {{ title }}</p>
+  <p><strong>Description:</strong> {{ description }}</p>
+  
+  <form method="POST" enctype="multipart/form-data" action="{% url 'final_booking_submit' %}">
+    {% csrf_token %}
+    <input type="hidden" name="rental_start" value="{{ rental_start }}">
+    <input type="hidden" name="rental_end" value="{{ rental_end }}">
+    <input type="hidden" name="event_start" value="{{ event_start }}">
+    <input type="hidden" name="event_end" value="{{ event_end }}">
+    <input type="hidden" name="title" value="{{ title }}">
+    <input type="hidden" name="description" value="{{ description }}">
+    
+    <div class="mb-3">
+      <label for="image1" class="form-label">Upload images</label>
+      <input type="file" class="form-control" name="image1" id="image1" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit Booking</button>
+  </form>
+</div>
+{% endblock %}

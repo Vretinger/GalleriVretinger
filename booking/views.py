@@ -2,17 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
-from .forms import BookingEventForm, DateSelectionForm
 from .models import Booking
 from events.models import Event
 
+def availability_view(request):
+    """Public view: show availability but don’t allow booking unless logged in"""
+    if request.user.is_authenticated:
+        return redirect("booking_page")
+    return render(request, "bookings/availability.html")
 
-def booking_date_selection(request):
-    return render(request, "bookings/booking_calendar.html")
+
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, "bookings/my_bookings.html", {"bookings": bookings})
 
 
 def booked_dates(request):
-    """Return existing bookings as JSON for FullCalendar"""
+    """Return JSON with booked dates for calendar"""
     bookings = Booking.objects.all()
     events = [
         {
@@ -20,111 +27,52 @@ def booked_dates(request):
             "start": str(b.start_date),
             "end": str(b.end_date),
             "color": "red"
-        }
-        for b in bookings
+        } for b in bookings
     ]
     return JsonResponse(events, safe=False)
 
 
-def save_selected_dates(request):
-    """AJAX endpoint when user selects a date range"""
+@login_required
+def booking_page(request):
+    """Single page booking flow (Stage 1 + 2)"""
     if request.method == "POST":
-        start = request.POST.get("start")
-        end = request.POST.get("end")
-
-        # Store dates in session for Step 2
-        request.session["start_date"] = start
-        request.session["end_date"] = end
-
-        return JsonResponse({"success": True})
-    return JsonResponse({"success": False}, status=400)
-
-
-def booking_date_selection(request):
-    if request.method == "POST":
-        form = DateSelectionForm(request.POST)
-        if form.is_valid():
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-
-            # Check for conflicts
-            if Booking.objects.filter(start_date__lte=end_date, end_date__gte=start_date).exists():
-                form.add_error(None, "Those dates are already booked.")
-            else:
-                # Temporarily store in session before step 2
-                request.session['start_date'] = str(start_date)
-                request.session['end_date'] = str(end_date)
-                return redirect("booking_details")
-    else:
-        form = DateSelectionForm()
-    return render(request, "bookings/booking_calendar.html", {"form": form})
-
-
-def booking_with_event(request):
-    if request.method == 'POST':
-        form = BookingEventForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Save Booking
-            booking = Booking.objects.create(
-                user=request.user,
-                start_date=form.cleaned_data['start_date'],
-                end_date=form.cleaned_data['end_date'],
-                purpose=form.cleaned_data['purpose'],
-                approved=False
-            )
-
-            # Save Event linked to booking
-            Event.objects.create(
-                booking=booking,
-                title=form.cleaned_data['title'],
-                description=form.cleaned_data['description'],
-                layout=form.cleaned_data['layout'],
-                image1=form.cleaned_data['image1'],
-                image2=form.cleaned_data.get('image2'),
-                image3=form.cleaned_data.get('image3'),
-            )
-
-            return redirect('booking_success')  # make this template
-    else:
-        form = BookingEventForm()
-
-    return render(request, 'bookings/booking_with_event.html', {'form': form})
-
-def final_booking_submit(request):
-    if request.method == "POST":
-        rental_start = request.POST.get("rental_start")
-        rental_end = request.POST.get("rental_end")
+        # Grab form data
+        rental_start = request.POST.get("start_date")
+        rental_end = request.POST.get("end_date")
         event_start = request.POST.get("event_start")
         event_end = request.POST.get("event_end")
         title = request.POST.get("title")
         description = request.POST.get("description")
         layout = request.POST.get("layout")
+        bg_color = request.POST.get("bg_color")
+        blur_bg = request.POST.get("blur_bg") == "on"
 
-        # TODO: link to actual logged in user
+        # Create Booking
         booking = Booking.objects.create(
+            user=request.user,
             start_date=rental_start,
             end_date=rental_end,
-            purpose="Event booking",  # Or grab from form
-            user=request.user if request.user.is_authenticated else None,
+            purpose="Event booking",
         )
 
+        # Create Event linked to Booking
         event = Event.objects.create(
             booking=booking,
             title=title,
             description=description,
             layout=layout,
+            bg_color=bg_color,
+            blur_bg=blur_bg,
             start_datetime=event_start,
             end_datetime=event_end,
         )
 
         # Save uploaded images
-        for file in request.FILES.getlist("image1"):
-            event.images.create(image=file)
         for key in request.FILES:
-            if key.startswith("image") and key != "image1":
-                event.images.create(image=request.FILES[key])
+            file = request.FILES[key]
+            event.images.create(image=file)
 
         messages.success(request, "Your booking has been submitted!")
-        return redirect("home")  # Or a "booking confirmation" page
+        return redirect("my_bookings")
 
-    return redirect("booking_with_event")
+    return render(request, "bookings/booking_calendar.html")
