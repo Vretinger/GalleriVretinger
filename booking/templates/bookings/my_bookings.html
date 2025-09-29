@@ -1,15 +1,64 @@
 {% extends "base.html" %}
+
 {% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
 <h2>My Bookings</h2>
-<ul>
-  {% for booking in bookings %}
-    <li>
-      {{ booking.date }} – {{ booking.table }} – {{ booking.number_of_guests }} guests
-    </li>
-  {% empty %}
-    <li>No bookings yet.</li>
-  {% endfor %}
-</ul>
+
+{% for e in booking_events %}
+  <div class="container booking-event my-4">
+    <div class="row mb-5 p-3 border rounded shadow-sm">
+      <div class="col-md-4">
+        <p class="booking-info">
+          <strong>Start:</strong> {{ e.booking.start_date }}<br>
+          <strong>End:</strong> {{ e.booking.end_date }}
+        </p>
+      </div>
+      <div class="event-card col-md-8">
+
+      <!-- Background layer -->
+      <div class="bg-preview {% if e.event.blur_bg %}blur{% endif %}" 
+       style="background-image: url('{{ e.event.bg_image.url }}');">
+
+        <!-- Overlay content -->
+        <div class="overlay-content container text-center p-3">
+          <h1 class="gallery-title">{{ e.event.title }}</h1>
+          <p class="gallery-description">{{ e.event.description }}</p>
+
+          <!-- Event Schedule -->
+          {% if e.grouped_days %}
+            <h4>Event Schedule:</h4>
+            <ul class="list-unstyled">
+              {% for group in e.grouped_days %}
+                {% if group|length == 1 %}
+                  <li>{{ group.0.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+                {% else %}
+                  {% with last_day=group|last %}
+                    <li>{{ group.0.date }} → {{ last_day.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+                  {% endwith %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <!-- Event images -->
+          {% if e.images %}
+            <div class="artwork-grid d-flex flex-wrap gap-2 justify-content-center mt-3">
+              {% for img in e.images %}
+                <div class="artwork-item" style="flex: 0 0 150px;">
+                  <img src="{{ img.image.url }}" alt="{{ e.event.title }}" 
+                      style="width:100%; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
 {% endblock %}

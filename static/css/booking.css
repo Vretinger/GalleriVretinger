@@ -2,9 +2,22 @@
   padding: 2rem;
   min-height: 95vh;
   /* Stage 2 disabled/enabled state */
-  /* Image previews */
   /* Event Preview Container */
   /* Inputs and buttons */
+}
+.booking-container .booking-event-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.booking-container .booking-event-images img {
+  max-width: 100%;
+  width: 150px; /* fallback */
+  height: auto;
+}
+.booking-container .event-schedule {
+  list-style: none; /* removes bullets */
+  padding-left: 0; /* removes default padding */
 }
 .booking-container h2, .booking-container h3 {
   color: #3f524f;
@@ -20,21 +33,14 @@
   opacity: 1;
   pointer-events: all;
 }
-.booking-container #preview-images img {
-  max-width: 150px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
 .booking-container #event-preview {
   border: 2px solid #3f524f;
   border-radius: 12px;
   min-height: 300px;
-  overflow: auto;
+  overflow: hidden;
   position: relative;
-  /* Artwork grid */
 }
-.booking-container #event-preview #preview-background {
+.booking-container #event-preview #preview-background-blur {
   position: absolute;
   top: 0;
   left: 0;
@@ -44,6 +50,7 @@
   background-size: cover;
   background-position: center;
   z-index: 0;
+  transition: filter 0.3s ease;
 }
 .booking-container #event-preview #preview-section {
   position: relative;
@@ -53,6 +60,7 @@
   color: white;
   background-color: rgba(63, 82, 79, 0.4);
   border-radius: 8px;
+  /* Image previews */
 }
 .booking-container #event-preview #preview-section h1 {
   font-size: 2.2rem;
@@ -63,20 +71,20 @@
   font-size: 1.2rem;
   line-height: 1.5;
 }
-.booking-container #event-preview .artwork-grid {
+.booking-container #event-preview #preview-section #preview-images {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
-.booking-container #event-preview .artwork-grid img {
+.booking-container #event-preview #preview-section #preview-images img {
   border-radius: 6px;
-  max-width: 200px;
+  max-width: 150px;
   height: auto;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
-.booking-container #event-preview .artwork-grid img:hover {
+.booking-container #event-preview #preview-section #preview-images img:hover {
   transform: scale(1.05);
 }
 .booking-container input, .booking-container textarea {

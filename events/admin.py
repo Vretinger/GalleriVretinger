@@ -3,7 +3,7 @@ from .models import Event, EventImage
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'artist_name', 'start_date', 'start_time', 'end_date', 'end_time')
+    list_display = ('title', 'start_date', 'start_time', 'end_date', 'end_time')
 
     def start_date(self, obj):
         return obj.start_datetime.date()

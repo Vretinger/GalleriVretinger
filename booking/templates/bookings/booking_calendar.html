@@ -6,7 +6,61 @@
 {% block content %}
 <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
+
+
 <div class="booking-container mx-auto w-50 p-4">
+  <div class="row mb-4">
+  <!-- Included Info Box -->
+  <div class="col-md-6 mb-3">
+    <div class="card border-info shadow-sm">
+      <div class="card-header bg-info text-white d-flex align-items-center" 
+           data-bs-toggle="collapse" 
+           data-bs-target="#includedCollapse" 
+           style="cursor: pointer;">
+        <span class="me-2">ℹ️</span> Vad som ingår
+      </div>
+      <div id="includedCollapse" class="collapse">
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li>Lokal på 47 kvm</li>
+            <li>Pentry med liten kyl</li>
+            <li>Toalett</li>
+            <li>8 klappstolar</li>
+            <li>2 klapp-barstolar</li>
+            <li>3 runda “mässbord”</li>
+            <li>1 stort bord med iläggsskiva 170-200 cm</li>
+            <li>En skänk/disk</li>
+            <li>Uppläggningsfat/brickor</li>
+            <li>Vaser</li>
+            <li>Ljusslingor</li>
+            <li>Kaffebryggare</li>
+            <li>Vattenkokare</li>
+            <li>20 st champagneglas</li>
+            <li><em>Engångsmuggar och tallrikar</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prices Info Box (empty placeholder) -->
+  <div class="col-md-6 mb-3">
+    <div class="card border-secondary shadow-sm">
+      <div class="card-header bg-secondary text-white d-flex align-items-center" 
+           data-bs-toggle="collapse" 
+           data-bs-target="#pricesCollapse" 
+           style="cursor: pointer;">
+        <span class="me-2">💰</span> Priser
+      </div>
+      <div id="pricesCollapse" class="collapse">
+        <div class="card-body">
+          <p>Information om olika hyresperioder kommer snart...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <h2>Step 1: Select Rental Period</h2>
 
   <form method="POST" enctype="multipart/form-data">
@@ -24,38 +78,49 @@
       
       <div id="per-day-times" class="mb-3"></div>
 
-      <input type="text" id="event-title" name="title" class="form-control mb-2" placeholder="Event title">
+      <input type="text" id="event-title" name="title" class="form-control mb-2" placeholder="Enter event title">
       <textarea id="event-description" name="description" class="form-control mb-2" placeholder="Event description"></textarea>
-      
-      <input type="file" id="event-image1" name="image1" class="form-control mb-2" required>
-      <div id="extra-images-container"></div>
-      <button type="button" id="addImageBtn" class="btn btn-secondary mb-3">+ Add another image</button>
 
-      <div class="col-md-6">
-        <label class="form-label">Background Color</label>
-        <input type="color" id="event-bg-color" name="bg_color" class="form-control form-control-color" value="#f5f5f5">
+      <button id="upload_widget" type="button" class="btn btn-secondary">Upload Images</button>
+      <div id="uploaded-images" class="mt-3"></div>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-4">
+            <label class="form-label">Background Color</label>
+            <input type="color" id="event-bg-color" name="bg_color" class="form-control form-control-color" value="#f5f5f5">
+          </div>
+          <div class="col-md-4">
+            <p class="form-label">or select a background image:</p>
+          </div>
+          <div class="col-md-4">
+            <button type="button" class="btn btn-secondary" id="bg-upload-btn">Upload Image</button>
+            <input type="hidden" id="event-bg-image-hidden" name="bg_image">
+            
+            <label class="form-check-label" for="checkDefault">
+              Blurred background?
+            </label>
+            <input class="form-check-input" type="checkbox" name="blur_bg" id="checkDefault">
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-        <label class="form-label">Background Image</label>
-        <input type="file" id="event-bg-image" name="bg_image" class="form-control">
-        
-        <input class="form-check-input" type="checkbox" name="blur_bg" id="checkDefault">
-        <label class="form-check-label" for="checkDefault">
-          Blurred background?
-        </label>
-      </div>
-    </div>
 
     <hr>
     <h3>Event Homepage Preview</h3>
     <div id="event-preview" class="border rounded p-3 mb-4">
-      <div id="preview-background"></div>
-      <section id="preview-section" class="p-4 text-center text-white">
-        <h1 id="preview-title">Event Title</h1>
-        <p id="preview-description">Event description will appear here.</p>
-        <p id="preview-times">Event times: Not set</p>
-        <div id="preview-images" class="d-flex flex-wrap justify-content-center gap-2"></div>
-      </section>
+      <div id="preview-background" style="position:relative; width:100%; min-height:300px;">
+        <div id="preview-background-blur" style="
+            position:absolute; 
+            top:0; left:0; right:0; bottom:0;
+            background-size: cover;
+            background-position: center;
+            z-index:0;"></div>
+        <section id="preview-section" class="p-4 text-center text-white">
+          <h1 id="preview-title">Event Title</h1>
+          <p id="preview-description">Event description will appear here.</p>
+          <p id="preview-times">Event times: Not set</p>
+          <div id="preview-images" class="d-flex flex-wrap justify-content-center gap-2"></div>
+        </section>
+      </div>
     </div>
 
     <button id="finishBtn" type="submit" class="btn btn-primary" disabled>Submit Booking</button>

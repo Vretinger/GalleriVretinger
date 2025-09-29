@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const eventEndTime = document.getElementById("event-end-time");
   const titleInput = document.getElementById("event-title");
   const descriptionInput = document.getElementById("event-description");
-  const image1Input = document.getElementById("event-image1");
-  const addImageBtn = document.getElementById("addImageBtn");
-  const extraImagesContainer = document.getElementById("extra-images-container");
   const finishBtn = document.getElementById("finishBtn");
 
   const bgColorInput = document.getElementById("event-bg-color");
@@ -58,40 +55,41 @@ document.addEventListener("DOMContentLoaded", function () {
       initEventDays(startDate, endDate);
     }
   }
-});
-
-// --- Stage 2: Event days ---
-function initEventDays(start, end) {
-  flatpickr(eventDaysInput, {
-    mode: "range",
-    dateFormat: "Y-m-d",
-    minDate: start, // Date object
-    maxDate: end,   // Date object
-    appendTo: document.body,
-    onClose: function(selectedDates) {
-      if (selectedDates.length === 2) {
-        createTimeInputs();   // ✅ now the inputs get created
-        validateForm();       // keep form validation in sync
-      }
-    }
   });
-}
 
-function getEventDays() {
-  if (!eventDaysInput.value) return [];
-  const [startStr, endStr] = eventDaysInput.value.split(" to ");
-  const start = new Date(startStr);
-  const end = new Date(endStr);
-
-  const dates = [];
-  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-    dates.push(new Date(d));
+  // --- Stage 2: Event days ---
+  function initEventDays(start, end) {
+    flatpickr(eventDaysInput, {
+      mode: "range",
+      dateFormat: "Y-m-d",
+      minDate: start, // Date object
+      maxDate: end,   // Date object
+      appendTo: document.body,
+      onClose: function(selectedDates) {
+        if (selectedDates.length === 2) {
+          createTimeInputs();   // ✅ now the inputs get created
+          validateForm();       // keep form validation in sync
+        }
+      }
+    });
   }
-  return dates;
-}
 
-function createTimeInputs() {
+  function getEventDays() {
+    if (!eventDaysInput.value) return [];
+    const [startStr, endStr] = eventDaysInput.value.split(" to ");
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+
+    const dates = [];
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      dates.push(new Date(d));
+    }
+    return dates;
+  }
+
+  function createTimeInputs() {
   const container = document.getElementById("per-day-times");
+  if (!container) return;
   container.innerHTML = ""; // clear old inputs
 
   const dates = getEventDays();
@@ -109,46 +107,66 @@ function createTimeInputs() {
     const startCol = document.createElement("div");
     startCol.classList.add("col");
     const startInput = document.createElement("input");
-    startInput.type = "time";
-    startInput.name = `start_time_${dateStr}`;
+    startInput.type = "text"; 
     startInput.classList.add("form-control", "per-day-start");
+
+    // hidden input for submission
+    const hiddenStart = document.createElement("input");
+    hiddenStart.type = "hidden";
+    hiddenStart.name = `start_time_${dateStr}`;
     startCol.appendChild(startInput);
-    startInput.step = 900;   // 15-minute intervals
-    startInput.min = "06:00"; // optional
-    startInput.max = "23:45"; // optional
+    startCol.appendChild(hiddenStart);
 
     const endCol = document.createElement("div");
     endCol.classList.add("col");
     const endInput = document.createElement("input");
-    endInput.type = "time";
-    endInput.name = `end_time_${dateStr}`;
+    endInput.type = "text";
     endInput.classList.add("form-control", "per-day-end");
+
+    // hidden input for submission
+    const hiddenEnd = document.createElement("input");
+    hiddenEnd.type = "hidden";
+    hiddenEnd.name = `end_time_${dateStr}`;
     endCol.appendChild(endInput);
-    endInput.step = 900;
-    endInput.min = "06:00"; // optional
-    endInput.max = "23:59"; // optional
+    endCol.appendChild(hiddenEnd);
 
     row.appendChild(startCol);
     row.appendChild(endCol);
     container.appendChild(row);
 
-    // Validation + preview update
-    startInput.addEventListener("input", () => {
-      validateForm();
-      updateTimesPreview();
+    // flatpickr init
+    flatpickr(startInput, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      minuteIncrement: 15,
+      onChange: (selectedDates, dateStr) => {
+        hiddenStart.value = dateStr;  // ✅ sync hidden input
+        validateForm();
+        updateTimesPreview();
+      }
     });
-    endInput.addEventListener("input", () => {
-      validateForm();
-      updateTimesPreview();
+
+    flatpickr(endInput, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      minuteIncrement: 15,
+      onChange: (selectedDates, dateStr) => {
+        hiddenEnd.value = dateStr;  // ✅ sync hidden input
+        validateForm();
+        updateTimesPreview();
+      }
     });
   });
 
-  // Update preview right away
   updateTimesPreview();
 }
 
-// --- Form Validation ---
-function validateForm() {
+  // --- Form Validation ---
+  function validateForm() {
   const dates = getEventDays();
   let allTimesFilled = true;
 
@@ -156,7 +174,7 @@ function validateForm() {
     const dateStr = date.toISOString().split("T")[0];
     const start = document.querySelector(`[name="start_time_${dateStr}"]`);
     const end = document.querySelector(`[name="end_time_${dateStr}"]`);
-    if (!start.value || !end.value) {
+    if (!start || !end || !start.value || !end.value) {
       allTimesFilled = false;
     }
   });
@@ -164,103 +182,208 @@ function validateForm() {
   if (
     eventDaysInput.value &&
     allTimesFilled &&
-    titleInput.value &&
-    descriptionInput.value &&
-    image1Input.files.length > 0
+    titleInput.value.trim() &&
+    descriptionInput.value.trim() &&
+    document.querySelectorAll('input[name="uploaded_images"]').length > 0
   ) {
     finishBtn.disabled = false;
+    console.log("Form is valid, you can submit now.");
   } else {
     finishBtn.disabled = true;
+    console.log("Form is incomplete, cannot submit yet.");
   }
 }
 
 
-[eventDaysInput, eventStartTime, eventEndTime, titleInput, descriptionInput].forEach(el => {
-  el.addEventListener("input", validateForm);
+
+var myWidget = cloudinary.createUploadWidget(
+  {
+    cloudName: "dcbvjzagi",
+    uploadPreset: "GalleriVretinger",
+    folder: "users/{{ user.username }}/events/temp",
+    multiple: true,
+    maxFiles: 10,
+  },
+  (error, result) => {
+    if (!error && result && result.event === "success") {
+      console.log("Upload successful:", result.info);
+
+      const container = document.getElementById("preview-images");
+
+      // wrapper div
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+      wrapper.style.display = "inline-block";
+      wrapper.style.margin = "5px";
+
+      // preview image
+      const img = document.createElement("img");
+      img.src = result.info.secure_url;
+      img.style.maxWidth = "150px";
+      img.style.borderRadius = "6px";
+      img.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
+
+      // hidden input for Django
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "uploaded_images";
+      input.value = result.info.public_id;
+      document.querySelector("form").appendChild(input);
+
+      // remove button
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "×";
+      removeBtn.type = "button";
+      removeBtn.style.position = "absolute";
+      removeBtn.style.top = "2px";
+      removeBtn.style.right = "2px";
+      removeBtn.style.background = "rgba(0,0,0,0.6)";
+      removeBtn.style.color = "white";
+      removeBtn.style.border = "none";
+      removeBtn.style.borderRadius = "50%";
+      removeBtn.style.width = "22px";
+      removeBtn.style.height = "22px";
+      removeBtn.style.cursor = "pointer";
+      removeBtn.style.lineHeight = "18px";
+      removeBtn.style.fontSize = "16px";
+
+      // remove handler → also delete from Cloudinary
+      removeBtn.addEventListener("click", () => {
+        fetch("/delete_uploaded_image/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify({ public_id: result.info.public_id }),
+        }).then(res => res.json()).then(data => {
+          console.log("Cloudinary delete:", data);
+        });
+
+        wrapper.remove();
+      });
+
+      // assemble
+      wrapper.appendChild(img);
+      wrapper.appendChild(removeBtn);
+      wrapper.appendChild(input);
+      container.appendChild(wrapper);
+
+      validateForm();
+    }
 });
 
-// --- Event images ---
-function handleEventImage(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function (ev) {
-    const wrapper = document.createElement("div");
-    wrapper.style.position = "relative";
-    wrapper.style.display = "inline-block";
+document.getElementById("upload_widget").addEventListener("click", function () {
+  myWidget.open();
+}, false);
 
-    const img = document.createElement("img");
-    img.src = ev.target.result;
-    img.style.maxWidth = "150px";
-    img.style.margin = "6px";
-    img.style.borderRadius = "6px";
-    img.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
 
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "×";
-    removeBtn.style.position = "absolute";
-    removeBtn.style.top = "2px";
-    removeBtn.style.right = "2px";
-    removeBtn.style.background = "rgba(0,0,0,0.6)";
-    removeBtn.style.color = "white";
-    removeBtn.style.border = "none";
-    removeBtn.style.borderRadius = "50%";
-    removeBtn.style.width = "22px";
-    removeBtn.style.height = "22px";
-    removeBtn.style.cursor = "pointer";
-    removeBtn.style.lineHeight = "18px";
-    removeBtn.style.fontSize = "16px";
-    removeBtn.addEventListener("click", () => {
-      wrapper.remove();
-      input.value = ""; // clear input so same file can be reselected
-      validateForm();
-    });
+// --- Background image upload via Cloudinary ---
+const bgUploadBtn = document.getElementById("bg-upload-btn"); // create a new button in your template
+const bgInput = document.getElementById("event-bg-image-hidden"); // hidden input to store public_id
+const bgPreview = document.getElementById("preview-background-blur");
 
-    wrapper.appendChild(img);
-    wrapper.appendChild(removeBtn);
-    previewImages.appendChild(wrapper);
-  };
-  reader.readAsDataURL(file);
+// Cloudinary background upload
+bgUploadBtn.addEventListener("click", function () {
+  bgWidget.open();
+});
+
+// Cloudinary widget for background image (single upload)
+var bgWidget = cloudinary.createUploadWidget(
+  {
+    cloudName: "dcbvjzagi",
+    uploadPreset: "GalleriVretinger",
+    folder: "users/{{ user.username }}/events/bg",
+    multiple: false, // only one image allowed
+  },
+  (error, result) => {
+    if (!error && result && result.event === "success") {
+      console.log("Background upload successful:", result.info);
+
+      // Set background image in the preview layer
+      const bg = document.getElementById("preview-background-blur");
+      bg.style.backgroundImage = `url(${result.info.secure_url})`;
+      bg.style.backgroundSize = "cover";
+      bg.style.backgroundPosition = "center";
+
+      // Optional: store public_id in hidden input for form submission
+      let input = document.querySelector('input[name="bg_image_uploaded"]');
+      if (!input) {
+        input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "bg_image_uploaded";
+        document.querySelector("form").appendChild(input);
+      }
+      input.value = result.info.public_id;
+    }
+  }
+);
+
+// Blur toggle
+bgBlurCheckbox.addEventListener("change", () => {
+  if (bgBlurCheckbox.checked) {
+    bgPreview.style.filter = "blur(4px)";
+  } else {
+    bgPreview.style.filter = "none";
+  }
+});
+
+// --- Open widget on button click ---
+bgUploadBtn.addEventListener("click", function () {
+  bgWidget.open();
+}, false);
+
+// Helper to get CSRF token
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
 }
 
-image1Input.addEventListener("change", function () {
-  handleEventImage(this);
+// --- TITLE + DESCRIPTION LIVE PREVIEW ---
+titleInput.addEventListener("input", function () {
+  const value = this.value.trim();
+  previewTitle.textContent = value || "Event Title";
   validateForm();
 });
 
-addImageBtn.addEventListener("click", () => {
-  const newInput = document.createElement("input");
-  newInput.type = "file";
-  newInput.classList.add("form-control", "mb-2");
-  newInput.addEventListener("change", function () {
-    handleEventImage(this);
-  });
-  extraImagesContainer.appendChild(newInput);
-});
-
-// --- Preview updates ---
-titleInput.addEventListener("input", () => {
-  previewTitle.textContent = titleInput.value || "Event Title";
-});
-
-descriptionInput.addEventListener("input", () => {
-  previewDescription.textContent = descriptionInput.value || "Event description will appear here.";
+descriptionInput.addEventListener("input", function () {
+  const value = this.value.trim();
+  previewDescription.textContent =
+    value || "Event description will appear here.";
+  validateForm();
 });
 
 function updateTimesPreview() {
   const container = document.getElementById("per-day-times");
-  const rows = container.querySelectorAll(".row");
-
-  if (!rows.length) {
+  if (!container) {
     previewTimes.textContent = "Event times: Not set";
     return;
   }
 
+  const rowNodes = container.querySelectorAll(".row");
   const dayTimes = [];
-  rows.forEach(row => {
-    const date = row.querySelector("div").textContent; // first col has date label
-    const start = row.querySelector("input[type='time']").value;
-    const end = row.querySelectorAll("input[type='time']")[1].value;
+
+  rowNodes.forEach(row => {
+    // date label we put in .fw-bold
+    const dateLabelEl = row.querySelector(".fw-bold");
+    if (!dateLabelEl) return;
+    const date = dateLabelEl.textContent.trim();
+
+    const startInput = row.querySelector("input.per-day-start");
+    const endInput = row.querySelector("input.per-day-end");
+    const start = startInput ? startInput.value.trim() : "";
+    const end = endInput ? endInput.value.trim() : "";
+
     if (start && end) {
       dayTimes.push({ date, start, end });
     }
@@ -271,59 +394,39 @@ function updateTimesPreview() {
     return;
   }
 
-  // Group consecutive days with identical times
-  const groups = [];
-  let currentGroup = [dayTimes[0]];
+    // Group consecutive days that have identical times
+    const groups = [];
+    let currentGroup = [dayTimes[0]];
 
-  for (let i = 1; i < dayTimes.length; i++) {
-    const prev = dayTimes[i - 1];
-    const curr = dayTimes[i];
-    if (curr.start === prev.start && curr.end === prev.end) {
-      currentGroup.push(curr);
-    } else {
-      groups.push(currentGroup);
-      currentGroup = [curr];
+    for (let i = 1; i < dayTimes.length; i++) {
+      const prev = dayTimes[i - 1];
+      const curr = dayTimes[i];
+      if (curr.start === prev.start && curr.end === prev.end) {
+        currentGroup.push(curr);
+      } else {
+        groups.push(currentGroup);
+        currentGroup = [curr];
+      }
     }
+    groups.push(currentGroup);
+
+    // Build display strings; use <br> so browser shows new lines
+    const parts = groups.map(group => {
+      if (group.length === 1) {
+        return `${group[0].date}: ${group[0].start} → ${group[0].end}`;
+      } else {
+        return `${group[0].date} to ${group[group.length - 1].date}: ${group[0].start} → ${group[0].end}`;
+      }
+    });
+
+    // Use innerHTML to keep the line breaks (or set textContent with \n if you prefer)
+    previewTimes.innerHTML = parts.join("<br>");
   }
-  groups.push(currentGroup);
 
-  // Format output
-  const parts = groups.map(group => {
-    if (group.length === 1) {
-      return `${group[0].date}: ${group[0].start} → ${group[0].end}`;
-    } else {
-      return `${group[0].date} to ${group[group.length - 1].date}: ${group[0].start} → ${group[0].end}`;
-    }
+
+  // --- Background customization ---
+  bgColorInput.addEventListener("input", () => {
+    previewBackground.style.backgroundImage = "none";
+    previewBackground.style.backgroundColor = bgColorInput.value;
   });
-
-  previewTimes.textContent = parts.join("\n");
-}
-
-
-// --- Background customization ---
-bgColorInput.addEventListener("input", () => {
-  previewBackground.style.backgroundImage = "none";
-  previewBackground.style.backgroundColor = bgColorInput.value;
-});
-
-bgImageInput.addEventListener("change", () => {
-  if (bgImageInput.files.length > 0) {
-    const file = bgImageInput.files[0];
-    const reader = new FileReader();
-    reader.onload = e => {
-      previewBackground.style.backgroundImage = `url(${e.target.result})`;
-      previewBackground.style.backgroundSize = "cover";
-      previewBackground.style.backgroundPosition = "center";
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-bgBlurCheckbox.addEventListener("change", () => {
-  if (bgBlurCheckbox.checked) {
-    bgBlurBox.style.filter = "blur(4px)";
-  } else {
-    bgBlurBox.style.filter = "none";
-  }
-});
 });
