@@ -27,35 +27,65 @@ document.addEventListener("DOMContentLoaded", function () {
   stage2.classList.remove("active"); // make sure it's disabled
 
   // --- Stage 1: Rental range ---
-  flatpickr(rentalInput, {
-  mode: "range",
-  dateFormat: "Y-m-d",
-  minDate: "today",
-  appendTo: document.body,
-  onClose: function(selectedDates) {
-    if (selectedDates.length === 2) {
-      const startDate = selectedDates[0];
-      const endDate   = selectedDates[1];
+fetch(bookedDatesUrl)
+  .then(response => response.json())
+  .then(bookings => {
+    // Convert bookings into Flatpickr disable format
+    const disabledRanges = bookings.map(b => {
+      return { from: b.start, to: b.end || b.start };
+    });
 
-      // Store hidden inputs as YYYY-MM-DD (local time)
-      const formatLocal = (d) => {
-        const year = d.getFullYear();
-        const month = String(d.getMonth() + 1).padStart(2, "0");
-        const day = String(d.getDate()).padStart(2, "0");
-        return `${year}-${month}-${day}`;
-      };
+    // Flatten all booked days into an array of strings YYYY-MM-DD
+    const bookedDates = [];
+    bookings.forEach(b => {
+      const start = new Date(b.start);
+      const end = new Date(b.end || b.start);
+      let current = new Date(start);
+      while (current <= end) {
+        bookedDates.push(current.toISOString().split("T")[0]);
+        current.setDate(current.getDate() + 1);
+      }
+    });
 
-      rentalStartInput.value = formatLocal(startDate);
-      rentalEndInput.value   = formatLocal(endDate);
+    flatpickr(rentalInput, {
+      mode: "range",
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      appendTo: document.body,
+      disable: disabledRanges, // not clickable
 
-      // Activate Stage 2
-      stage2.classList.add("active");
+      // Add a CSS class for booked days
+      onDayCreate: function(dObj, dStr, fp, dayElem) {
+        const date = dayElem.dateObj.toISOString().split("T")[0];
+        if (bookedDates.includes(date)) {
+          dayElem.classList.add("booked-day");
+        }
+      },
 
-      // Initialize Stage 2 with actual Date objects
-      initEventDays(startDate, endDate);
-    }
-  }
+      onClose: function(selectedDates) {
+        if (selectedDates.length === 2) {
+          const startDate = selectedDates[0];
+          const endDate   = selectedDates[1];
+
+          const formatLocal = (d) => {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, "0");
+            const day = String(d.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+          };
+
+          rentalStartInput.value = formatLocal(startDate);
+          rentalEndInput.value   = formatLocal(endDate);
+
+          stage2.classList.add("active");
+          initEventDays(startDate, endDate);
+        }
+      }
+    });
   });
+
+
+
 
   // --- Stage 2: Event days ---
   function initEventDays(start, end) {

@@ -16,6 +16,36 @@
   height: auto;
 }
 
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+    cursor: not-allowed;
+    color: rgba(57, 57, 57, 0.1);
+        background-color: crimson;
+  }
+
+
+.booked-day {
+  
+  // Optional: tooltip on hover
+  &::after {
+    content: "Booked";
+    position: absolute;
+    bottom: 110%; // above the day
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: none;
+    z-index: 10;
+  }
+
+  &:hover::after {
+    display: block;
+  }
+}
 
 .event-schedule {
   list-style: none; /* removes bullets */

@@ -5,7 +5,9 @@
 
 {% block content %}
 <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
-
+<script>
+  const bookedDatesUrl = "{% url 'booked_dates' %}";
+</script>
 
 
 <div class="booking-container mx-auto w-50 p-4">

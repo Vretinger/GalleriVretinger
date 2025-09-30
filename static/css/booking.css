@@ -15,6 +15,29 @@
   width: 150px; /* fallback */
   height: auto;
 }
+.booking-container .flatpickr-day.flatpickr-disabled, .booking-container .flatpickr-day.flatpickr-disabled:hover {
+  cursor: not-allowed;
+  color: rgba(57, 57, 57, 0.1);
+  background-color: crimson;
+}
+.booking-container .booked-day::after {
+  content: "Booked";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: none;
+  z-index: 10;
+}
+.booking-container .booked-day:hover::after {
+  display: block;
+}
 .booking-container .event-schedule {
   list-style: none; /* removes bullets */
   padding-left: 0; /* removes default padding */
