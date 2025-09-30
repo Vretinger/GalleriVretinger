@@ -1,0 +1,23 @@
+.card {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+
+  &-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  &-body {
+    padding: 1rem;
+  }
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+
+  &:hover {
+    background-color: darken(#007bff, 10%);
+    border-color: darken(#007bff, 12%);
+  }
+}
