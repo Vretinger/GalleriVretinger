@@ -22,6 +22,20 @@ from itertools import groupby
 from operator import attrgetter
 from datetime import datetime
 
+def booking_view(request):
+    # Fetch images from the "premises" folder in Cloudinary
+    print("images:", premises_images)
+
+    premises_images = cloudinary.api.resources(
+        type="upload",
+        prefix="premises/",   # Folder name in Cloudinary
+        max_results=20
+    )
+
+    return render(request, "booking_calendar.html", {
+        "premises_images": premises_images["resources"]
+    })
+
 @login_required
 def my_bookings_view(request):
     bookings = Booking.objects.filter(user=request.user)
