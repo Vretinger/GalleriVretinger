@@ -23,6 +23,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const previewImages = document.getElementById("preview-images");
   const previewTimes = document.getElementById("preview-times");
 
+
+
+  document.addEventListener("click", function(event) {
+  const nav = document.getElementById("navbarNav");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  // If navbar is open and click is outside it & not the toggler
+  if (nav.classList.contains("show") && 
+      !nav.contains(event.target) && 
+      !toggler.contains(event.target)) {
+    new bootstrap.Collapse(nav).hide();
+  }
+});
+
   // --- Stage 2 is blocked by default ---
   stage2.classList.remove("active"); // make sure it's disabled
 

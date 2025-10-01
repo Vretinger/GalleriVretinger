@@ -17,139 +17,128 @@
 </head>
 <body>
     <!-- Sticky Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
-  <div class="d-flex w-100 align-items-center">
-    <div class="container d-flex align-items-center">
-      <a class="navbar-brand" href="/">
-        <img src="{% static 'images/logo.png' %}" alt="Logo" height="40" />
-      </a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/gallery/">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="/events/">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/booking/availability/">booking</a></li>
-          {% if user.is_authenticated %}
-          <!-- Show when logged in -->
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
-          </li>
-          <li class="nav-item">
-            <form method="post" action="{% url 'logout' %}">
+  <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+    <div class="d-flex w-100 align-items-center">
+      <div class="container-fluid d-flex">
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/logo.png' %}" alt="Logo" height="40" />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/gallery/">Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="/events/">Events</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/booking/availability/">booking</a></li>
+            {% if user.is_authenticated %}
+            <!-- Show when logged in -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'my_bookings' %}">My Bookings</a>
+            </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link">
+                  Sign out
+                </button>
+              </form>
+            </li>
+          {% else %}
+            <!-- Show when not logged in -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+            </li>
+          {% endif %}
+
+            <!-- Language switcher inside collapse for small screens -->
+            <li class="nav-item d-lg-none mt-2">
+              <div class="dropdown language-switcher">
+                <button
+                  class="btn btn-secondary dropdown-toggle w-100"
+                  type="button"
+                  id="languageDropdownSm"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span class="fi fi-gb"></span>
+                </button>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="languageDropdownSm"
+                >
+                  <li>
+                    <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                      <input type="hidden" name="language" value="en" />
+                      <button type="submit" class="dropdown-item">
+                        <span class="fi fi-gb"></span> English
+                      </button>
+                    </form>
+                  </li>
+                  <li>
+                    <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                      <input type="hidden" name="language" value="sv" />
+                      <button type="submit" class="dropdown-item">
+                        <span class="fi fi-se"></span> Svenska
+                      </button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button class="navbar-toggler align-top me-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      {% load i18n %}
+      {% get_current_language as LANGUAGE_CODE %}
+
+      <div class="dropdown language-switcher d-none d-lg-block" style="margin-left:auto; margin-right:0;">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="languageDropdownLg"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {% if LANGUAGE_CODE == 'en' %}
+            <span class="fi fi-gb"></span>
+          {% elif LANGUAGE_CODE == 'sv' %}
+            <span class="fi fi-se"></span>
+          {% else %}
+            <span class="fi fi-gb"></span> {# fallback #}
+          {% endif %}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="languageDropdownLg">
+          <li>
+            <form action="{% url 'set_language' %}" method="post" class="d-inline">
               {% csrf_token %}
-              <button type="submit" class="btn btn-link nav-link">
-                Sign out
+              <input type="hidden" name="language" value="en" />
+              <button type="submit" class="dropdown-item">
+                <span class="fi fi-gb"></span>
               </button>
             </form>
           </li>
-        {% else %}
-          <!-- Show when not logged in -->
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
-          </li>
-        {% endif %}
-
-          <!-- Language switcher inside collapse for small screens -->
-          <li class="nav-item d-lg-none mt-2">
-            <div class="dropdown language-switcher">
-              <button
-                class="btn btn-secondary dropdown-toggle w-100"
-                type="button"
-                id="languageDropdownSm"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span class="fi fi-gb"></span>
+          <li>
+            <form action="{% url 'set_language' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <input type="hidden" name="language" value="sv" />
+              <button type="submit" class="dropdown-item">
+                <span class="fi fi-se"></span>
               </button>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="languageDropdownSm"
-              >
-                <li>
-                  <form action="{% url 'set_language' %}" method="post" class="d-inline">
-                    {% csrf_token %}
-                    <input type="hidden" name="language" value="en" />
-                    <button type="submit" class="dropdown-item">
-                      <span class="fi fi-gb"></span> English
-                    </button>
-                  </form>
-                </li>
-                <li>
-                  <form action="{% url 'set_language' %}" method="post" class="d-inline">
-                    {% csrf_token %}
-                    <input type="hidden" name="language" value="sv" />
-                    <button type="submit" class="dropdown-item">
-                      <span class="fi fi-se"></span> Svenska
-                    </button>
-                  </form>
-                </li>
-              </ul>
-            </div>
+            </form>
           </li>
         </ul>
       </div>
-      <button
-        class="navbar-toggler ms-auto"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-      <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
-
-    {% load i18n %}
-    {% get_current_language as LANGUAGE_CODE %}
-
-    <div class="dropdown language-switcher d-none d-lg-block" style="margin-left:auto; margin-right:0;">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="languageDropdownLg"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        {% if LANGUAGE_CODE == 'en' %}
-          <span class="fi fi-gb"></span>
-        {% elif LANGUAGE_CODE == 'sv' %}
-          <span class="fi fi-se"></span>
-        {% else %}
-          <span class="fi fi-gb"></span> {# fallback #}
-        {% endif %}
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="languageDropdownLg">
-        <li>
-          <form action="{% url 'set_language' %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <input type="hidden" name="language" value="en" />
-            <button type="submit" class="dropdown-item">
-              <span class="fi fi-gb"></span>
-            </button>
-          </form>
-        </li>
-        <li>
-          <form action="{% url 'set_language' %}" method="post" class="d-inline">
-            {% csrf_token %}
-            <input type="hidden" name="language" value="sv" />
-            <button type="submit" class="dropdown-item">
-              <span class="fi fi-se"></span>
-            </button>
-          </form>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
-
-
+  </nav>
 
     <!-- Page content -->
     <main>

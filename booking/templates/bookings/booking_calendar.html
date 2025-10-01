@@ -12,61 +12,62 @@
 
 <div class="booking-container mx-auto col-md-6 col-sm-12 p-4">
   <!-- Premises Info Box -->
-<div class="col-12 mb-3">
-  <div class="card border-primary shadow-sm">
-    <div class="card-header bg-primary text-white d-flex align-items-center"
-        data-bs-toggle="collapse"
-        data-bs-target="#premisesCollapse"
-        style="cursor: pointer;">
-      <span class="me-2">🏠</span> Lokalen & Planritning
-    </div>
-    <div id="premisesCollapse" class="collapse">
-      <div class="card-body">
-        <p class="mb-3">Se bilder från lokalen och planritningen:</p>
+  <div class="col-12 mb-3">
+    <div class="card border-primary shadow-sm">
+      <div class="card-header bg-primary text-white d-flex align-items-center"
+          data-bs-toggle="collapse"
+          data-bs-target="#premisesCollapse"
+          style="cursor: pointer;">
+        <span class="me-2">🏠</span> Lokalen & Planritning
+      </div>
+      <div id="premisesCollapse" class="collapse">
+        <div class="card-body">
+          <p class="mb-3">Se bilder från lokalen och planritningen:</p>
 
-        <!-- Tabs for switching -->
-        <ul class="nav nav-tabs" id="premisesTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos" type="button" role="tab">
-              Bilder
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="blueprint-tab" data-bs-toggle="tab" data-bs-target="#blueprint" type="button" role="tab">
-              Planritning
-            </button>
-          </li>
-        </ul>
+          <!-- Tabs for switching -->
+          <ul class="nav nav-tabs" id="premisesTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos" type="button" role="tab">
+                Bilder
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="blueprint-tab" data-bs-toggle="tab" data-bs-target="#blueprint" type="button" role="tab">
+                Planritning
+              </button>
+            </li>
+          </ul>
 
-        <!-- Tab content -->
-        <div class="tab-content mt-3">
-          <!-- Photos -->
-          <div id="premisesCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner rounded">
-              {% for image in premises_images %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                  <img src="{{ image.secure_url }}" class="d-block w-100" alt="Premises image {{ forloop.counter }}">
+          <!-- Tab content -->
+          <div class="tab-content mt-3">
+            <!-- Photos tab -->
+            <div class="tab-pane fade show active" id="photos" role="tabpanel">
+              <div id="premisesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  {% for img in premises_images %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <img src="{{ img.secure_url }}" class="d-block w-100 rounded border" alt="Premises">
+                    </div>
+                  {% endfor %}
                 </div>
-              {% endfor %}
+                <button class="carousel-control-prev" type="button" data-bs-target="#premisesCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#premisesCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </button>
+              </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#premisesCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#premisesCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
-            </button>
-          </div>
 
-          <!-- Blueprint -->
-          <div class="tab-pane fade" id="blueprint" role="tabpanel">
-            <img src="{% static 'images/blueprint.jpg' %}" class="img-fluid rounded border" alt="Blueprint of the premises">
+            <!-- Blueprint tab -->
+            <div class="tab-pane fade" id="blueprint" role="tabpanel">
+              <img src="{% static 'images/blueprint.jpg' %}" class="img-fluid rounded border" alt="Blueprint of the premises">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
   <div class="row mb-4">
     <!-- Included Info Box -->
     <div class="col-md-6 mb-3">

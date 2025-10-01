@@ -7,6 +7,7 @@ from events.models import Event, EventImage, EventDay
 from django.utils.dateparse import parse_date, parse_time
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
+from cloudinary import Search
 
 def availability_view(request):
     """Public view: show availability but don’t allow booking unless logged in"""
@@ -22,7 +23,11 @@ from itertools import groupby
 from operator import attrgetter
 from datetime import datetime
 
+
+
+
 def booking_view(request):
+    print(premises_images)
     # Fetch images from the "premises" folder in Cloudinary
     print("images:", premises_images)
 
@@ -35,6 +40,8 @@ def booking_view(request):
     return render(request, "booking_calendar.html", {
         "premises_images": premises_images["resources"]
     })
+
+
 
 @login_required
 def my_bookings_view(request):
@@ -101,6 +108,7 @@ def booked_dates(request):
 
 @login_required
 def booking_page(request):
+    
     if request.method == "POST":
 
         # Create booking
@@ -175,6 +183,28 @@ def booking_page(request):
 
         messages.success(request, "Your booking has been submitted!")
         return redirect("my_bookings")
+    
 
-    return render(request, "bookings/booking_calendar.html")
+    # 🔎 fetch images from your premises folder
+    try:
+        search = Search() \
+            .expression("folder:premises/*") \
+            .sort_by("public_id", "desc") \
+            .max_results(30)
+        result = search.execute()
+        premises_images = result.get("resources", [])
+        print("Fetched premises images:", [img["secure_url"] for img in premises_images])
+    except Exception as e:
+        print("Cloudinary search error:", e)
+        premises_images = []
+
+    if request.method == "POST":
+        # your existing booking/event saving code...
+        pass
+
+    return render(
+        request,
+        "bookings/booking_calendar.html",
+        {"premises_images": premises_images}
+    )
 
