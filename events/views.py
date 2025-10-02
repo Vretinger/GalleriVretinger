@@ -8,18 +8,19 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 import cloudinary.uploader
-from .models import Event, EventDay
+from .models import Event, EventDay, EventImage
 
 def create_event(request):
     if request.method == "POST":
         title = request.POST.get("event_title")
         description = request.POST.get("event_description")
+        bg_image_public_id = request.POST.get("bg_image_uploaded")
 
         # Save the Event first
         event = Event.objects.create(
             title=title,
             description=description,
-            # ... any other fields like user, bg_image, etc.
+            bg_image=bg_image_public_id if bg_image_public_id else None,
         )
 
         # --- Loop over POST keys to find per-day times ---
@@ -36,6 +37,11 @@ def create_event(request):
                         start_time=parse_time(start_time),   # converts "10:00" → time object
                         end_time=parse_time(end_time)        # converts "14:00" → time object
                     )
+
+        # --- Create EventImage objects from uploaded_images ---
+        uploaded_images = request.POST.getlist("uploaded_images")
+        for public_id in uploaded_images:
+            EventImage.objects.create(event=event, image=public_id)
 
         return redirect("event_detail", pk=event.pk)
 

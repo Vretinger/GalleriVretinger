@@ -13,7 +13,29 @@ def availability_view(request):
     """Public view: show availability but don’t allow booking unless logged in"""
     if request.user.is_authenticated:
         return redirect("booking_page")
-    return render(request, "bookings/availability.html")
+    
+    # 🔎 fetch images from your premises folder
+    try:
+        search = Search() \
+            .expression("folder:premises/*") \
+            .sort_by("public_id", "desc") \
+            .max_results(30)
+        result = search.execute()
+        premises_images = result.get("resources", [])
+        print("Fetched premises images:", [img["secure_url"] for img in premises_images])
+    except Exception as e:
+        print("Cloudinary search error:", e)
+        premises_images = []
+
+    if request.method == "POST":
+        # your existing booking/event saving code...
+        pass
+
+    return render(
+        request,
+        "bookings/availability.html",
+        {"premises_images": premises_images}
+    )
 
 
 from itertools import groupby
@@ -23,23 +45,6 @@ from itertools import groupby
 from operator import attrgetter
 from datetime import datetime
 
-
-
-
-def booking_view(request):
-    print(premises_images)
-    # Fetch images from the "premises" folder in Cloudinary
-    print("images:", premises_images)
-
-    premises_images = cloudinary.api.resources(
-        type="upload",
-        prefix="premises/",   # Folder name in Cloudinary
-        max_results=20
-    )
-
-    return render(request, "booking_calendar.html", {
-        "premises_images": premises_images["resources"]
-    })
 
 
 
@@ -155,6 +160,9 @@ def booking_page(request):
                 start_time = value
                 end_time = request.POST.get(f"end_time_{date_str}")
 
+                print("DEBUG event day ->", date_str, "start:", start_time, "end:", end_time)
+
+
                 if start_time and end_time:
                     EventDay.objects.create(
                         event=event,
@@ -175,11 +183,19 @@ def booking_page(request):
                     new_public_id,
                     overwrite=True
                 )
-                event.bg_image = new_public_id
+                # Create EventImage for this event
+                EventImage.objects.create(
+                    event=event,
+                    image=result["public_id"]
+                )
             except Exception as e:
-                event.bg_image = bg_image_id
+                print("Cloudinary move error (event image):", e)
+                # fallback: still save EventImage with original public_id
+                EventImage.objects.create(
+                    event=event,
+                    image=public_id
+                )
 
-            event.save(update_fields=["bg_image"])
 
         messages.success(request, "Your booking has been submitted!")
         return redirect("my_bookings")

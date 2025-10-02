@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 
 {% block content %}
 <div class="container py-5" style="min-height: 90vh;">
@@ -10,7 +11,7 @@
         <img src="{{ art.url }}" class="card-img-top" alt="{{ art.title }}">
         <div class="card-body text-center">
           <h5 class="card-title">{{ art.title }}</h5>
-          <p class="card-text"><strong>{{ art.price }}</strong></p>
+          <p class="card-text"><strong>{{ art.price|intcomma }} kr</strong></p>
         </div>
       </div>
     </div>

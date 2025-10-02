@@ -1,11 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mt-5">
-  <h2>Sign Up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-  </form>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px;">
+    <h2 class="text-center mb-4">Sign Up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <!-- Link to trigger modal -->
+      <p class="text-muted small">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#passwordRules">
+          View password requirements
+        </a>
+      </p>
+
+      <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+    </form>
+    <p class="text-center mt-3">
+      Already have an account? <a href="{% url 'login' %}">Login</a>
+    </p>
+  </div>
+</div>
+
+<!-- Password Rules Modal -->
+<div class="modal fade" id="passwordRules" tabindex="-1" aria-labelledby="passwordRulesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="passwordRulesLabel">Password Requirements</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-unstyled mb-0">
+          <li>✔️ Your password can’t be too similar to your other personal information.</li>
+          <li>✔️ Must contain at least 8 characters.</li>
+          <li>✔️ Can’t be a commonly used password.</li>
+          <li>✔️ Can’t be entirely numeric.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
