@@ -89,6 +89,34 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.upcoming-events-section {
+  background-color: #1a2954;
+}
+.upcoming-events-section h2 {
+  color: #fff;
+  font-weight: 700;
+}
+.upcoming-events-section .event-banner {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 200px;
+}
+.upcoming-events-section .event-banner h4 {
+  font-weight: 600;
+  color: #222;
+}
+.upcoming-events-section .event-banner p {
+  color: #555;
+}
+.upcoming-events-section .event-banner a.btn {
+  border-radius: 30px;
+}
+.upcoming-events-section .carousel-control-prev-icon,
+.upcoming-events-section .carousel-control-next-icon {
+  filter: invert(1);
+}
+
 /* Current Event Section */
 .current-event-section {
   background-color: #d3bca4;

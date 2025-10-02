@@ -7,6 +7,8 @@ from django.utils.dateparse import parse_date, parse_time
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.timezone import now
+from django.db.models import Min, Max
 import cloudinary.uploader
 from .models import Event, EventDay, EventImage
 
@@ -108,10 +110,19 @@ def calendar_view(request, year=None, month=None):
 
 
 def event_list(request):
-    today = date.today()
-    events = Event.objects.filter(
-        start_datetime__gte=today
-    ).order_by('start_datetime')
+    # Annotate each event with first and last day
+    events = (
+        Event.objects.annotate(
+            first_day=Min('days__date'),
+            last_day=Max('days__date')
+        )
+        .order_by('first_day')
+    )
+
+    # Debug: make sure events exist
+    for e in events:
+        print(e.title, e.first_day, e.last_day)
+
     return render(request, 'events/event_list.html', {'events': events})
 
 

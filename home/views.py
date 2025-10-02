@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.utils.timezone import now
 from events.models import Event, EventDay
 from cloudinary.utils import cloudinary_url
+
 
 def home_view(request):
     # Get the first current event
@@ -36,8 +38,17 @@ def home_view(request):
         grouped_days = []
         bg_style = ""
 
+    # ✅ Get upcoming events (max 5)
+    today = now().date()
+    upcoming_events = (
+        Event.objects.filter(days__date__gte=today, is_current_event=False)
+        .distinct()
+        .order_by("days__date")[:5]
+    )
+
     return render(request, "home.html", {
         "current_event": current_event,
         "grouped_days": grouped_days,
         "bg_style": bg_style,
+        "upcoming_events": upcoming_events,  # ✅ pass to template
     })
