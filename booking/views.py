@@ -51,8 +51,8 @@ from datetime import datetime
 @login_required
 def my_bookings_view(request):
     bookings = Booking.objects.filter(user=request.user)
-
     booking_events = []
+
     for booking in bookings:
         events = Event.objects.filter(booking=booking)
         for event in events:
@@ -69,6 +69,7 @@ def my_bookings_view(request):
                         grouped_days.append(current_group)
                         current_group = [d]
                 grouped_days.append(current_group)
+
             # --- Compute background style ---
             bg_style = ""
             if event.bg_image:
@@ -81,6 +82,7 @@ def my_bookings_view(request):
             if event.blur_bg:
                 bg_style += " filter: blur(4px);"
 
+            # --- Append to booking_events ---
             booking_events.append({
                 "booking": booking,
                 "event": event,
@@ -92,6 +94,7 @@ def my_bookings_view(request):
     return render(request, "bookings/my_bookings.html", {
         "booking_events": booking_events
     })
+
 
 
 
@@ -135,23 +138,10 @@ def booking_page(request):
             end_datetime=request.POST.get("event_end"),
         )
 
-        # Handle background image
+        # Save background image public_id from hidden input
         bg_image_id = request.POST.get("bg_image_uploaded")
         if bg_image_id:
-            new_folder = f"users/{request.user.username}/events/{event.id}/background"
-            new_public_id = f"{new_folder}/{bg_image_id.split('/')[-1]}"
-
-            try:
-                result = cloudinary.uploader.rename(
-                    bg_image_id,
-                    new_public_id,
-                    overwrite=True
-                )
-                event.bg_image = result["public_id"]
-            except Exception as e:
-                print("Cloudinary move error (bg):", e)
-                event.bg_image = cloudinary.CloudinaryImage(bg_image_id).build_url()
-
+            event.bg_image = bg_image_id
             event.save(update_fields=["bg_image"])
 
         for key, value in request.POST.items():
@@ -159,9 +149,6 @@ def booking_page(request):
                 date_str = key.replace("start_time_", "")
                 start_time = value
                 end_time = request.POST.get(f"end_time_{date_str}")
-
-                print("DEBUG event day ->", date_str, "start:", start_time, "end:", end_time)
-
 
                 if start_time and end_time:
                     EventDay.objects.create(
@@ -174,7 +161,7 @@ def booking_page(request):
         # process uploaded images
         uploaded_ids = request.POST.getlist("uploaded_images")
         for public_id in uploaded_ids:
-            new_folder = f"users/{request.user.username}/events/{event.id}"
+            new_folder = f"users/{request.user.email}/events/{event.id}"
             new_public_id = f"{new_folder}/{public_id.split('/')[-1]}"  # keep filename
 
             try:

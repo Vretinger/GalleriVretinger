@@ -20,10 +20,10 @@
               <strong>End:</strong> {{ e.booking.end_date }}
             </p>
           </div>
-          <div class="event-card col-md-8 position-relative">
+          <div class="event-card col-md-8 position-relative" >
 
           <!-- Background layer -->
-          <div class="bg-preview {% if e.event.blur_bg %}blur{% endif %}" style="{{ e.bg_style }}"></div>
+          <div class="bg-preview mx-0 {% if e.event.blur_bg %}blur{% endif %}" style="{{ e.bg_style }}"></div>
 
           <!-- Overlay content on top -->
           <div class="overlay-content container text-center p-3 position-absolute top-0 start-0 w-100 h-100">

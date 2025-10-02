@@ -24,22 +24,4 @@ document.addEventListener("DOMContentLoaded", () => {
     wrapper.append(img, removeBtn, input); container.appendChild(wrapper);
     validateForm();
   }
-
-  // Background upload
-  const bgWidget=cloudinary.createUploadWidget({
-    cloudName:"dcbvjzagi", uploadPreset:"GalleriVretinger", asset_folder:"artworks/users/{{ user.user }}/events/bg", multiple:false
-  }, (err,res)=>{
-    if(!err && res && res.event==="success"){
-      const bgPreview=document.getElementById("preview-background");
-      bgPreview.style.backgroundImage=`url(${res.info.secure_url})`;
-      bgPreview.style.backgroundSize="cover";
-      bgPreview.style.backgroundPosition="center";
-      let input=document.querySelector('input[name="bg_image_uploaded"]');
-      if(!input){ input=document.createElement("input"); input.type="hidden"; input.name="bg_image_uploaded"; document.querySelector("form").appendChild(input); }
-      input.value=res.info.public_id;
-    }
-  });
-  document.getElementById("bg-upload-btn").addEventListener("click",()=>bgWidget.open());
-
-  function getCookie(name){ let cookieValue=null;if(document.cookie && document.cookie!==""){document.cookie.split(";").forEach(c=>{const cookie=c.trim();if(c.startsWith(name+"=")) cookieValue=decodeURIComponent(c.substring(name.length+1));});}return cookieValue;}
 });

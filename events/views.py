@@ -15,6 +15,7 @@ def create_event(request):
         title = request.POST.get("event_title")
         description = request.POST.get("event_description")
         bg_image_public_id = request.POST.get("bg_image_uploaded")
+        print("Background image public_id:", bg_image_public_id)  # Debugging line
 
         # Save the Event first
         event = Event.objects.create(
