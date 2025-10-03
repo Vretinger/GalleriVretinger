@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
 {% load static %}
+{% load i18n %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container py-5" style="min-height: 90vh;">
-  <h2>My Bookings</h2>
+  <h2>{% trans "My Bookings" %}</h2>
 
   {% if booking_events %}
     {% for e in booking_events %}
@@ -16,62 +16,61 @@
         <div class="row mb-5 p-3 border rounded shadow-sm">
           <div class="col-md-4">
             <p class="booking-info">
-              <strong>Start:</strong> {{ e.booking.start_date }}<br>
-              <strong>End:</strong> {{ e.booking.end_date }}
+              <strong>{% trans "Start:" %}</strong> {{ e.booking.start_date }}<br>
+              <strong>{% trans "End:" %}</strong> {{ e.booking.end_date }}
             </p>
           </div>
-          <div class="event-card col-md-8 position-relative" >
+          <div class="event-card col-md-8 position-relative">
 
-          <!-- Background layer -->
-          <div class="bg-preview mx-0 {% if e.event.blur_bg %}blur{% endif %}" style="{{ e.bg_style }}"></div>
+            <!-- Background layer -->
+            <div class="bg-preview mx-0 {% if e.event.blur_bg %}blur{% endif %}" style="{{ e.bg_style }}"></div>
 
-          <!-- Overlay content on top -->
-          <div class="overlay-content container text-center p-3 position-absolute top-0 start-0 w-100 h-100">
-            <h1 class="gallery-title">{{ e.event.title }}</h1>
-            <p class="gallery-description">{{ e.event.description }}</p>
+            <!-- Overlay content on top -->
+            <div class="overlay-content container text-center p-3 position-absolute top-0 start-0 w-100 h-100">
+              <h1 class="gallery-title">{{ e.event.title }}</h1>
+              <p class="gallery-description">{{ e.event.description }}</p>
 
-            <!-- Event Schedule -->
-            {% if e.grouped_days %}
-              <h4>Event Schedule:</h4>
-              <ul class="list-unstyled">
-                {% for group in e.grouped_days %}
-                  {% if group|length == 1 %}
-                    <li>{{ group.0.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
-                  {% else %}
-                    {% with last_day=group|last %}
-                      <li>{{ group.0.date }} → {{ last_day.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
-                    {% endwith %}
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            {% endif %}
+              <!-- Event Schedule -->
+              {% if e.grouped_days %}
+                <h4>{% trans "Event Schedule:" %}</h4>
+                <ul class="list-unstyled">
+                  {% for group in e.grouped_days %}
+                    {% if group|length == 1 %}
+                      <li>{{ group.0.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+                    {% else %}
+                      {% with last_day=group|last %}
+                        <li>{{ group.0.date }} → {{ last_day.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+                      {% endwith %}
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
 
-            <!-- Event images -->
-            {% if e.images %}
-              <div class="artwork-grid d-flex flex-wrap gap-2 justify-content-center mt-3">
-                {% for img in e.images %}
-                <div class="artwork-item" style="flex: 0 0 150px;">
-                  <img src="{{ img.image.url }}" alt="{{ e.event.title }}" 
-                      style="width:100%; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+              <!-- Event images -->
+              {% if e.images %}
+                <div class="artwork-grid d-flex flex-wrap gap-2 justify-content-center mt-3">
+                  {% for img in e.images %}
+                  <div class="artwork-item" style="flex: 0 0 150px;">
+                    <img src="{{ img.image.url }}" alt="{{ e.event.title }}" 
+                        style="width:100%; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+                  </div>
+                  {% endfor %}
                 </div>
-                {% endfor %}
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
+
           </div>
-
         </div>
-
       </div>
     {% endfor %}
   {% else %}
     <div class="container my-5">
       <div class="card text-center p-5 shadow-sm" style="background-color:#f8f9fa; border-radius:12px;">
-        <h4 class="text-muted mb-2">No Bookings Yet</h4>
-        <p class="text-secondary">You haven’t made any bookings. Once you book an event, it will appear here.</p>
-        <a href="{% url 'booking_page' %}" class="btn btn-primary mt-3">Book an Event</a>
+        <h4 class="text-muted mb-2">{% trans "No Bookings Yet" %}</h4>
+        <p class="text-secondary">{% trans "You haven’t made any bookings. Once you book an event, it will appear here." %}</p>
+        <a href="{% url 'booking_page' %}" class="btn btn-primary mt-3">{% trans "Book an Event" %}</a>
       </div>
     </div>
   {% endif %}
 </div>
-
 {% endblock %}

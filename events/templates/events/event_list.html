@@ -3,13 +3,13 @@
 
 {% block content %}
   <!-- Hero Section -->
-    <div class="container mx-auto text-center">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">{% trans "Upcoming Events" %}</h1>
-      <p class="text-lg opacity-90">{% trans "Explore our upcoming events and find something exciting to attend." %}</p>
-    </div>
+  <div class="container mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-4">{% trans "Upcoming Events" %}</h1>
+    <p class="text-lg opacity-90">{% trans "Explore our upcoming events and find something exciting to attend." %}</p>
+  </div>
 
   <!-- Events Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style="min-height: 80vh;">
     {% for event in events %}
       <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transform transition">
         
@@ -41,7 +41,7 @@
           <h2 class="text-2xl font-semibold text-gray-700 mb-2">{% trans "No Upcoming Events" %}</h2>
           <p class="text-gray-500 mb-4">{% trans "Please check back later for updates." %}</p>
           <div class="flex justify-center">
-            <img src="{% static 'images/no-events.jpg' %}" alt="No events" class="w-40 h-auto rounded-lg shadow-md">
+            <img src="{% static 'images/no-events.jpg' %}" alt="{% trans 'No events' %}" class="w-40 h-auto rounded-lg shadow-md">
           </div>
         </div>
       </div>

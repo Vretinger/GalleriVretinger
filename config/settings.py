@@ -29,12 +29,15 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost").split(",")
 
 LANGUAGE_COOKIE_NAME = 'django_language'
-LANGUAGE_CODE = 'sv'  # Default language
+LANGUAGE_CODE = 'en'  # Default language
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('sv', _('Swedish')),
+    ('en', 'English'),
+    ('sv', 'Svenska'),
 ]
+
+USE_I18N = True
+USE_L10N = True
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
@@ -45,7 +48,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-USE_I18N = True
+
 
 # Application definition
 
@@ -67,7 +70,7 @@ INSTALLED_APPS = [
     'users',
     'contact',
 ]
-
+ 
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),

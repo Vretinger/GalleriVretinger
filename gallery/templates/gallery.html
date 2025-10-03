@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load humanize %}
+{% load humanize i18n %}
 
 {% block content %}
 <div class="container py-5" style="min-height: 90vh;">
-  <h2 class="mb-4 text-center">🎨 Art Gallery</h2>
+  <h2 class="mb-4 text-center">🎨 {% trans "Art Gallery" %}</h2>
   <div class="row g-4">
     {% for art in artworks %}
     <div class="col-sm-6 col-md-4 col-lg-3">
@@ -11,12 +11,12 @@
         <img src="{{ art.url }}" class="card-img-top" alt="{{ art.title }}">
         <div class="card-body text-center">
           <h5 class="card-title">{{ art.title }}</h5>
-          <p class="card-text"><strong>{{ art.price|intcomma }} kr</strong></p>
+          <p class="card-text"><strong>{{ art.price|intcomma }} {% trans "kr" %}</strong></p>
         </div>
       </div>
     </div>
     {% empty %}
-    <p class="text-center">No artworks available right now.</p>
+    <p class="text-center">{% trans "No artworks available right now." %}</p>
     {% endfor %}
   </div>
 </div>

@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Elements ---
   const bgColorInput = document.getElementById("event-bg-color");
   const bgBlurCheckbox = document.getElementById("checkDefault");
-  const previewBackground = document.getElementById("preview-background-blur");
   const previewBlur = document.getElementById("preview-background-blur");  
+  const previewBackground = document.getElementById("preview-background");
 
 
   // --- Text preview ---
@@ -56,14 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Update background color live ---
   bgColorInput.addEventListener("input", () => {
-    // Apply color to blur overlay (so it blends if image exists)
-    previewBlur.style.backgroundColor = bgColorInput.value;
+    previewBackground.style.backgroundColor = bgColorInput.value;
   });
+
   // --- Blur toggle ---
   bgBlurCheckbox.addEventListener("change", () => {
-    previewBlur.style.filter = bgBlurCheckbox.checked ? "blur(4px)" : "none";
+    previewBlur.style.backdropFilter = bgBlurCheckbox.checked ? "blur(6px)" : "none";
   });
-  // Optional: if you want to also dynamically show a background image
+
+  // --- Background image upload preview ---
   const bgImageInput = document.getElementById("event-bg-image"); // file input
   if (bgImageInput) {
     bgImageInput.addEventListener("change", (e) => {
@@ -71,8 +72,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (file) {
         const url = URL.createObjectURL(file);
         previewBlur.style.backgroundImage = `url(${url})`;
-        previewBlur.style.backgroundSize = "fit";
-        previewBlur.style.backgroundPosition = "center";
+        previewBlur.style.backgroundColor = bgColorInput.value || "#f5f5f5"; // fallback if image fails
+      } else {
+        // Reset to just color if no image selected
+        previewBackground.style.backgroundImage = "";
+        previewBackground.style.backgroundColor = bgColorInput.value || "#f5f5f5";
       }
     });
   }

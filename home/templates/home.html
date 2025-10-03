@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block content %}
 
@@ -21,7 +20,15 @@
     <div class="intro-text col-md-6 px-3">
       <h2 class="intro-title">{% trans "More than a gallery — a space for expression" %}</h2>
       <p class="intro-description">
-        {% trans "Vretinger Gallery is a cozy and professional environment where artists showcase their work and host events. With a flexible layout and welcoming vibe, it's perfect for exhibits, creative workshops, and cultural meetups." %}
+        {% blocktrans %}
+          Vretinger Gallery is located in the heart of central Stockholm, 
+          a stone's throw from the central station, Drottninggatan, Norra Bantorget, Hotell Generator and Scalateatern. 
+          Just opposite you will also find two popular restaurants. 
+          Wallingatan is well-trafficked by residents, tourists and people whose work is in the surrounding areas. 
+          There is parking for electric cars next to the sidewalk right outside the gallery. 
+          <br><br>
+          The gallery itself gives a harmonious and cozy impression, is located at street level, has two large storefronts with deep window sills." 
+        {% endblocktrans %}
       </p>
     </div>
   </div>
@@ -32,72 +39,66 @@
   <div class="container">
     {% if current_event %}
     <div class="current-event-hero">
-      <!-- Background layer -->
       <div class="bg-preview rounded" style="background-image: url('{{ current_event.bg_image.url }}');"></div>
 
-      <!-- Overlay content -->
       <div class="overlay-content d-flex flex-column justify-content-center align-items-center text-center text-white">
-          <div class="text-background p-4 rounded" style="background-color: rgba(0,0,0,0.6); max-width: 800px;">
-              <h1 class="gallery-title">{{ current_event.title }}</h1>
-              <p class="gallery-description">{{ current_event.description }}</p>
+        <div class="text-background p-4 rounded" style="background-color: rgba(0,0,0,0.6); max-width: 800px;">
+          <h1 class="gallery-title">{{ current_event.title }}</h1>
+          <p class="gallery-description">{{ current_event.description }}</p>
 
-              {% if grouped_days %}
-              <h4>Event Schedule:</h4>
-              <ul class="list-unstyled">
-                  {% for group in grouped_days %}
-                      {% if group|length == 1 %}
-                          <li>{{ group.0.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
-                      {% else %}
-                          {% with last_day=group|last %}
-                          <li>{{ group.0.date }} → {{ last_day.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
-                          {% endwith %}
-                      {% endif %}
-                  {% endfor %}
-              </ul>
+          {% if grouped_days %}
+          <h4>{% trans "Event Schedule:" %}</h4>
+          <ul class="list-unstyled">
+            {% for group in grouped_days %}
+              {% if group|length == 1 %}
+                <li>{{ group.0.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+              {% else %}
+                {% with last_day=group|last %}
+                <li>{{ group.0.date }} → {{ last_day.date }}: {{ group.0.start_time|time:"H:i" }} – {{ group.0.end_time|time:"H:i" }}</li>
+                {% endwith %}
               {% endif %}
-          </div>
-
-          {% if current_event.images.all %}
-          <div class="artwork-grid d-flex flex-wrap gap-2 justify-content-center mt-4">
-              {% for img in current_event.images.all %}
-              <div class="artwork-item" style="flex: 0 0 150px;">
-                  <img src="{{ img.image.url }}" alt="{{ current_event.title }}"
-                      style="width:100%; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
-              </div>
-              {% endfor %}
-          </div>
+            {% endfor %}
+          </ul>
           {% endif %}
+        </div>
+
+        {% if current_event.images.all %}
+        <div class="artwork-grid d-flex flex-wrap gap-2 justify-content-center mt-4">
+          {% for img in current_event.images.all %}
+          <div class="artwork-item" style="flex: 0 0 150px;">
+            <img src="{{ img.image.url }}" alt="{{ current_event.title }}" style="width:100%; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
-  </div>
+    </div>
 
     {% else %}
-      <section class="gallery-showcase">
-        <div class="background-image"></div>
-        
-        <div class="overlay-content container text-center">
-          <h1 class="gallery-title">{% trans "Welcome to Vretinger Gallery" %}</h1>
-          <p class="gallery-description">
-            {% trans "Experience the warmth and creativity of our gallery space, filled with inspiring artworks from our featured artist." %}
-          </p>
-        </div>
+    <section class="gallery-showcase">
+      <div class="background-image"></div>
+      <div class="overlay-content container text-center">
+        <h1 class="gallery-title">{% trans "Welcome to Vretinger Gallery" %}</h1>
+        <p class="gallery-description">
+          {% trans "Experience the warmth and creativity of our gallery space, filled with inspiring artworks from our featured artist." %}
+        </p>
+      </div>
 
-        <div class="artwork-grid container">
-          <div class="artwork-item">
-            <img src="{% static 'images/Lemons.jpg' %}" alt="{% trans 'Lemons' %}" />
-            <p class="artwork-title">{% trans "Lemons" %}</p>
-          </div>
-          <div class="artwork-item">
-            <img src="{% static 'images/ColorsStrpes.jpg' %}" alt="{% trans 'Colors And Stripes' %}" />
-            <p class="artwork-title">{% trans "Colors And Stripes" %}</p>
-          </div>
-          <div class="artwork-item">
-            <img src="{% static 'images/Lion.jpg' %}" alt="{% trans 'Lion' %}" />
-            <p class="artwork-title">{% trans "Lion" %}</p>
-          </div>
-          <!-- Add more artworks as needed -->
+      <div class="artwork-grid container">
+        <div class="artwork-item">
+          <img src="{% static 'images/Lemons.jpg' %}" alt="{% trans 'Lemons' %}" />
+          <p class="artwork-title">{% trans "Lemons" %}</p>
         </div>
-      </section>
-
+        <div class="artwork-item">
+          <img src="{% static 'images/ColorsStrpes.jpg' %}" alt="{% trans 'Colors And Stripes' %}" />
+          <p class="artwork-title">{% trans "Colors And Stripes" %}</p>
+        </div>
+        <div class="artwork-item">
+          <img src="{% static 'images/Lion.jpg' %}" alt="{% trans 'Lion' %}" />
+          <p class="artwork-title">{% trans "Lion" %}</p>
+        </div>
+      </div>
+    </section>
     {% endif %}
   </div>
 </section>
@@ -110,45 +111,41 @@
     {% if upcoming_events %}
     <div id="upcomingEventsCarousel" class="carousel slide carousel-fade position-relative" data-bs-ride="carousel">
 
-      <!-- Carousel inner -->
       <div class="carousel-inner">
         {% for event in upcoming_events %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
           <div class="event-banner d-flex align-items-center justify-content-center p-4 rounded shadow-sm bg-white" style="max-width:700px; margin:0 auto;">
-            
-            <!-- Banner image -->
+
             {% if event.image %}
             <div class="event-banner-image flex-shrink-0 me-4">
               <img src="{{ event.image.url }}" alt="{{ event.title }}" class="img-fluid rounded" style="max-height:200px; object-fit:cover;">
             </div>
             {% endif %}
 
-            <!-- Banner info centered -->
             <div class="event-banner-info col-8 text-center text-md-start">
               <h4 class="mb-2">{{ event.title }}</h4>
               <p class="text-muted mb-2">{{ event.description|truncatewords:20 }}</p>
               {% if event.days.exists %}
-                  <div class="text-gray-600 mb-2">
-                    {% for day in event.days.all %}
-                      <p>
-                        Date: {{ day.date|date:"M d, Y" }} | Start: {{ day.start_time|time:"H:i" }} | End: {{ day.end_time|time:"H:i" }}
-                      </p>
-                    {% empty %}
-                      <p>No EventDays found for this event.</p>
-                    {% endfor %}
-                  </div>
-                {% else %}
-                  <p>No EventDays related to this event.</p>
-                {% endif %}
+              <div class="text-gray-600 mb-2">
+                {% for day in event.days.all %}
+                <p>
+                  {% trans "Date" %}: {{ day.date|date:"M d, Y" }} | {% trans "Start" %}: {{ day.start_time|time:"H:i" }} | {% trans "End" %}: {{ day.end_time|time:"H:i" }}
+                </p>
+                {% empty %}
+                <p>{% trans "No EventDays found for this event." %}</p>
+                {% endfor %}
               </div>
+              {% else %}
+              <p>{% trans "No EventDays related to this event." %}</p>
+              {% endif %}
+            </div>
 
           </div>
         </div>
         {% endfor %}
       </div>
-      
+
       {% if upcoming_events|length > 1 %}
-      <!-- Controls -->
       <button class="carousel-control-prev" type="button" data-bs-target="#upcomingEventsCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">{% trans "Previous" %}</span>
@@ -163,8 +160,7 @@
     <p class="text-center no-upcoming-events-message">{% trans "No upcoming events yet. Stay tuned!" %}</p>
     {% endif %}
 
-      </div>
-    </section>
-
+  </div>
+</section>
 
 {% endblock %}

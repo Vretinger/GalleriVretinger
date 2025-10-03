@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
 <div class="container my-5">
-  <h2>Confirm Your Booking</h2>
+  <h2>{% trans "Confirm Your Booking" %}</h2>
   
-  <p><strong>Rental period:</strong> {{ rental_start }} → {{ rental_end }}</p>
-  <p><strong>Event period:</strong> {{ event_start }} → {{ event_end }}</p>
-  <p><strong>Event title:</strong> {{ title }}</p>
-  <p><strong>Description:</strong> {{ description }}</p>
+  <p><strong>{% trans "Rental period:" %}</strong> {{ rental_start }} → {{ rental_end }}</p>
+  <p><strong>{% trans "Event period:" %}</strong> {{ event_start }} → {{ event_end }}</p>
+  <p><strong>{% trans "Event title:" %}</strong> {{ title }}</p>
+  <p><strong>{% trans "Description:" %}</strong> {{ description }}</p>
   
   <form method="POST" enctype="multipart/form-data" action="{% url 'final_booking_submit' %}">
     {% csrf_token %}
@@ -18,11 +19,11 @@
     <input type="hidden" name="description" value="{{ description }}">
     
     <div class="mb-3">
-      <label for="image1" class="form-label">Upload images</label>
+      <label for="image1" class="form-label">{% trans "Upload images" %}</label>
       <input type="file" class="form-control" name="image1" id="image1" required>
     </div>
     
-    <button type="submit" class="btn btn-primary">Submit Booking</button>
+    <button type="submit" class="btn btn-primary">{% trans "Submit Booking" %}</button>
   </form>
 </div>
 {% endblock %}

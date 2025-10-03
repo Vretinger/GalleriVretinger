@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container py-5" style="min-height: 90vh;"> 
@@ -6,11 +7,12 @@
     <div class="col-md-8">
       <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
-          <h4 class="mb-0">📬 Contact Us</h4>
+          <h4 class="mb-0">📬 {% trans "Contact Us" %}</h4>
         </div>
         <div class="card-body">
           <form method="post">
             {% csrf_token %}{{ form.as_p }}
+            
             {% if form.errors %}
               <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -27,7 +29,7 @@
             {% endif %}
 
             <button type="submit" class="btn btn-primary w-100 mt-3">
-              Send Message
+              {% trans "Send Message" %}
             </button>
           </form>
         </div>

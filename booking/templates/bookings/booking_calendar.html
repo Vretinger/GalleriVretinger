@@ -2,13 +2,11 @@
 {% load static %}
 {% load i18n %}
 
-
 {% block content %}
 <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 <script>
   const bookedDatesUrl = "{% url 'booked_dates' %}";
 </script>
-
 
 <div class="booking-container mx-auto col-md-6 col-sm-12 p-4">
   <!-- Premises Info Box -->
@@ -18,22 +16,22 @@
           data-bs-toggle="collapse"
           data-bs-target="#premisesCollapse"
           style="cursor: pointer;">
-        <span class="me-2">🏠</span> Lokalen & Planritning
+        <span class="me-2">🏠</span> {% trans "Premises & Blueprint" %}
       </div>
       <div id="premisesCollapse" class="collapse">
         <div class="card-body">
-          <p class="mb-3">Se bilder från lokalen och planritningen:</p>
+          <p class="mb-3">{% trans "See photos of the premises and the blueprint:" %}</p>
 
           <!-- Tabs for switching -->
           <ul class="nav nav-tabs" id="premisesTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos" type="button" role="tab">
-                Bilder
+                {% trans "Photos" %}
               </button>
             </li>
             <li class="nav-item" role="presentation">
               <button class="nav-link" id="blueprint-tab" data-bs-toggle="tab" data-bs-target="#blueprint" type="button" role="tab">
-                Planritning
+                {% trans "Blueprint" %}
               </button>
             </li>
           </ul>
@@ -46,7 +44,7 @@
                 <div class="carousel-inner">
                   {% for img in premises_images %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <img src="{{ img.secure_url }}" class="d-block w-100 rounded border" alt="Premises">
+                      <img src="{{ img.secure_url }}" class="d-block w-100 rounded border" alt="{% trans 'Premises' %}">
                     </div>
                   {% endfor %}
                 </div>
@@ -61,13 +59,15 @@
 
             <!-- Blueprint tab -->
             <div class="tab-pane fade" id="blueprint" role="tabpanel">
-              <img src="{% static 'images/blueprint.jpg' %}" class="img-fluid rounded border" alt="Blueprint of the premises">
+              <img src="{% static 'images/blueprint.jpg' %}" class="img-fluid rounded border" alt="{% trans 'Blueprint of the premises' %}">
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Info boxes -->
   <div class="row mb-4">
     <!-- Included Info Box -->
     <div class="col-md-6 mb-3">
@@ -76,127 +76,118 @@
             data-bs-toggle="collapse" 
             data-bs-target="#includedCollapse" 
             style="cursor: pointer;">
-          <span class="me-2">ℹ️</span> Vad som ingår
+          <span class="me-2">ℹ️</span> {% trans "Included" %}
         </div>
         <div id="includedCollapse" class="collapse">
           <div class="card-body">
             <ul class="list-unstyled mb-0">
-              <li>Lokal på 47 kvm</li>
-              <li>Pentry med liten kyl</li>
-              <li>Toalett</li>
-              <li>8 klappstolar</li>
-              <li>2 klapp-barstolar</li>
-              <li>3 runda “mässbord”</li>
-              <li>1 stort bord med iläggsskiva 170-200 cm</li>
-              <li>En skänk/disk</li>
-              <li>Uppläggningsfat/brickor</li>
-              <li>Vaser</li>
-              <li>Ljusslingor</li>
-              <li>Kaffebryggare</li>
-              <li>Vattenkokare</li>
-              <li>20 st champagneglas</li>
-              <li><em>Engångsmuggar och tallrikar</em></li>
+              <li>{% trans "Premises of 47 sqm" %}</li>
+              <li>{% trans "Pantry with small fridge" %}</li>
+              <li>{% trans "Toilet" %}</li>
+              <li>{% trans "8 folding chairs" %}</li>
+              <li>{% trans "2 folding bar stools" %}</li>
+              <li>{% trans "3 round exhibition tables" %}</li>
+              <li>{% trans "1 large table with extension 170-200 cm" %}</li>
+              <li>{% trans "A sideboard/counter" %}</li>
+              <li>{% trans "Serving trays/platters" %}</li>
+              <li>{% trans "Vases" %}</li>
+              <li>{% trans "Light strings" %}</li>
+              <li>{% trans "Coffee maker" %}</li>
+              <li>{% trans "Electric kettle" %}</li>
+              <li>{% trans "20 champagne glasses" %}</li>
+              <li><em>{% trans "Disposable cups and plates" %}</em></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Prices Info Box (empty placeholder) -->
+    <!-- Prices Info Box -->
     <div class="col-md-6 mb-3">
       <div class="card border-secondary shadow-sm">
         <div class="card-header bg-secondary text-white d-flex align-items-center" 
             data-bs-toggle="collapse" 
             data-bs-target="#pricesCollapse" 
             style="cursor: pointer;">
-          <span class="me-2">💰</span> Priser
+          <span class="me-2">💰</span> {% trans "Prices" %}
         </div>
         <div id="pricesCollapse" class="collapse">
           <div class="card-body">
-            <p>Information om olika hyresperioder kommer snart...</p>
+            <p>{% trans "Information about different rental periods will be available soon..." %}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <h2>Step 1: Select Rental Period</h2>
-
+  <!-- Steps -->
+  <h2>{% trans "Step 1: Select Rental Period" %}</h2>
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
-    <input id="rental-range" class="form-control mb-3" placeholder="Select rental start and end">
+    <input id="rental-range" class="form-control mb-3" placeholder="{% trans 'Select rental start and end' %}">
 
     <!-- Hidden inputs -->
     <input type="hidden" id="rental_start" name="start_date">
     <input type="hidden" id="rental_end" name="end_date">
 
     <div id="stage2">
-  <h2 class="mb-4">Step 2: Select Event Details</h2>
+      <h2 class="mb-4">{% trans "Step 2: Select Event Details" %}</h2>
 
-  <!-- Event Basics -->
-  <input id="event-days" name="event_days" class="form-control mb-2" placeholder="Select event days">
-  <div id="per-day-times" class="mb-3"></div>
-  <input type="text" id="event-title" name="title" class="form-control mb-2" placeholder="Enter event title">
-  <textarea id="event-description" name="description" class="form-control mb-4" placeholder="Event description"></textarea>
+      <input id="event-days" name="event_days" class="form-control mb-2" placeholder="{% trans 'Select event days' %}">
+      <div id="per-day-times" class="mb-3"></div>
+      <input type="text" id="event-title" name="title" class="form-control mb-2" placeholder="{% trans 'Enter event title' %}">
+      <textarea id="event-description" name="description" class="form-control mb-4" placeholder="{% trans 'Event description' %}"></textarea>
 
-  <!-- Event Images Section -->
-  <div class="card mb-4 shadow-sm">
-    <div class="card-header bg-light">
-      <h5 class="mb-0">Event Images</h5>
-    </div>
-    <div class="card-body">
-      <button id="upload_widget" type="button" class="btn btn-secondary">Upload Images</button>
-      <div id="uploaded-images" class="mt-3"></div>
-    </div>
-  </div>
+      <!-- Event Images -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">{% trans "Event Images" %}</h5>
+        </div>
+        <div class="card-body">
+          <button id="upload_widget" type="button" class="btn btn-secondary">{% trans "Upload Images" %}</button>
+          <div id="uploaded-images" class="mt-3"></div>
+        </div>
+      </div>
 
-  <!-- Background Settings Section -->
-  <div class="card shadow-sm">
-    <div class="card-header bg-light">
-      <h5 class="mb-0">Background Settings</h5>
-    </div>
-    <div class="card-body">
-      <div class="container-fluid">
-        <div class="row align-items-center mb-3 gy-5">
-          <!-- Background Color-->
-          <div class="col-12 col-md-4">
-            <div class="row">
-              <!-- Background Color label -->
-              <div class="col-8 col-md-12">
-                <label class="form-label">Background Color</label>
-              </div>
-
-              <!-- Color Picker -->
-              <div class="col-4 col-md-12 mb-2 mb-md-0">
-                <input type="color" id="event-bg-color" name="bg_color"
-                      class="form-control form-control-color" value="#f5f5f5">
-              </div>
-            </div>
-          </div>
-
-          <!-- Background Image text -->
-          <div class="col-12 col-md-4 text-md-center">
-            <p class="form-label mb-1 mb-md-0">or select a background image:</p>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <div class="row">
-              <!-- Upload Button -->
-              <div class="col-12 d-flex justify-content-md-end">
-                  <div class="mb-3">
-                    <button type="button" id="bg-upload-btn" class="btn btn-secondary">Upload Background</button>
-                    <input type="hidden" name="bg_image_uploaded" id="bg-image-hidden">
+      <!-- Background Settings -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">{% trans "Background Settings" %}</h5>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row align-items-center mb-3 gy-5">
+              <div class="col-12 col-md-4">
+                <div class="row">
+                  <div class="col-8 col-md-12">
+                    <label class="form-label">{% trans "Background Color" %}</label>
                   </div>
+                  <div class="col-4 col-md-12 mb-2 mb-md-0">
+                    <input type="color" id="event-bg-color" name="bg_color"
+                          class="form-control form-control-color" value="#f5f5f5">
+                  </div>
+                </div>
               </div>
-
-              <!-- Blurred Background Checkbox -->
-              <div class="col-12 d-flex justify-content-md-end">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" name="blur_bg" id="checkDefault">
-                  <label class="form-check-label" for="checkDefault">
-                    Blurred background?
-                  </label>
+              <div class="col-12 col-md-4 text-md-center">
+                <p class="form-label mb-1 mb-md-0">{% trans "or select a background image:" %}</p>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-md-end">
+                    <div class="mb-3">
+                      <button type="button" id="bg-upload-btn" class="btn btn-secondary">{% trans "Upload Background" %}</button>
+                      <input type="hidden" name="bg_image_uploaded" id="bg-image-hidden">
+                    </div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-md-end">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="blur_bg" id="checkDefault">
+                      <label class="form-check-label" for="checkDefault">
+                        {% trans "Blurred background?" %}
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -204,29 +195,22 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
     <hr>
-    <h3>Event Homepage Preview</h3>
+    <h3>{% trans "Event Homepage Preview" %}</h3>
     <div id="event-preview" class="border rounded p-3 mb-4">
       <div id="preview-background" style="position:relative; width:100%; min-height:300px;">
-        <div id="preview-background-blur" style="
-            position:absolute; 
-            top:0; left:0; right:0; bottom:0;
-            background-size: fit;
-            background-position: center;
-            z-index:0;"></div>
+        <div id="preview-background-blur" style="position:absolute; top:0; left:0; right:0; bottom:0; background-position:center; z-index:0;"></div>
         <section id="preview-section" class="p-4 text-center text-white">
-          <h1 id="preview-title">Event Title</h1>
-          <p id="preview-description">Event description will appear here.</p>
-          <p id="preview-times">Event times: Not set</p>
+          <h1 id="preview-title">{% trans "Event Title" %}</h1>
+          <p id="preview-description">{% trans "Event description will appear here." %}</p>
+          <p id="preview-times">{% trans "Event times: Not set" %}</p>
           <div id="preview-images" class="d-flex flex-wrap justify-content-center gap-2"></div>
         </section>
       </div>
     </div>
 
-    <button id="finishBtn" type="submit" class="btn btn-primary" disabled>Submit Booking</button>
+    <button id="finishBtn" type="submit" class="btn btn-primary" disabled>{% trans "Submit Booking" %}</button>
     <div id="form-errors"></div>
   </form>
 </div>
