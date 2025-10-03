@@ -45,7 +45,6 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
-
 USE_I18N = True
 
 # Application definition
@@ -58,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django_crontab',
     'cloudinary',
     'cloudinary_storage',
     'gallery',
@@ -178,3 +178,7 @@ cloudinary.config(
     api_secret=config('CLOUDINARY_API_SECRET'),
     secure=True
 )
+
+CRONJOBS = [
+    ('0 0 * * *', 'events.tasks.update_current_event'),  # every day at 00:00
+]

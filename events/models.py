@@ -1,6 +1,8 @@
 from django.db import models
 from booking.models import Booking
 from cloudinary.models import CloudinaryField
+from django.utils import timezone
+from datetime import timedelta
 import os
 
 class Event(models.Model):
@@ -24,6 +26,25 @@ class Event(models.Model):
     bg_image = CloudinaryField("bg_image", blank=True, null=True)
     bg_color = models.CharField(max_length=7, default="#f5f5f5")
     blur_bg = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Save the event first
+
+        # Recalculate current event logic after saving
+        now = timezone.now()
+        upcoming_events = Event.objects.filter(
+            start_datetime__gte=now,
+            start_datetime__lte=now + timedelta(days=7)
+        ).order_by("start_datetime")
+
+        # Reset all
+        Event.objects.filter(is_current_event=True).update(is_current_event=False)
+
+        # Mark the soonest one as current
+        if upcoming_events.exists():
+            first_event = upcoming_events.first()
+            first_event.is_current_event = True
+            super(Event, first_event).save()
 
     def __str__(self):
         return self.title
