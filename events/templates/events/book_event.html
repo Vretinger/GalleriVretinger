@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container py-5" style="min-height: 90vh;">
+  <h2 class="mb-4 text-center">Book a Spot for "{{ event.title }}"</h2>
+  <p class="text-center text-muted">
+    {{ event.description }} {{ event.time }}
+    </p>
+    {% for day in event.days.all %}
+        <p class="text-center">
+            {% trans "Date" %}: {{ day.date|date:"M d, Y" }} | {% trans "Start" %}: {{ day.start_time|time:"H:i" }} | {% trans "End" %}: {{ day.end_time|time:"H:i" }}
+        </p>
+    {% endfor %}
+  
+
+  <div class="card shadow mx-auto" style="max-width: 500px;">
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary mt-3">Confirm Booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="{% url 'event_list' %}" class="btn btn-outline-secondary">Back to Events</a>
+  </div>
+</div>
+{% endblock %}

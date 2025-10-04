@@ -3,6 +3,7 @@ import json
 from datetime import date
 from calendar import HTMLCalendar
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_time
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,7 +11,8 @@ from django.views.decorators.http import require_POST
 from django.utils.timezone import now
 from django.db.models import Min, Max
 import cloudinary.uploader
-from .models import Event, EventDay, EventImage
+from .models import Event, EventDay, EventImage, EventBooking
+from .forms import EventBookingForm
 
 def create_event(request):
     if request.method == "POST":
@@ -129,3 +131,39 @@ def event_list(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'events/event_detail.html', {'event': event})
+
+
+def book_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+
+    if event.is_drop_in:
+        messages.info(request, "This event is open for everyone — no sign-up needed.")
+        return redirect('event_detail', event_id=event.id)
+    
+    # Calculate total booked spots
+    total_booked = sum(b.num_guests for b in event.bookings.all())
+    spots_left = (event.max_attendees or 0) - total_booked
+
+    if event.max_attendees and spots_left <= 0:
+        messages.error(request, "Sorry, this event is fully booked.")
+        return redirect('event_detail', event_id=event.id)
+
+    if request.method == 'POST':
+        form = EventBookingForm(request.POST)
+        if form.is_valid():
+            num_guests = form.cleaned_data.get('num_guests', 1)
+            if event.max_attendees and num_guests > spots_left:
+                form.add_error('num_guests', f"Only {spots_left} spots left.")
+            elif EventBooking.objects.filter(event=event, email=form.cleaned_data['email']).exists():
+                messages.warning(request, "This email is already registered for the event.")
+            else:
+                booking = form.save(commit=False)
+                booking.event = event
+                booking.num_guests = num_guests
+                booking.save()
+                messages.success(request, f"You successfully booked {num_guests} spot(s)!")
+                return redirect('event_detail', event_id=event.id)
+    else:
+        form = EventBookingForm(initial={'num_guests': 1})
+
+    return render(request, 'events/book_event.html', {'event': event, 'form': form})

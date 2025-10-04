@@ -136,6 +136,8 @@ def booking_page(request):
             blur_bg=request.POST.get("blur_bg") == "on",
             start_datetime=request.POST.get("event_start"),
             end_datetime=request.POST.get("event_end"),
+            is_drop_in=request.POST.get("is_drop_in") == "on",
+            max_attendees=request.POST.get("max_attendees") or None,
         )
 
         # Save background image public_id from hidden input

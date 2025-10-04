@@ -1,6 +1,7 @@
 from django.db import models
 from booking.models import Booking
 from cloudinary.models import CloudinaryField
+from django.core.validators import RegexValidator
 from django.utils import timezone
 from datetime import timedelta
 import os
@@ -15,6 +16,9 @@ class Event(models.Model):
     booking = models.OneToOneField(Booking, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()
+    is_drop_in = models.BooleanField(default=True, help_text="If unchecked, visitors must sign up for the event.")
+    max_attendees = models.PositiveIntegerField(null=True, blank=True, help_text="Only required for sign-up events.")
+
     """layout = models.CharField(max_length=20, choices=LAYOUT_CHOICES, default='layout1')"""
 
     start_datetime = models.DateTimeField(blank=True, null=True)
@@ -62,3 +66,23 @@ class EventDay(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+
+class EventBooking(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='bookings')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(
+        max_length=15, blank=True,
+        validators=[
+            RegexValidator(
+                regex=r'^\+?\d{7,15}$',
+                message="Enter a valid phone number (7–15 digits, optional +)."
+            )
+        ]
+    )
+    num_guests = models.PositiveIntegerField(default=1)
+    booked_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.event.title}"

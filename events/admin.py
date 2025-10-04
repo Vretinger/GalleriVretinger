@@ -3,8 +3,9 @@ from .models import Event, EventImage
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start_date', 'start_time', 'end_date', 'end_time', 'is_current_event')
-    list_filter = ('is_current_event',)
+    list_display = ('title', 'start_date', 'start_time', 'end_date', 'end_time', 'is_current_event', 'is_drop_in')
+    list_filter = ('is_current_event','is_drop_in')
+    search_fields = ('title',)
 
     def start_date(self, obj):
         if obj.start_datetime:

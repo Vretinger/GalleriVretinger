@@ -11,7 +11,7 @@
 
   .hero-title {
     color: $teal;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .hero-subtitle {
@@ -44,65 +44,187 @@
 /* Current Event Section */
 .current-event-section {
   background-color: #d3bca4;
-  padding: 2rem 0;
-}
-.current-event-overview {
-  // Responsive flex layout
-  @media (max-width: 767px) {
-    flex-direction: column !important;
-  }
+  position: relative;
+  padding: 0; // remove extra spacing
+  overflow: hidden;
 
-  .event-image img {
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
+  .current-event-hero {
+    position: relative;
+    width: 100%;
+    min-height: 70vh; // ✅ makes the section taller
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
-  .event-info {
-    h3.event-title {
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    
-    p.event-description {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    a.btn {
-      padding: 0.5rem 1.5rem;
-      font-weight: 600;
-      border-radius: 30px;
-      transition: background-color 0.3s ease;
+    .bg-preview {
+      position: absolute;
+      border-radius: 8px;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: brightness(0.55); // darken slightly to help text pop
+      z-index: 0;
+      transition: transform 1.5s ease;
 
       &:hover {
-        background-color: darken($primary, 10%);
+        transform: scale(1.08);
+        border-radius: 8px;
+      }
+}
+
+    .overlay-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 900px;
+
+      .text-background {
+        background-color: rgba(0, 0, 0, 0.55);
+        border-radius: 10px;
+        padding: 2.5rem;
+        width: 100%;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+        .gallery-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+
+        .gallery-description {
+          font-size: 1.2rem;
+          line-height: 1.7;
+          margin-bottom: 1.5rem;
+        }
+
+        /* ✨ Event Schedule Styling */
+        h4 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #ffd166; /* warm golden tone */
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-top: 1.5rem;
+          text-shadow: 0 0 6px rgba(255, 209, 102, 0.4);
+        }
+
+        ul {
+          list-style: none;
+          padding: 1rem 1.25rem;
+          margin: 0 auto;
+          background: rgba(255, 255, 255, 0.1);
+          border-left: 3px solid #ffd166;
+          border-radius: 6px;
+          display: inline-block;
+          text-align: left;
+          font-size: 1.05rem;
+          line-height: 1.6;
+          color: #f5f5f5;
+          font-weight: 500;
+
+          li {
+            padding: 0.25rem 0;
+
+            &:before {
+              content: "🕓 ";
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+
+      .artwork-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+
+        .artwork-item {
+          flex: 0 0 140px;
+          border-radius: inherit;
+
+          img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+              transform: scale(1.05);
+              box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+            }
+          }
+        }
       }
     }
   }
 }
+.upcoming-events-section {
+  background-color: #1a2954;
 
+  h2 {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .event-banner {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 200px;
+
+    h4 {
+      font-weight: 600;
+      color: #222;
+    }
+
+    p {
+      color: #555;
+    }
+
+    a.btn {
+      border-radius: 30px;
+    }
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1);
+  }
+}
+
+/* Gallery Showcase Section */
 .gallery-showcase {
   position: relative;
   padding: 4rem 1rem 3rem;
   color: #fff;
   text-align: center;
-  background-color: #222; /* fallback color */
+  background-color: #222;
   min-height: 50vh;
 
   .background-image {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: url('../images/gallery_interior.jpg') center center/cover no-repeat;
     filter: brightness(0.4);
     z-index: 0;
-    background-color: rgba(255,0,0,0.3);
+    background-color: rgba(255, 0, 0, 0.3);
   }
 
   .overlay-content {
@@ -114,14 +236,14 @@
     .gallery-title {
       font-size: 3rem;
       font-weight: 700;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
       margin-bottom: 1rem;
     }
 
     .gallery-description {
       font-size: 1.3rem;
       line-height: 1.5;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
     }
   }
 
@@ -138,13 +260,13 @@
       background: rgba(255, 255, 255, 0.9);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       color: #222;
       transition: transform 0.3s ease;
 
       &:hover {
         transform: scale(1.05);
-        box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
       }
 
       img {
@@ -167,12 +289,11 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: #004085;
-  box-shadow: 0 4px 12px rgba(0,64,133,0.6);
+  box-shadow: 0 4px 12px rgba(0, 64, 133, 0.6);
 }
-
-
 
 /* Upcoming Events Section */
 .upcoming-events-section {
@@ -212,5 +333,54 @@
   .no-upcoming-events-message {
     color: gray;
     font-style: italic;
+  }
+}
+
+/* 🌍 Language Switcher */
+.language-switcher {
+  margin-left: auto;
+  margin-right: 0;
+
+  .btn {
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    padding: 0.4rem 0.8rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-color: $teal;
+      box-shadow: 0 0 6px rgba(0, 150, 136, 0.3);
+    }
+
+    span {
+      font-size: 1.2rem;
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 80px;
+    padding: 0.3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(0, 150, 136, 0.1);
+      }
+
+      span {
+        font-size: 1.2rem;
+      }
+    }
   }
 }

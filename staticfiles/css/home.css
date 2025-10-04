@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Hero Section */
 .hero-section {
   background-color: #e5d4c3;
@@ -35,48 +36,155 @@
 /* Current Event Section */
 .current-event-section {
   background-color: #d3bca4;
-  padding: 2rem 0;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
 }
-
-@media (max-width: 767px) {
-  .current-event-overview {
-    flex-direction: column !important;
-  }
+.current-event-section .current-event-hero {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.current-event-overview .event-image img {
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.current-event-section .current-event-hero .bg-preview {
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.55);
+  z-index: 0;
+  transition: transform 1.5s ease;
 }
-.current-event-overview .event-image img:hover {
-  transform: scale(1.05);
+.current-event-section .current-event-hero .bg-preview:hover {
+  transform: scale(1.08);
+  border-radius: 8px;
 }
-.current-event-overview .event-info h3.event-title {
+.current-event-section .current-event-hero .overlay-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+}
+.current-event-section .current-event-hero .overlay-content .text-background {
+  background-color: rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+  padding: 2.5rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  /* ✨ Event Schedule Styling */
+}
+.current-event-section .current-event-hero .overlay-content .text-background .gallery-title {
+  font-size: 2.5rem;
   font-weight: 700;
-  font-size: 2rem;
   margin-bottom: 1rem;
 }
-.current-event-overview .event-info p.event-description {
-  font-size: 1.125rem;
+.current-event-section .current-event-hero .overlay-content .text-background .gallery-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.current-event-section .current-event-hero .overlay-content .text-background h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffd166; /* warm golden tone */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1.5rem;
+  text-shadow: 0 0 6px rgba(255, 209, 102, 0.4);
+}
+.current-event-section .current-event-hero .overlay-content .text-background ul {
+  list-style: none;
+  padding: 1rem 1.25rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #ffd166;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: left;
+  font-size: 1.05rem;
   line-height: 1.6;
-  color: #444;
+  color: #f5f5f5;
+  font-weight: 500;
 }
-.current-event-overview .event-info a.btn {
-  padding: 0.5rem 1.5rem;
-  font-weight: 600;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
+.current-event-section .current-event-hero .overlay-content .text-background ul li {
+  padding: 0.25rem 0;
 }
-.current-event-overview .event-info a.btn:hover {
-  background-color: rgb(0, 98.4, 204);
+.current-event-section .current-event-hero .overlay-content .text-background ul li:before {
+  content: "🕓 ";
+  font-size: 1rem;
+}
+.current-event-section .current-event-hero .overlay-content .artwork-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.current-event-section .current-event-hero .overlay-content .artwork-grid .artwork-item {
+  flex: 0 0 140px;
+  border-radius: inherit;
+}
+.current-event-section .current-event-hero .overlay-content .artwork-grid .artwork-item img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.current-event-section .current-event-hero .overlay-content .artwork-grid .artwork-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
 
+.upcoming-events-section {
+  background-color: #1a2954;
+}
+.upcoming-events-section h2 {
+  color: #fff;
+  font-weight: 700;
+}
+.upcoming-events-section .event-banner {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 200px;
+}
+.upcoming-events-section .event-banner h4 {
+  font-weight: 600;
+  color: #222;
+}
+.upcoming-events-section .event-banner p {
+  color: #555;
+}
+.upcoming-events-section .event-banner a.btn {
+  border-radius: 30px;
+}
+.upcoming-events-section .carousel-control-prev-icon,
+.upcoming-events-section .carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* Gallery Showcase Section */
 .gallery-showcase {
   position: relative;
   padding: 4rem 1rem 3rem;
   color: #fff;
   text-align: center;
-  background-color: #222; /* fallback color */
+  background-color: #222;
   min-height: 50vh;
 }
 .gallery-showcase .background-image {
@@ -144,7 +252,8 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: #004085;
   box-shadow: 0 4px 12px rgba(0, 64, 133, 0.6);
 }
@@ -181,6 +290,48 @@
 .upcoming-events-section .no-upcoming-events-message {
   color: gray;
   font-style: italic;
+}
+
+/* 🌍 Language Switcher */
+.language-switcher {
+  margin-left: auto;
+  margin-right: 0;
+}
+.language-switcher .btn {
+  background-color: transparent;
+  border: 2px solid #ccc;
+  border-radius: 50px;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.language-switcher .btn:hover {
+  border-color: #3f524f;
+  box-shadow: 0 0 6px rgba(0, 150, 136, 0.3);
+}
+.language-switcher .btn span {
+  font-size: 1.2rem;
+}
+.language-switcher .dropdown-menu {
+  min-width: 80px;
+  padding: 0.3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.language-switcher .dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0;
+  transition: background-color 0.2s ease;
+}
+.language-switcher .dropdown-menu .dropdown-item:hover {
+  background-color: rgba(0, 150, 136, 0.1);
+}
+.language-switcher .dropdown-menu .dropdown-item span {
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=home.css.map */

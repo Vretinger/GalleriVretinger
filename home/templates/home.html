@@ -39,12 +39,17 @@
   <div class="container">
     {% if current_event %}
     <div class="current-event-hero">
-      <div class="bg-preview rounded" style="background-image: url('{{ current_event.bg_image.url }}');"></div>
+      <div class="bg-preview" style="background-image: url('{{ current_event.bg_image.url }}');"></div>
 
       <div class="overlay-content d-flex flex-column justify-content-center align-items-center text-center text-white">
         <div class="text-background p-4 rounded" style="background-color: rgba(0,0,0,0.6); max-width: 800px;">
           <h1 class="gallery-title">{{ current_event.title }}</h1>
           <p class="gallery-description">{{ current_event.description }}</p>
+          {% if event.is_drop_in %}
+            <p class="text-success"><strong>Drop-in Event:</strong> No sign-up needed! Come by anytime.</p>
+          {% else %}
+            <a href="{% url 'book_event' current_event.id %}" class="btn btn-primary">Book a Spot</a>
+          {% endif %}
 
           {% if grouped_days %}
           <h4>{% trans "Event Schedule:" %}</h4>
@@ -125,6 +130,11 @@
             <div class="event-banner-info col-8 text-center text-md-start">
               <h4 class="mb-2">{{ event.title }}</h4>
               <p class="text-muted mb-2">{{ event.description|truncatewords:20 }}</p>
+              {% if event.is_drop_in %}
+                <p class="text-success"><strong>Drop-in Event:</strong> No sign-up needed! Come by anytime.</p>
+              {% else %}
+                <a href="{% url 'book_event' event.id %}" class="btn btn-primary">Book a Spot</a>
+              {% endif %}
               {% if event.days.exists %}
               <div class="text-gray-600 mb-2">
                 {% for day in event.days.all %}
