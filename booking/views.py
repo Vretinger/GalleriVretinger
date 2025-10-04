@@ -187,22 +187,23 @@ def booking_page(request):
                     image=public_id
                 )
         # Send booking confirmation email
-        recipient_email = request.user.email  # or request.POST.get("email") for guests
+        event_days = event.days.all().order_by("date")
         context = {
-            "name": request.user.get_full_name() or request.user.username,
+            "host_name": request.user.get_full_name() or request.user.username,
             "event": event,
-            "booking": booking,
-            "event_days": event.days.all().order_by("date"),
+            "event_days": event_days,
         }
+
+        from_email = "booking@gallerivretinger.se"
 
         try:
             send_email(
-                subject=f"Booking Confirmation: {event.title}",
-                template_name="emails/booking_confirmation.html",
-                context=context,
-                recipient_list=[recipient_email],
-                from_email=settings.EMAIL_HOST_USER
-            )
+            subject=f"Your event '{event.title}' is confirmed!",
+            template_name="emails/event_booking_confirmation.html",
+            context=context,
+            recipient_list=[request.user.email],
+            from_email=from_email,
+        )
         except Exception as e:
             print("Error sending booking confirmation email:", e)
 

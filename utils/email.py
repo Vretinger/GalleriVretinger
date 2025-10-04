@@ -17,9 +17,10 @@ def send_email(subject, template_name, context, recipient_list, from_email=None)
 
     message_html = render_to_string(template_name, context)
     
+    plain_text = f"Hi {context['host_name']},\nYour event '{context['event'].title}' has been created.\n"
     send_mail(
         subject,
-        '',  # plain-text fallback
+        plain_text,
         from_email,
         recipient_list,
         html_message=message_html,
