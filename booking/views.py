@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
+from utils.email import send_email
+from django.conf import settings
 from .models import Booking
 from events.models import Event, EventImage, EventDay
 from django.utils.dateparse import parse_date, parse_time
@@ -184,7 +186,25 @@ def booking_page(request):
                     event=event,
                     image=public_id
                 )
+        # Send booking confirmation email
+        recipient_email = request.user.email  # or request.POST.get("email") for guests
+        context = {
+            "name": request.user.get_full_name() or request.user.username,
+            "event": event,
+            "booking": booking,
+            "event_days": event.days.all().order_by("date"),
+        }
 
+        try:
+            send_email(
+                subject=f"Booking Confirmation: {event.title}",
+                template_name="emails/booking_confirmation.html",
+                context=context,
+                recipient_list=[recipient_email],
+                from_email=settings.EMAIL_HOST_USER
+            )
+        except Exception as e:
+            print("Error sending booking confirmation email:", e)
 
         messages.success(request, "Your booking has been submitted!")
         return redirect("my_bookings")
