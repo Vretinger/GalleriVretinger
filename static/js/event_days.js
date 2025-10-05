@@ -40,34 +40,43 @@ document.addEventListener("rentalDatesSelected", (e) => {
   }
 
   function createTimeInputs() {
-    container.innerHTML = "";
+  container.innerHTML = "";
 
-    getEventDays().forEach(date => {
-      const dateStr = date.toISOString().split("T")[0];
-      const row = document.createElement("div");
-      row.classList.add("row", "mb-2");
+  getEventDays().forEach(date => {
+    const dateStr = date.toISOString().split("T")[0];
 
-      // Date label
-      const dayLabel = document.createElement("div");
-      dayLabel.classList.add("col-12", "fw-bold", "mb-1");
-      dayLabel.textContent = dateStr;
-      row.appendChild(dayLabel);
+    const row = document.createElement("div");
+    row.classList.add("row", "mb-2");
 
-      ["start", "end"].forEach(type => {
-        const col = document.createElement("div");
-        col.classList.add("col");
+    // Label for the day
+    const dayLabel = document.createElement("div");
+    dayLabel.classList.add("col-12", "fw-bold", "mb-1");
+    dayLabel.textContent = dateStr;
+    row.appendChild(dayLabel);
 
-        const input = document.createElement("input");
-        input.type = "text";
-        input.classList.add(`per-day-${type}`);
+    // Create Start and End columns
+    ["start", "end"].forEach(type => {
+      const col = document.createElement("div");
+      col.classList.add("col");
 
-        const hidden = document.createElement("input");
-        hidden.type = "hidden";
-        hidden.name = `${type}_time_${dateStr}`;
+      // Add a label for each input
+      const label = document.createElement("label");
+      label.textContent = type === "start" ? "Start Time: " : "End Time: ";
+      label.classList.add("px-2", "d-inline-block", "w-auto", "ms-2");
 
-        col.appendChild(input);
-        col.appendChild(hidden);
-        row.appendChild(col);
+      const input = document.createElement("input");
+      input.type = "text";
+      input.classList.add(`per-day-${type}`);
+      input.placeholder = type === "start" ? "e.g. 12:00" : "e.g. 17:00";
+
+      const hidden = document.createElement("input");
+      hidden.type = "hidden";
+      hidden.name = `${type}_time_${dateStr}`;
+
+      col.appendChild(label);
+      col.appendChild(input);
+      col.appendChild(hidden);
+      row.appendChild(col);
 
         flatpickr(input, {
           enableTime: true,

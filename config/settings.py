@@ -48,6 +48,12 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+AUTHENTICATION_BACKENDS = [
+    'users.backends.CaseInsensitiveEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',  # keep default as fallback
+]
+
+# Email configuration
 DEFAULT_FROM_EMAIL = 'info@gallerivretinger.se'  # fallback default
 
 EMAIL_BACKEND = config('EMAIL_BACKEND')

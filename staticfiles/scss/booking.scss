@@ -32,6 +32,49 @@
   }
 }
 
+// === Color Swatch Palette Styles ===
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &.active {
+    border-color: #333;
+  }
+}
+
+// === Layout Helpers ===
+#color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+// === Brightness Range Styling (optional theme tweak) ===
+#brightness-range {
+  width: 150px;
+  accent-color: #333; // controls slider thumb color
+
+  &:hover {
+    accent-color: #555;
+  }
+}
+
+// === Label consistency ===
+label[for="event-bg-color"],
+label[for="brightness-range"] {
+  font-weight: 600;
+  color: #333;
+}
+
 
 .booking-container {
   padding: 2rem;

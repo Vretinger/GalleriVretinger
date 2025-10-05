@@ -24,6 +24,42 @@
   display: block;
 }
 
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.color-swatch:hover {
+  transform: scale(1.15);
+}
+.color-swatch.active {
+  border-color: #333;
+}
+
+#color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#brightness-range {
+  width: 150px;
+  accent-color: #333;
+}
+#brightness-range:hover {
+  accent-color: #555;
+}
+
+label[for=event-bg-color],
+label[for=brightness-range] {
+  font-weight: 600;
+  color: #333;
+}
+
 .booking-container {
   padding: 2rem;
   min-height: 95vh;

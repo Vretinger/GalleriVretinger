@@ -176,9 +176,26 @@
                   <div class="col-8 col-md-12">
                     <label class="form-label">{% trans "Background Color" %}</label>
                   </div>
-                  <div class="col-4 col-md-12 mb-2 mb-md-0">
-                    <input type="color" id="event-bg-color" name="bg_color"
-                          class="form-control form-control-color" value="#f5f5f5">
+                  <div class="col-12 mb-3">
+                    <label for="event-bg-color" class="fw-bold mb-2 d-block">Background Color:</label>
+
+                    <!-- Color swatches -->
+                    <div id="color-palette" class="d-flex flex-wrap gap-2 mb-2">
+                      <button type="button" class="color-swatch active" data-color="#f5f5f5" style="background:#f5f5f5;"></button>
+                      <button type="button" class="color-swatch" data-color="#ffffff" style="background:#ffffff;"></button>
+                      <button type="button" class="color-swatch" data-color="#f0e6d2" style="background:#f0e6d2;"></button>
+                      <button type="button" class="color-swatch" data-color="#dbeafe" style="background:#dbeafe;"></button>
+                      <button type="button" class="color-swatch" data-color="#e2e8f0" style="background:#e2e8f0;"></button>
+                    </div>
+
+                    <!-- Brightness adjustment -->
+                    <div class="d-flex align-items-center gap-2">
+                      <label for="brightness-range" class="form-label mb-0">Brightness:</label>
+                      <input type="range" class="form-range" id="brightness-range" min="50" max="115" value="100">
+                    </div>
+
+                    <!-- Hidden input (for form submission) -->
+                    <input type="hidden" id="event-bg-color" name="bg_color" value="#f5f5f5">
                   </div>
                 </div>
               </div>

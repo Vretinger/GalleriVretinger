@@ -22,83 +22,107 @@
 
 .event-card {
   position: relative;
-  margin-bottom: 2rem;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  margin: 1rem auto;
+  max-width: 900px;
+  width: 100%;
+  min-height: 500px; // ensure a base height for empty events
 
+  // --- Background ---
   .bg-preview {
-    width: 100%;
-    height: 400px;  // same as preview
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: all 0.3s ease;
-
-    &.blur {
-      filter: blur(4px);
-    }
-  }
-
-  .overlay-content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.3); // semi-transparent overlay
-    z-index: 1;
+    z-index: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: filter 0.3s ease, transform 0.3s ease;
 
-    h1.gallery-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    &.blur {
+      filter: blur(6px);
+      transform: scale(1.05);
     }
 
-    p.gallery-description {
-      font-size: 1.1rem;
-      max-width: 90%;
-      margin-bottom: 1.5rem;
-    }
-
-    .event-schedule {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 1rem;
-
-      li {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-      }
+    // Let it grow with content dynamically
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35); // dark overlay for text contrast
+      z-index: 1;
     }
   }
 
+  // --- Overlay content ---
+  .overlay-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    padding: 2rem;
+    border-radius: inherit;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.2) 60%,
+      rgba(0, 0, 0, 0.3)
+    );
+    backdrop-filter: blur(3px);
+  }
+
+  .gallery-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .gallery-description {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  // --- Image grid ---
   .artwork-grid {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    padding: 0.5rem;
 
     .artwork-item {
-      flex: 0 0 150px;
-
       img {
         width: 100%;
-        border-radius: 6px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
         transition: transform 0.3s ease;
 
         &:hover {
-          transform: scale(1.05);
+          transform: scale(1.03);
         }
       }
     }
   }
+
+  @media (max-width: 576px) {
+    .overlay-content {
+      padding: 1.25rem;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.3)
+      );
+    }
+
+    .gallery-title {
+      font-size: 1.6rem;
+    }
+
+    .artwork-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+  }
 }
+
