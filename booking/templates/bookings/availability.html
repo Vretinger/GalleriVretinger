@@ -118,7 +118,29 @@
           </div>
           <div id="pricesCollapse" class="collapse">
             <div class="card-body">
-              <p>{% trans "Information about rental periods will be available soon..." %}</p>
+              <h4>{% trans "Gallery Rental – Price List" %}</h4>
+
+              <h5>{% trans "Weekdays (Monday–Thursday)" %}</h5>
+              <p>{% trans "1,800 SEK per day." %}</p>
+
+              <h5>{% trans "Weekend (Friday–Sunday)" %}</h5>
+              <ul>
+                <li>{% trans "Friday: 2,400 SEK" %}</li>
+                <li>{% trans "Saturday: 2,600 SEK" %}</li>
+                <li>{% trans "Sunday: 2,400 SEK" %}</li>
+                <li>{% trans "Full Weekend Package (Fri–Sun): 6,500 SEK – Save 900 SEK compared to booking individual days!" %}</li>
+              </ul>
+
+              <h5>{% trans "Full Week (Monday–Sunday)" %}</h5>
+              <p>{% trans "11,000 SEK (~1,570 SEK/day)." %}</p>
+
+              <h5>{% trans "Longer Bookings" %}</h5>
+              <ul>
+                <li>{% trans "10+ days: 10% discount on total price" %}</li>
+                <li>{% trans "3+ weeks: price negotiable depending on length" %}</li>
+              </ul>
+
+              <p>{% trans "All prices include VAT (if applicable). Booking is done via the website. Payment is due upon confirmed booking." %}</p>
             </div>
           </div>
         </div>
@@ -131,14 +153,17 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales-all.global.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   let calendarEl = document.getElementById("calendar");
   let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
+    firstDay: 1,
     events: "{% url 'booked_dates' %}",
-    height: "auto"
+    height: "auto",
+    locale: { 'code': '{{ LANGUAGE_CODE }}' },
   });
   calendar.render();
 });

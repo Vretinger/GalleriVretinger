@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GalleryVretinger\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-03 17:39+0200\n"
+"POT-Creation-Date: 2025-10-07 21:09+0200\n"
 "PO-Revision-Date: 2025-10-03 19:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,8 +24,11 @@ msgid "Availability"
 msgstr "Tillgänglighet"
 
 #: .\booking\templates\bookings\availability.html:9
-msgid "Here you can see when the gallery is already booked. To make a booking, please"
-msgstr "Här kan du se när galleriet redan är bokat. För att göra en bokning, vänligen"
+msgid ""
+"Here you can see when the gallery is already booked. To make a booking, "
+"please"
+msgstr ""
+"Här kan du se när galleriet redan är bokat. För att göra en bokning, vänligen"
 
 #: .\booking\templates\bookings\availability.html:10
 msgid "log in"
@@ -35,27 +38,33 @@ msgstr "logga in"
 msgid "create an account"
 msgstr "skapa ett konto"
 
-#: .\booking\templates\bookings\availability.html:24 .\booking\templates\bookings\booking_calendar.html:19
+#: .\booking\templates\bookings\availability.html:24
+#: .\booking\templates\bookings\booking_calendar.html:19
 msgid "Premises & Blueprint"
 msgstr "Lokalen och planritning"
 
-#: .\booking\templates\bookings\availability.html:28 .\booking\templates\bookings\booking_calendar.html:23
+#: .\booking\templates\bookings\availability.html:28
+#: .\booking\templates\bookings\booking_calendar.html:23
 msgid "See photos of the premises and the blueprint:"
 msgstr "Se foton av lokalen och planritning:"
 
-#: .\booking\templates\bookings\availability.html:34 .\booking\templates\bookings\booking_calendar.html:29
+#: .\booking\templates\bookings\availability.html:34
+#: .\booking\templates\bookings\booking_calendar.html:29
 msgid "Photos"
 msgstr "Foton"
 
-#: .\booking\templates\bookings\availability.html:39 .\booking\templates\bookings\booking_calendar.html:34
+#: .\booking\templates\bookings\availability.html:39
+#: .\booking\templates\bookings\booking_calendar.html:34
 msgid "Blueprint"
 msgstr "Planritning"
 
-#: .\booking\templates\bookings\availability.html:52 .\booking\templates\bookings\booking_calendar.html:47
+#: .\booking\templates\bookings\availability.html:52
+#: .\booking\templates\bookings\booking_calendar.html:47
 msgid "Premises"
 msgstr "Lokal"
 
-#: .\booking\templates\bookings\availability.html:67 .\booking\templates\bookings\booking_calendar.html:62
+#: .\booking\templates\bookings\availability.html:67
+#: .\booking\templates\bookings\booking_calendar.html:62
 msgid "Blueprint of the premises"
 msgstr "Planritning av lokalen"
 
@@ -67,445 +76,539 @@ msgstr "Vad ingår"
 msgid "Premises (47 sqm)"
 msgstr "Lokal på 47 kvm"
 
-#: .\booking\templates\bookings\availability.html:89 .\booking\templates\bookings\booking_calendar.html:85
+#: .\booking\templates\bookings\availability.html:89
+msgid "2 large display windows"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:90
+#: .\booking\templates\bookings\booking_calendar.html:85
 msgid "Pantry with small fridge"
 msgstr "Pentry med liten kyl"
 
-#: .\booking\templates\bookings\availability.html:90 .\booking\templates\bookings\booking_calendar.html:86
+#: .\booking\templates\bookings\availability.html:91
+#: .\booking\templates\bookings\booking_calendar.html:86
 msgid "Toilet"
 msgstr "Toalett"
 
-#: .\booking\templates\bookings\availability.html:91 .\booking\templates\bookings\booking_calendar.html:87
+#: .\booking\templates\bookings\availability.html:92
+#: .\booking\templates\bookings\booking_calendar.html:87
 msgid "8 folding chairs"
 msgstr "8 fällbara stolar"
 
-#: .\booking\templates\bookings\availability.html:92
+#: .\booking\templates\bookings\availability.html:93
 msgid "2 folding barstools"
 msgstr "2 fällbara barstolar"
 
-#: .\booking\templates\bookings\availability.html:93
+#: .\booking\templates\bookings\availability.html:94
 msgid "3 round fair tables"
 msgstr "3 runda “mässbord”"
 
-#: .\booking\templates\bookings\availability.html:94
+#: .\booking\templates\bookings\availability.html:95
 msgid "1 large table with extension (170–200 cm)"
 msgstr "1 stort bord med iläggsskiva 170-200 cm"
 
-#: .\booking\templates\bookings\availability.html:95 .\booking\templates\bookings\booking_calendar.html:91
+#: .\booking\templates\bookings\availability.html:96
+#: .\booking\templates\bookings\booking_calendar.html:91
 msgid "A sideboard/counter"
 msgstr "En skänk/disk"
 
-#: .\booking\templates\bookings\availability.html:96 .\booking\templates\bookings\booking_calendar.html:92
+#: .\booking\templates\bookings\availability.html:97
+#: .\booking\templates\bookings\booking_calendar.html:92
 msgid "Serving trays/platters"
 msgstr "Uppläggningsfat/brickor"
 
-#: .\booking\templates\bookings\availability.html:97 .\booking\templates\bookings\booking_calendar.html:93
+#: .\booking\templates\bookings\availability.html:98
+#: .\booking\templates\bookings\booking_calendar.html:93
 msgid "Vases"
 msgstr "Vaser"
 
-#: .\booking\templates\bookings\availability.html:98
+#: .\booking\templates\bookings\availability.html:99
 msgid "String lights"
 msgstr "Ljusslingor"
 
-#: .\booking\templates\bookings\availability.html:99 .\booking\templates\bookings\booking_calendar.html:95
+#: .\booking\templates\bookings\availability.html:100
+#: .\booking\templates\bookings\booking_calendar.html:95
 msgid "Coffee maker"
 msgstr "Kaffebryggare"
 
-#: .\booking\templates\bookings\availability.html:100 .\booking\templates\bookings\booking_calendar.html:96
+#: .\booking\templates\bookings\availability.html:101
+#: .\booking\templates\bookings\booking_calendar.html:96
 msgid "Electric kettle"
 msgstr "Vattenkokare"
 
-#: .\booking\templates\bookings\availability.html:101 .\booking\templates\bookings\booking_calendar.html:97
+#: .\booking\templates\bookings\availability.html:102
+#: .\booking\templates\bookings\booking_calendar.html:97
 msgid "20 champagne glasses"
 msgstr "20 st champagneglas"
 
-#: .\booking\templates\bookings\availability.html:102 .\booking\templates\bookings\booking_calendar.html:98
+#: .\booking\templates\bookings\availability.html:103
+#: .\booking\templates\bookings\booking_calendar.html:98
 msgid "Disposable cups and plates"
 msgstr "*engångsmuggar och tallrikar"
 
-#: .\booking\templates\bookings\availability.html:116 .\booking\templates\bookings\booking_calendar.html:112
+#: .\booking\templates\bookings\availability.html:117
+#: .\booking\templates\bookings\booking_calendar.html:112
 msgid "Prices"
 msgstr "Priser"
 
-#: .\booking\templates\bookings\availability.html:120
-msgid "Information about rental periods will be available soon..."
-msgstr "Information om hyresperioder kommer snart att finnas tillgänglig ..."
+#: .\booking\templates\bookings\availability.html:121
+#: .\booking\templates\bookings\booking_calendar.html:116
+msgid "Gallery Rental – Price List"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:123
+#: .\booking\templates\bookings\booking_calendar.html:118
+msgid "Weekdays (Monday–Thursday)"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:124
+#: .\booking\templates\bookings\booking_calendar.html:119
+msgid "1,800 SEK per day."
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:126
+#: .\booking\templates\bookings\booking_calendar.html:121
+msgid "Weekend (Friday–Sunday)"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:128
+#: .\booking\templates\bookings\booking_calendar.html:123
+msgid "Friday: 2,400 SEK"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:129
+#: .\booking\templates\bookings\booking_calendar.html:124
+msgid "Saturday: 2,600 SEK"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:130
+#: .\booking\templates\bookings\booking_calendar.html:125
+msgid "Sunday: 2,400 SEK"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:131
+#: .\booking\templates\bookings\booking_calendar.html:126
+msgid ""
+"Full Weekend Package (Fri–Sun): 6,500 SEK – Save 900 SEK compared to booking "
+"individual days!"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:134
+#: .\booking\templates\bookings\booking_calendar.html:129
+msgid "Full Week (Monday–Sunday)"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:135
+#: .\booking\templates\bookings\booking_calendar.html:130
+msgid "11,000 SEK (~1,570 SEK/day)."
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:137
+#: .\booking\templates\bookings\booking_calendar.html:132
+#, fuzzy
+#| msgid "My Bookings"
+msgid "Longer Bookings"
+msgstr "Mina bokningar"
+
+#: .\booking\templates\bookings\availability.html:139
+#: .\booking\templates\bookings\booking_calendar.html:134
+#, python-format
+msgid "10+ days: 10%% discount on total price"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:140
+#: .\booking\templates\bookings\booking_calendar.html:135
+msgid "3+ weeks: price negotiable depending on length"
+msgstr ""
+
+#: .\booking\templates\bookings\availability.html:143
+#: .\booking\templates\bookings\booking_calendar.html:138
+msgid ""
+"All prices include VAT (if applicable). Booking is done via the website. "
+"Payment is due upon confirmed booking."
+msgstr ""
 
 #: .\booking\templates\bookings\booking_calendar.html:79
 msgid "Included"
 msgstr "Ingick"
 
 #: .\booking\templates\bookings\booking_calendar.html:84
-
 msgid "Premises of 47 sqm"
 msgstr "Lokal på 47 kvm"
 
 #: .\booking\templates\bookings\booking_calendar.html:88
-
 msgid "2 folding bar stools"
 msgstr "2 klapp-barstolar"
 
 #: .\booking\templates\bookings\booking_calendar.html:89
-
 msgid "3 round exhibition tables"
 msgstr "3 runda “mässbord”"
 
 #: .\booking\templates\bookings\booking_calendar.html:90
-
 msgid "1 large table with extension 170-200 cm"
 msgstr "1 stort bord med iläggsskiva 170-200 cm"
 
 #: .\booking\templates\bookings\booking_calendar.html:94
-
 msgid "Light strings"
 msgstr "Ljusslingor"
 
-#: .\booking\templates\bookings\booking_calendar.html:116
-
-msgid "Information about different rental periods will be available soon..."
-msgstr "Information om olika hyresperioder kommer snart att finnas tillgänglig ..."
-
-#: .\booking\templates\bookings\booking_calendar.html:124
-
+#: .\booking\templates\bookings\booking_calendar.html:147
 msgid "Step 1: Select Rental Period"
 msgstr "Steg 1: Välj hyresperiod"
 
-#: .\booking\templates\bookings\booking_calendar.html:128
-
+#: .\booking\templates\bookings\booking_calendar.html:151
 msgid "Select rental start and end"
 msgstr "Välj hyresstart och slut"
 
-#: .\booking\templates\bookings\booking_calendar.html:135
-
+#: .\booking\templates\bookings\booking_calendar.html:158
 msgid "Step 2: Select Event Details"
 msgstr "Steg 2: Välj evenemangsdetaljer"
 
-#: .\booking\templates\bookings\booking_calendar.html:137
-
+#: .\booking\templates\bookings\booking_calendar.html:160
 msgid "Select event days"
 msgstr "Välj evenemangsdagar"
 
-#: .\booking\templates\bookings\booking_calendar.html:139
-
+#: .\booking\templates\bookings\booking_calendar.html:162
 msgid "Enter event title"
 msgstr "Ange evenemangstitel"
 
-#: .\booking\templates\bookings\booking_calendar.html:140
-
+#: .\booking\templates\bookings\booking_calendar.html:163
 msgid "Event description"
 msgstr "Händelsebeskrivning"
 
-#: .\booking\templates\bookings\booking_calendar.html:145
+#: .\booking\templates\bookings\booking_calendar.html:169
+msgid "This is a drop-in event (no sign-up needed)"
+msgstr ""
 
+#: .\booking\templates\bookings\booking_calendar.html:174
+msgid "Max Attendees (optional)"
+msgstr ""
+
+#: .\booking\templates\bookings\booking_calendar.html:181
 msgid "Event Images"
 msgstr "Evenemangsbilder"
 
-#: .\booking\templates\bookings\booking_calendar.html:148
-
+#: .\booking\templates\bookings\booking_calendar.html:184
 msgid "Upload Images"
 msgstr "Ladda upp bilder"
 
-#: .\booking\templates\bookings\booking_calendar.html:156
-
+#: .\booking\templates\bookings\booking_calendar.html:192
 msgid "Background Settings"
 msgstr "Bakgrundsinställningar"
 
-#: .\booking\templates\bookings\booking_calendar.html:164
-
-msgid "Background Color"
+#: .\booking\templates\bookings\booking_calendar.html:200
+#, fuzzy
+#| msgid "Background Color"
+msgid "Background Color:"
 msgstr "Bakgrundsfärg"
 
-#: .\booking\templates\bookings\booking_calendar.html:173
+#: .\booking\templates\bookings\booking_calendar.html:213
+msgid "Brightness:"
+msgstr ""
 
+#: .\booking\templates\bookings\booking_calendar.html:223
 msgid "or select a background image:"
 msgstr "eller välj en bakgrundsbild:"
 
-#: .\booking\templates\bookings\booking_calendar.html:179
-
+#: .\booking\templates\bookings\booking_calendar.html:229
 msgid "Upload Background"
 msgstr "Uppladdningsbakgrund"
 
-#: .\booking\templates\bookings\booking_calendar.html:187
-
+#: .\booking\templates\bookings\booking_calendar.html:237
 msgid "Blurred background?"
 msgstr "Suddig bakgrund?"
 
-#: .\booking\templates\bookings\booking_calendar.html:200
-
+#: .\booking\templates\bookings\booking_calendar.html:250
 msgid "Event Homepage Preview"
 msgstr "Evenemangshemsida förhandsvisning"
 
-#: .\booking\templates\bookings\booking_calendar.html:205
-
+#: .\booking\templates\bookings\booking_calendar.html:255
 msgid "Event Title"
 msgstr "Evenemangstitel"
 
-#: .\booking\templates\bookings\booking_calendar.html:206
-
+#: .\booking\templates\bookings\booking_calendar.html:256
 msgid "Event description will appear here."
 msgstr "Händelsebeskrivning kommer att visas här."
 
-#: .\booking\templates\bookings\booking_calendar.html:207
-
+#: .\booking\templates\bookings\booking_calendar.html:257
 msgid "Event times: Not set"
 msgstr "Eventtider: Inte ställt in"
 
-#: .\booking\templates\bookings\booking_calendar.html:213 .\booking\templates\bookings\booking_with_event.html:26
-
+#: .\booking\templates\bookings\booking_calendar.html:263
+#: .\booking\templates\bookings\booking_with_event.html:26
 msgid "Submit Booking"
 msgstr "Skicka bokning"
 
 #: .\booking\templates\bookings\booking_with_event.html:5
-
 msgid "Confirm Your Booking"
 msgstr "Bekräfta din bokning"
 
 #: .\booking\templates\bookings\booking_with_event.html:7
-
 msgid "Rental period:"
 msgstr "Hyresperiod:"
 
 #: .\booking\templates\bookings\booking_with_event.html:8
-
 msgid "Event period:"
 msgstr "Händelseperiod:"
 
 #: .\booking\templates\bookings\booking_with_event.html:9
-
 msgid "Event title:"
 msgstr "Händelsetitel:"
 
 #: .\booking\templates\bookings\booking_with_event.html:10
-
 msgid "Description:"
 msgstr "Beskrivning:"
 
 #: .\booking\templates\bookings\booking_with_event.html:22
-
 msgid "Upload images"
 msgstr "Ladda upp bilder"
 
-#: .\booking\templates\bookings\my_bookings.html:11 .\templates\base.html:37
-
-msgid "My Bookings"
-msgstr "Mina bokningar"
+#: .\booking\templates\bookings\my_bookings.html:11
+msgid "My Bookings / Hosted Events"
+msgstr ""
 
 #: .\booking\templates\bookings\my_bookings.html:19
-
 msgid "Start:"
 msgstr "Start:"
 
 #: .\booking\templates\bookings\my_bookings.html:20
-
 msgid "End:"
 msgstr "Avsluta:"
 
-#: .\booking\templates\bookings\my_bookings.html:35 .\home\templates\home.html:50
+#: .\booking\templates\bookings\my_bookings.html:26
+msgid "Attendees"
+msgstr ""
 
+#: .\booking\templates\bookings\my_bookings.html:50
+#: .\home\templates\home.html:55
 msgid "Event Schedule:"
 msgstr "Händelseschema:"
 
-#: .\booking\templates\bookings\my_bookings.html:69
-
+#: .\booking\templates\bookings\my_bookings.html:83
 msgid "No Bookings Yet"
 msgstr "Inga bokningar än"
 
-#: .\booking\templates\bookings\my_bookings.html:70
+#: .\booking\templates\bookings\my_bookings.html:84
+msgid ""
+"You haven’t made any bookings. Once you book an event, it will appear here."
+msgstr ""
+"Du har inte gjort några bokningar. När du bokar ett evenemang kommer det att "
+"visas här."
 
-msgid "You haven’t made any bookings. Once you book an event, it will appear here."
-msgstr "Du har inte gjort några bokningar. När du bokar ett evenemang kommer det att visas här."
-
-#: .\booking\templates\bookings\my_bookings.html:71
-
+#: .\booking\templates\bookings\my_bookings.html:85
 msgid "Book an Event"
 msgstr "Boka ett evenemang"
 
-#: .\config\settings.py:35
+#: .\booking\templates\bookings\my_bookings.html:95
+#: .\events\templates\events\event_list.html:60
+msgid "Thank You!"
+msgstr ""
 
-msgid "English"
-msgstr "Engelska"
+#: .\booking\templates\bookings\my_bookings.html:96
+#: .\events\templates\events\event_list.html:61
+msgid ""
+"Your booking has been received. A confirmation will be sent to your email."
+msgstr ""
 
-#: .\config\settings.py:36
+#: .\booking\views.py:108
+msgid "Booked"
+msgstr ""
 
-msgid "Swedish"
-msgstr "Svensk"
+#: .\contact\forms.py:5
+#, fuzzy
+#| msgid "Name"
+msgid "Your Name"
+msgstr "Namn"
+
+#: .\contact\forms.py:6
+msgid "Your Email"
+msgstr ""
+
+#: .\contact\forms.py:7
+#, fuzzy
+#| msgid "Messages"
+msgid "Message"
+msgstr "Meddelanden"
 
 #: .\contact\templates\contact.html:10
-
 msgid "Contact Us"
 msgstr "Kontakta oss"
 
 #: .\contact\templates\contact.html:32
-
 msgid "Send Message"
 msgstr "Skicka meddelande"
 
-#: .\events\templates\events\calendar.html:5
+#: .\events\templates\events\book_event.html:13 .\home\templates\home.html:142
+msgid "Date"
+msgstr "Datum"
 
+#: .\events\templates\events\book_event.html:13 .\home\templates\home.html:142
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:8
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:8
+msgid "Start"
+msgstr "Start"
+
+#: .\events\templates\events\book_event.html:13 .\home\templates\home.html:142
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:12
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:12
+msgid "End"
+msgstr "Avsluta"
+
+#: .\events\templates\events\calendar.html:5
 msgid "Events Calendar"
 msgstr "Evenemangskalender"
 
 #: .\events\templates\events\event_detail.html:22
-
 msgid "Back to events"
 msgstr "Tillbaka till evenemang"
 
-#: .\events\templates\events\event_list.html:7 .\home\templates\home.html:109
-
+#: .\events\templates\events\event_list.html:7 .\home\templates\home.html:114
 msgid "Upcoming Events"
 msgstr "Kommande evenemang"
 
 #: .\events\templates\events\event_list.html:8
-
 msgid "Explore our upcoming events and find something exciting to attend."
 msgstr "Utforska våra kommande evenemang och hitta något spännande att delta."
 
-#: .\events\templates\events\event_list.html:41
+#: .\events\templates\events\event_list.html:37 .\home\templates\home.html:49
+#: .\home\templates\home.html:134
+msgid "No sign-up needed! Come by anytime."
+msgstr ""
 
+#: .\events\templates\events\event_list.html:39 .\home\templates\home.html:51
+#: .\home\templates\home.html:136
+#, fuzzy
+#| msgid "Book an Event"
+msgid "Book a Spot"
+msgstr "Boka ett evenemang"
+
+#: .\events\templates\events\event_list.html:46
 msgid "No Upcoming Events"
 msgstr "Inga kommande evenemang"
 
-#: .\events\templates\events\event_list.html:42
-
+#: .\events\templates\events\event_list.html:47
 msgid "Please check back later for updates."
 msgstr "Kom tillbaka senare för uppdateringar."
 
-#: .\events\templates\events\event_list.html:44
-
+#: .\events\templates\events\event_list.html:49
 msgid "No events"
 msgstr "Inga händelser"
 
 #: .\gallery\templates\gallery.html:6
-
 msgid "Art Gallery"
 msgstr "Konstgalleri"
 
 #: .\gallery\templates\gallery.html:14
-
 msgid "kr"
 msgstr "kra"
 
 #: .\gallery\templates\gallery.html:19
-
 msgid "No artworks available right now."
 msgstr "Inga konstverk tillgängliga just nu."
 
-#: .\home\templates\home.html:9 .\home\templates\home.html:81
-
+#: .\home\templates\home.html:9 .\home\templates\home.html:86
 msgid "Welcome to Vretinger Gallery"
 msgstr "Välkommen till Vretinger Gallery"
 
 #: .\home\templates\home.html:10
-
 msgid "A creative home for artists, workshops, and events."
 msgstr "Ett kreativt hem för konstnärer, workshops och evenemang."
 
 #: .\home\templates\home.html:18
-
 msgid "Gallery Interior"
 msgstr "Galleriinredning"
 
 #: .\home\templates\home.html:21
-
 msgid "More than a gallery — a space for expression"
 msgstr "Mer än ett galleri - ett utrymme för uttryck"
 
 #: .\home\templates\home.html:23
-
+#, fuzzy
+#| msgid ""
+#| "Vretinger Gallery is located in the heart of central Stockholm, a stone's "
+#| "throw from the central station, Drottninggatan, Norra Bantorget, Hotell "
+#| "Generator and Scalateatern. Just opposite you will also find two popular "
+#| "restaurants. Wallingatan is well-trafficked by residents, tourists and "
+#| "people whose work is in the surrounding areas. There is parking for "
+#| "electric cars next to the sidewalk right outside the gallery. <br><br>The "
+#| "gallery itself gives a harmonious and cozy impression, is located at "
+#| "street level, has two large storefronts with deep window sills."
 msgid ""
-"Vretinger Gallery is located in the heart of central Stockholm, "
-"a stone's throw from the central station, Drottninggatan, Norra Bantorget, "
-"Hotell Generator and Scalateatern. "
-"Just opposite you will also find two popular restaurants. "
-"Wallingatan is well-trafficked by residents, tourists and people whose work "
-"is in the surrounding areas. "
-"There is parking for electric cars next to the sidewalk right outside the gallery. "
-"<br><br>"
-"The gallery itself gives a harmonious and cozy impression, is located at street "
-"level, has two large storefronts with deep window sills."
+"\n"
+"          Vretinger Gallery is located in the heart of central Stockholm, \n"
+"          a stone's throw from the central station, Drottninggatan, Norra "
+"Bantorget, Hotell Generator and Scalateatern. \n"
+"          Just opposite you will also find two popular restaurants. \n"
+"          Wallingatan is well-trafficked by residents, tourists and people "
+"whose work is in the surrounding areas. \n"
+"          There is parking for electric cars next to the sidewalk right "
+"outside the gallery. \n"
+"          <br><br>\n"
+"          The gallery itself gives a harmonious and cozy impression, is "
+"located at street level, has two large storefronts with deep window sills."
+"\" \n"
+"        "
 msgstr ""
-"Galleri Vretinger är beläget mitt i centrala Stockholm, "
-"ett stenkast från centralstationen, Drottninggatan, Norra Bantorget, "
-"Hotell Generator och Scalateatern. "
-"Precis mitt emot hittar du även två populära restauranger. "
-"Wallingatan är väl trafikerad av boende, turister och personer som arbetar "
-"i de kringliggande områdena. "
-"Det finns parkeringsplatser för elbilar intill trottoaren precis utanför galleriet. "
-"<br><br>"
-"Själva galleriet ger ett harmoniskt och mysigt intryck, ligger på gatuplan, "
-"och har två stora skyltfönster med djupa fönstersmygar."
+"Galleri Vretinger är beläget mitt i centrala Stockholm, ett stenkast från "
+"centralstationen, Drottninggatan, Norra Bantorget, Hotell Generator och "
+"Scalateatern. Precis mitt emot hittar du även två populära restauranger. "
+"Wallingatan är väl trafikerad av boende, turister och personer som arbetar i "
+"de kringliggande områdena. Det finns parkeringsplatser för elbilar intill "
+"trottoaren precis utanför galleriet. <br><br>Själva galleriet ger ett "
+"harmoniskt och mysigt intryck, ligger på gatuplan, och har två stora "
+"skyltfönster med djupa fönstersmygar."
 
-#: .\home\templates\home.html:83
+#: .\home\templates\home.html:88
+msgid ""
+"Experience the warmth and creativity of our gallery space, filled with "
+"inspiring artworks from our featured artist."
+msgstr ""
+"Upplev värmen och kreativiteten i vårt galleriutrymme, fylld med "
+"inspirerande konstverk från vår presenterade konstnär."
 
-msgid "Experience the warmth and creativity of our gallery space, filled with inspiring artworks from our featured artist."
-msgstr "Upplev värmen och kreativiteten i vårt galleriutrymme, fylld med inspirerande konstverk från vår presenterade konstnär."
-
-#: .\home\templates\home.html:89 .\home\templates\home.html:90
-
+#: .\home\templates\home.html:94 .\home\templates\home.html:95
 msgid "Lemons"
 msgstr "Citroner"
 
-#: .\home\templates\home.html:93 .\home\templates\home.html:94
-
+#: .\home\templates\home.html:98 .\home\templates\home.html:99
 msgid "Colors And Stripes"
 msgstr "Färger och ränder"
 
-#: .\home\templates\home.html:97 .\home\templates\home.html:98
-
+#: .\home\templates\home.html:102 .\home\templates\home.html:103
 msgid "Lion"
 msgstr "Lejon"
 
-#: .\home\templates\home.html:132
-
-msgid "Date"
-msgstr "Datum"
-
-#: .\home\templates\home.html:132 .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:8
-#: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:8
-
-msgid "Start"
-msgstr "Start"
-
-#: .\home\templates\home.html:132 .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:12
-#: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:12
-
-msgid "End"
-msgstr "Avsluta"
-
-#: .\home\templates\home.html:135
-
+#: .\home\templates\home.html:145
 msgid "No EventDays found for this event."
 msgstr "Inga evenemangsdagar hittades för detta evenemang."
 
-#: .\home\templates\home.html:139
-
+#: .\home\templates\home.html:149
 msgid "No EventDays related to this event."
 msgstr "Inga evenemangsdagar relaterade till detta evenemang."
 
-#: .\home\templates\home.html:151 .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:9
+#: .\home\templates\home.html:161
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:9
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_month.html:9
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_week.html:9
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\ajax_comments_pagination.html:5
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\pagination.html:8
-
 msgid "Previous"
 msgstr "Tidigare"
 
-#: .\home\templates\home.html:155 .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:10
+#: .\home\templates\home.html:165
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:10
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_month.html:10
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_week.html:10
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\ajax_comments_pagination.html:13
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\pagination.html:17
-
 msgid "Next"
 msgstr "Nästa"
 
-#: .\home\templates\home.html:160
-
+#: .\home\templates\home.html:170
 msgid "No upcoming events yet. Stay tuned!"
 msgstr "Inga kommande evenemang ännu. Hålla dig uppdaterad!"
 
-#: .\templates\base.html:29
+#: .\templates\base.html:29 .\templates\base.html:151
 msgid "Home"
 msgstr "Hem"
 
@@ -513,11 +616,11 @@ msgstr "Hem"
 msgid "Gallery"
 msgstr "Galleri"
 
-#: .\templates\base.html:31
+#: .\templates\base.html:31 .\templates\base.html:152
 msgid "Events"
 msgstr "Evenemang"
 
-#: .\templates\base.html:32
+#: .\templates\base.html:32 .\templates\base.html:153
 msgid "Contact"
 msgstr "Kontakta"
 
@@ -525,199 +628,320 @@ msgstr "Kontakta"
 msgid "booking"
 msgstr "bokning"
 
-#: .\templates\base.html:42
+#: .\templates\base.html:37
+msgid "My Bookings"
+msgstr "Mina bokningar"
 
+#: .\templates\base.html:42
 msgid "Sign out"
 msgstr "Logga ut"
 
 #: .\templates\base.html:48
+#, fuzzy
+#| msgid "Sign up"
+msgid "Login/Sign up"
+msgstr "Anmäla"
 
+#: .\templates\base.html:146 .\templates\emails\event_spot_confirmation.html:17
+#, fuzzy
+#| msgid "Welcome to Vretinger Gallery"
+msgid "Vretinger Gallery"
+msgstr "Välkommen till Vretinger Gallery"
+
+#: .\templates\base.html:190 .\users\templates\users\signup.html:44
+msgid "Close"
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:1
+msgid "Hi"
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:3
+#, fuzzy
+#| msgid "No events"
+msgid "Your event"
+msgstr "Inga händelser"
+
+#: .\templates\emails\event_booking_confirmation.html:3
+msgid "has been successfully created!"
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:5
+#, fuzzy
+#| msgid "Event title:"
+msgid "Event Details:"
+msgstr "Händelsetitel:"
+
+#: .\templates\emails\event_booking_confirmation.html:8
+#: .\templates\emails\event_spot_confirmation.html:6
+#, fuzzy
+#| msgid "Event Schedule:"
+msgid "Schedule:"
+msgstr "Händelseschema:"
+
+#: .\templates\emails\event_booking_confirmation.html:15
+msgid "Maximum attendees:"
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:16
+msgid "This is an open drop-in event."
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:16
+msgid "This event requires guests to sign up."
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:18
+msgid "We look forward to hosting your event at Galleri Vretinger!"
+msgstr ""
+
+#: .\templates\emails\event_booking_confirmation.html:19
+#, fuzzy
+#| msgid "Gallery Interior"
+msgid "Galleri Vretinger"
+msgstr "Galleriinredning"
+
+#: .\templates\emails\event_spot_confirmation.html:2
+msgid "Spot Confirmed!"
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:3
+msgid "Dear"
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:4
+msgid "Thank you for registering! Your spot for the event"
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:4
+msgid "has been confirmed."
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:12
+#: .\templates\emails\new_attendee_notification.html:4
+msgid "Number of spots booked:"
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:14
+msgid "We look forward to seeing you there!"
+msgstr ""
+
+#: .\templates\emails\event_spot_confirmation.html:16
+msgid "If you have any questions, please contact us at "
+msgstr ""
+
+#: .\templates\emails\new_attendee_notification.html:1
+msgid "A new attendee has booked a spot for"
+msgstr ""
+
+#: .\templates\emails\new_attendee_notification.html:2
+#, fuzzy
+#| msgid "Name"
+msgid "Name:"
+msgstr "Namn"
+
+#: .\templates\emails\new_attendee_notification.html:5
+#, fuzzy
+#| msgid "No Bookings Yet"
+msgid "Booking time:"
+msgstr "Inga bokningar än"
+
+#: .\users\templates\users\login.html:11 .\users\templates\users\signup.html:22
 msgid "Login"
 msgstr "Logga in"
 
-#: .\templates\base.html:51
+#: .\users\templates\users\login.html:14
+#, fuzzy
+#| msgid "create an account"
+msgid "Don't have an account?"
+msgstr "skapa ett konto"
 
-msgid "Sign up"
+#: .\users\templates\users\login.html:14 .\users\templates\users\signup.html:7
+#: .\users\templates\users\signup.html:19
+#, fuzzy
+#| msgid "Sign up"
+msgid "Sign Up"
 msgstr "Anmäla"
 
-#: .\venv\Lib\site-packages\calendarium\constants.py:14
+#: .\users\templates\users\signup.html:15
+msgid "View password requirements"
+msgstr ""
 
+#: .\users\templates\users\signup.html:22
+#, fuzzy
+#| msgid "create an account"
+msgid "Already have an account?"
+msgstr "skapa ett konto"
+
+#: .\users\templates\users\signup.html:32
+msgid "Password Requirements"
+msgstr ""
+
+#: .\users\templates\users\signup.html:37
+msgid "Your password can’t be too similar to your other personal information."
+msgstr ""
+
+#: .\users\templates\users\signup.html:38
+msgid "Must contain at least 8 characters."
+msgstr ""
+
+#: .\users\templates\users\signup.html:39
+msgid "Can’t be a commonly used password."
+msgstr ""
+
+#: .\users\templates\users\signup.html:40
+msgid "Can’t be entirely numeric."
+msgstr ""
+
+#: .\venv\Lib\site-packages\calendarium\constants.py:14
 msgid "Yearly"
 msgstr "Årlig"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:15
-
 msgid "Monthly"
 msgstr "Månatlig"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:16
-
 msgid "Weekly"
 msgstr "Varje vecka"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:17
-
 msgid "Daily"
 msgstr "Dagligen"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:28
-
 msgid "all"
 msgstr "alla"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:29
-
 msgid "following"
 msgstr "följande"
 
 #: .\venv\Lib\site-packages\calendarium\constants.py:30
-
 msgid "this one"
 msgstr "den här"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:83
-
 msgid "Start date"
 msgstr "Startdatum"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:87
-
 msgid "End date"
 msgstr "Slutdatum"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:91
-
 msgid "Creation date"
 msgstr "Skapningsdatum"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:97 .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:20
+#: .\venv\Lib\site-packages\calendarium\models.py:97
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:20
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:20
-
 msgid "Description"
 msgstr "Beskrivning"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:130 .\venv\Lib\site-packages\calendarium\models.py:364
-
+#: .\venv\Lib\site-packages\calendarium\models.py:130
+#: .\venv\Lib\site-packages\calendarium\models.py:364
 msgid "Created by"
 msgstr "Skapad av"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:137 .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:16
+#: .\venv\Lib\site-packages\calendarium\models.py:137
+#: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:16
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:16
-
 msgid "Category"
 msgstr "Kategori"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:144
-
 msgid "Rule"
 msgstr "Regel"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:149
-
 msgid "End of recurring"
 msgstr "Återkommande"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:155 .\venv\Lib\site-packages\calendarium\models.py:390
+#: .\venv\Lib\site-packages\calendarium\models.py:155
+#: .\venv\Lib\site-packages\calendarium\models.py:390
 #: .\venv\Lib\site-packages\django_libs\tests\test_app\models.py:14
-
 msgid "Title"
 msgstr "Titel"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:159 .\venv\Lib\site-packages\django\db\models\fields\files.py:420
-
+#: .\venv\Lib\site-packages\calendarium\models.py:159
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:420
 msgid "Image"
 msgstr "Bild"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:277
-
 msgid "Name"
 msgstr "Namn"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:282
-
 msgid "Slug"
 msgstr "Snigel"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:287
-
 msgid "Color"
 msgstr "Färg"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:292
-
 msgid "Parent"
 msgstr "Förälder"
 
-#: .\venv\Lib\site-packages\calendarium\models.py:324 .\venv\Lib\site-packages\calendarium\models.py:371
-
+#: .\venv\Lib\site-packages\calendarium\models.py:324
+#: .\venv\Lib\site-packages\calendarium\models.py:371
 msgid "Event"
 msgstr "Händelse"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:339
-
 msgid "Relation type"
 msgstr "Relationstyp"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:376
-
 msgid "Original start"
 msgstr "Originalstart"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:380
-
 msgid "Original end"
 msgstr "Originalt"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:384
-
 msgid "Cancelled"
 msgstr "Avbruten"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:455
-
 msgid "name"
 msgstr "namn"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:460
-
 msgid "description"
 msgstr "beskrivning"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:464
-
 msgid "frequency"
 msgstr "frekvens"
 
 #: .\venv\Lib\site-packages\calendarium\models.py:470
-
 msgid "params"
 msgstr "paramer"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:5
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_week.html:5
-
 msgid "Occurrences"
 msgstr "Händelser"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_day.html:11
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_month.html:11
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_week.html:11
-
 msgid "Today"
 msgstr "I dag"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_month.html:13
-
 msgid "Create new event"
 msgstr "Skapa nytt evenemang"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_month.html:26
-
 msgid "View"
 msgstr "Se"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\calendar_week.html:29
-
 msgid "View calendar day"
 msgstr "Visa kalenderdagen"
 
@@ -730,229 +954,211 @@ msgstr "Visa kalenderdagen"
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:27
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_form.html:17
 #: .\venv\Lib\site-packages\django\forms\formsets.py:499
-
 msgid "Delete"
 msgstr "Radera"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_confirm_delete.html:8
-
 msgid "Do you really want to delete this event?"
 msgstr "Vill du verkligen ta bort det här evenemanget?"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:24
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:24
-
 msgid "back"
 msgstr "tillbaka"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_detail.html:26
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_detail.html:26
-
 msgid "Edit"
 msgstr "Redigera"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_form.html:7
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_form.html:7
-
 msgid "Update"
 msgstr "Uppdatera"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_form.html:9
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_form.html:9
-
 msgid "Create event"
 msgstr "Skapa händelse"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\event_form.html:15
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_form.html:15
-
 msgid "Save"
 msgstr "Spara"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_confirm_delete.html:9
-
 msgid "Decision"
 msgstr "Beslut"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\occurrence_confirm_delete.html:16
-
 msgid "Back"
 msgstr "Tillbaka"
 
 #: .\venv\Lib\site-packages\calendarium\templates\calendarium\partials\category_list.html:3
-
 msgid "All events"
 msgstr "Alla evenemang"
 
-#: .\venv\Lib\site-packages\cloudinary\forms.py:55 .\venv\Lib\site-packages\cloudinary\forms.py:124
-
+#: .\venv\Lib\site-packages\cloudinary\forms.py:55
+#: .\venv\Lib\site-packages\cloudinary\forms.py:124
 msgid "No file selected!"
 msgstr "Ingen fil vald!"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
-
 msgid "Messages"
 msgstr "Meddelanden"
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
-
 msgid "Site Maps"
 msgstr "Webbplatskartor"
 
 #: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
-
 msgid "Static Files"
 msgstr "Statiska filer"
 
 #: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
-
 msgid "Syndication"
 msgstr "Syndikering"
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
 #: .\venv\Lib\site-packages\django\core\paginator.py:30
-
 msgid "…"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:32
-
 msgid "That page number is not an integer"
 msgstr "Det sidnumret är inte ett heltal"
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:33
-
 msgid "That page number is less than 1"
 msgstr "Det sidnumret är mindre än 1"
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:34
-
 msgid "That page contains no results"
 msgstr "Den sidan innehåller inga resultat"
 
 #: .\venv\Lib\site-packages\django\core\validators.py:22
-
 msgid "Enter a valid value."
 msgstr "Ange ett giltigt värde."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:70
-
 msgid "Enter a valid domain name."
 msgstr "Ange ett giltigt domännamn."
 
-#: .\venv\Lib\site-packages\django\core\validators.py:153 .\venv\Lib\site-packages\django\forms\fields.py:775
-
+#: .\venv\Lib\site-packages\django\core\validators.py:153
+#: .\venv\Lib\site-packages\django\forms\fields.py:775
 msgid "Enter a valid URL."
 msgstr "Ange en giltig URL."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:200
-
 msgid "Enter a valid integer."
 msgstr "Ange ett giltigt heltal."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:211
-
 msgid "Enter a valid email address."
 msgstr "Ange en giltig e -postadress."
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: .\venv\Lib\site-packages\django\core\validators.py:289
-
-msgid "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
-msgstr "Ange en giltig \"snigel\" som består av bokstäver, siffror, understreck eller bindestreck."
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+"Ange en giltig \"snigel\" som består av bokstäver, siffror, understreck "
+"eller bindestreck."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+"Ange en giltig \"snigel\" som består av unicode -bokstäver, siffror, "
+"understreck eller bindestreck."
 
-msgid "Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or hyphens."
-msgstr "Ange en giltig \"snigel\" som består av unicode -bokstäver, siffror, understreck eller bindestreck."
-
-#: .\venv\Lib\site-packages\django\core\validators.py:309 .\venv\Lib\site-packages\django\core\validators.py:318
-#: .\venv\Lib\site-packages\django\core\validators.py:332 .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2220
+#: .\venv\Lib\site-packages\django\core\validators.py:309
+#: .\venv\Lib\site-packages\django\core\validators.py:318
+#: .\venv\Lib\site-packages\django\core\validators.py:332
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2220
 #, python-format
-
 msgid "Enter a valid %(protocol)s address."
 msgstr "Ange en giltig %(protocol)s adress."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:311
-
 msgid "IPv4"
 msgstr "Ipv4"
 
-#: .\venv\Lib\site-packages\django\core\validators.py:320 .\venv\Lib\site-packages\django\utils\ipv6.py:43
-
+#: .\venv\Lib\site-packages\django\core\validators.py:320
+#: .\venv\Lib\site-packages\django\utils\ipv6.py:43
 msgid "IPv6"
 msgstr "Ipv6"
 
 #: .\venv\Lib\site-packages\django\core\validators.py:334
-
 msgid "IPv4 or IPv6"
 msgstr "IPv4 eller IPv6"
 
 #: .\venv\Lib\site-packages\django\core\validators.py:375
-
 msgid "Enter only digits separated by commas."
 msgstr "Ange endast siffror separerade med komma."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:381
 #, python-format
-
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
 msgstr "Se till att detta värde är %(limit_value)s  (det är %(show_value)s)."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:416
 #, python-format
-
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr "Se till att detta värde är mindre än eller lika med  %(limit_value)s."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:425
 #, python-format
-
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr "Se till att detta värde är större än eller lika med %(limit_value)s."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:434
 #, python-format
-
 msgid "Ensure this value is a multiple of step size %(limit_value)s."
 msgstr "Se till att detta värde är en multipel av stegstorlek %(limit_value)s."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:441
 #, python-format
-
 msgid ""
-"Ensure this value is a multiple of step size %(limit_value)s, starting from %(offset)s, e.g. %(offset)s, %(valid_value1)s, "
-"%(valid_value2)s, and so on."
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
 msgstr ""
-"Kontrollera att detta värde är en multipel med stegstorlek %(limit_value)s, med början från %(offset)s, t ex. %(offset)s, "
-"%(valid_value1)s, %(valid_value2)s och så vidare."
+"Kontrollera att detta värde är en multipel med stegstorlek %(limit_value)s, "
+"med början från %(offset)s, t ex. %(offset)s, %(valid_value1)s, "
+"%(valid_value2)s och så vidare."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:473
 #, python-format
-
-msgid "Ensure this value has at least %(limit_value)d character (it has %(show_value)d)."
-msgid_plural "Ensure this value has at least %(limit_value)d characters (it has %(show_value)d)."
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:491
 #, python-format
-
-msgid "Ensure this value has at most %(limit_value)d character (it has %(show_value)d)."
-msgid_plural "Ensure this value has at most %(limit_value)d characters (it has %(show_value)d)."
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv\Lib\site-packages\django\core\validators.py:514 .\venv\Lib\site-packages\django\forms\fields.py:366
+#: .\venv\Lib\site-packages\django\core\validators.py:514
+#: .\venv\Lib\site-packages\django\forms\fields.py:366
 #: .\venv\Lib\site-packages\django\forms\fields.py:405
-
 msgid "Enter a number."
 msgstr "Ange ett nummer."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:516
 #, python-format
-
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
@@ -960,7 +1166,6 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:521
 #, python-format
-
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
@@ -968,59 +1173,56 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:526
 #, python-format
-
-msgid "Ensure that there are no more than %(max)s digit before the decimal point."
-msgid_plural "Ensure that there are no more than %(max)s digits before the decimal point."
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
 msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:597
 #, python-format
-
-msgid "File extension “%(extension)s” is not allowed. Allowed extensions are: %(allowed_extensions)s."
-msgstr "Filförlängning “%(extension)s” är inte tillåtet. Tillåtna tillägg är: %(allowed_extensions)s."
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+"Filförlängning “%(extension)s” är inte tillåtet. Tillåtna tillägg är: "
+"%(allowed_extensions)s."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:659
-
 msgid "Null characters are not allowed."
 msgstr "Nolltecken är inte tillåtna."
 
-#: .\venv\Lib\site-packages\django\db\models\base.py:1600 .\venv\Lib\site-packages\django\forms\models.py:908
-
+#: .\venv\Lib\site-packages\django\db\models\base.py:1600
+#: .\venv\Lib\site-packages\django\forms\models.py:908
 msgid "and"
 msgstr "och"
 
 #: .\venv\Lib\site-packages\django\db\models\base.py:1602
 #, python-format
-
 msgid "%(model_name)s with this %(field_labels)s already exists."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\constraints.py:22
 #, python-format
-
 msgid "Constraint “%(name)s” is violated."
 msgstr "Begränsning “%(name)s” kränks."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:134
 #, python-format
-
 msgid "Value %(value)r is not a valid choice."
 msgstr "Värde %(value)r är inte ett giltigt val."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:135
-
 msgid "This field cannot be null."
 msgstr "Detta fält kan inte vara noll."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:136
-
 msgid "This field cannot be blank."
 msgstr "Detta fält kan inte vara tomt."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:137
 #, python-format
-
 msgid "%(model_name)s with this %(field_label)s already exists."
 msgstr ""
 
@@ -1028,410 +1230,376 @@ msgstr ""
 #. 'month'. Eg: "Title must be unique for pub_date year"
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:141
 #, python-format
-
-msgid "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:180
 #, python-format
-
 msgid "Field of type: %(field_type)s"
 msgstr "Fält av typ: %(field_type)s"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1162
 #, python-format
-
 msgid "“%(value)s” value must be either True or False."
 msgstr "“%(value)s\" -värdet måste vara antingen sant eller falskt."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1163
 #, python-format
-
 msgid "“%(value)s” value must be either True, False, or None."
 msgstr "“%(value)s -värdet måste vara antingen sant, falskt eller ingen."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1165
-
 msgid "Boolean (Either True or False)"
 msgstr "Booleska (antingen sant eller falskt)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1215
 #, python-format
-
 msgid "String (up to %(max_length)s)"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1217
-
 msgid "String (unlimited)"
 msgstr "String (obegränsad)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1326
-
 msgid "Comma-separated integers"
 msgstr "Komma-separerade heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1427
 #, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+"“%(value)s” -värde har ett ogiltigt datumformat. Det måste vara i YYYY-MM-DD-"
+"format."
 
-msgid "“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD format."
-msgstr "“%(value)s” -värde har ett ogiltigt datumformat. Det måste vara i YYYY-MM-DD-format."
-
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1431 .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1566
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1431
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1566
 #, python-format
-
-msgid "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid date."
-msgstr "“%(value)s” -värdet har rätt format (YYYY-MM-DD) men det är ett ogiltigt datum."
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+"“%(value)s” -värdet har rätt format (YYYY-MM-DD) men det är ett ogiltigt "
+"datum."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1435
-
 msgid "Date (without time)"
 msgstr "Datum (utan tid)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1562
 #, python-format
-
-msgid "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ] format."
-msgstr "“%(value)s” -värde har ett ogiltigt format. Det måste vara i YYYY-MM-DD HH: MM [: ss [.uuuuuu]] [Tz] -format."
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr ""
+"“%(value)s” -värde har ett ogiltigt format. Det måste vara i YYYY-MM-DD HH: "
+"MM [: ss [.uuuuuu]] [Tz] -format."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1570
 #, python-format
-
-msgid "“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
-msgstr "“%(value)s” -värde har rätt format (YYYY-MM-DD HH: MM [: SS [.uuuuu]] [Tz]) men det är ett ogiltigt datum/tid."
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+"“%(value)s” -värde har rätt format (YYYY-MM-DD HH: MM [: SS [.uuuuu]] [Tz]) "
+"men det är ett ogiltigt datum/tid."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1575
-
 msgid "Date (with time)"
 msgstr "Datum (med tiden)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1702
 #, python-format
-
 msgid "“%(value)s” value must be a decimal number."
 msgstr "“%(value)s” -värde måste vara ett decimalnummer."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1704
-
 msgid "Decimal number"
 msgstr "Decimalnummer"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1864
 #, python-format
-
-msgid "“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[.uuuuuu] format."
-msgstr "“%(value)s” -värde har ett ogiltigt format. Det måste vara i [dd] [[HH:] mm:] ss [.uuuuuu] -format."
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+msgstr ""
+"“%(value)s” -värde har ett ogiltigt format. Det måste vara i [dd] [[HH:] "
+"mm:] ss [.uuuuuu] -format."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1868
-
 msgid "Duration"
 msgstr "Varaktighet"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1920
-
 msgid "Email address"
 msgstr "E -postadress"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1945
-
 msgid "File path"
 msgstr "Filväg"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2023
 #, python-format
-
 msgid "“%(value)s” value must be a float."
 msgstr "“%(value)s” -värdet måste vara en flottör."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
-
 msgid "Floating point number"
 msgstr "Flytande punktnummer"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
 #, python-format
-
 msgid "“%(value)s” value must be an integer."
 msgstr "“%(value)s” -värdet måste vara ett heltal."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2067
-
 msgid "Integer"
 msgstr "Heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2163
-
 msgid "Big (8 byte) integer"
 msgstr "Stort (8 byte) heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2180
-
 msgid "Small integer"
 msgstr "Liten heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2188
-
 msgid "IPv4 address"
 msgstr "IPv4 -adress"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2219
-
 msgid "IP address"
 msgstr "IP -adress"
 
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2310 .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2311
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2310
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2311
 #, python-format
-
 msgid "“%(value)s” value must be either None, True or False."
 msgstr "“%(value)s” -värde måste vara antingen ingen, sant eller falskt."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2313
-
 msgid "Boolean (Either True, False or None)"
 msgstr "Boolean (antingen sant, falsk eller ingen)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2364
-
 msgid "Positive big integer"
 msgstr "Positivt stort heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2379
-
 msgid "Positive integer"
 msgstr "Positivt heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2394
-
 msgid "Positive small integer"
 msgstr "Positivt litet heltal"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2410
 #, python-format
-
 msgid "Slug (up to %(max_length)s)"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2446
-
 msgid "Text"
 msgstr "Text"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2526
 #, python-format
-
-msgid "“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] format."
-msgstr "“%(value)s” -värde har ett ogiltigt format. Det måste vara i HH: mm [: ss [.uuuuuu]] -format."
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+"“%(value)s” -värde har ett ogiltigt format. Det måste vara i HH: mm [: ss "
+"[.uuuuuu]] -format."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2530
 #, python-format
-
-msgid "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an invalid time."
-msgstr "“%(value)s” -värde har rätt format (HH: MM [: ss [.uuuuuu]]) men det är en ogiltig tid."
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+"“%(value)s” -värde har rätt format (HH: MM [: ss [.uuuuuu]]) men det är en "
+"ogiltig tid."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2534
-
 msgid "Time"
 msgstr "Tid"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2642
-
 msgid "URL"
 msgstr "Url"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2666
-
 msgid "Raw binary data"
 msgstr "Rå binär data"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2731
 #, python-format
-
 msgid "“%(value)s” is not a valid UUID."
 msgstr "“%(value)s” är inte en giltig UUID."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2733
-
 msgid "Universally unique identifier"
 msgstr "Universellt unik identifierare"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:244
-
 msgid "File"
 msgstr "Fil"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\json.py:24
-
 msgid "A JSON object"
 msgstr "Ett JSON -objekt"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\json.py:26
-
 msgid "Value must be valid JSON."
 msgstr "Värdet måste vara giltigt JSON."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:978
 #, python-format
-
 msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
 msgstr "%(model)s-instans med %(field)s %(value)r är inte ett giltigt val."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:981
-
 msgid "Foreign Key (type determined by related field)"
 msgstr "Utländsk nyckel (typ bestäms av relaterat fält)"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:1275
-
 msgid "One-to-one relationship"
 msgstr "En-till-en-relation"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:1332
 #, python-format
-
 msgid "%(from)s-%(to)s relationship"
 msgstr "%(from)s-%(to)s  relation"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:1334
 #, python-format
-
 msgid "%(from)s-%(to)s relationships"
 msgstr "%(from)s-%(to)s relationer"
 
 #: .\venv\Lib\site-packages\django\db\models\fields\related.py:1382
-
 msgid "Many-to-many relationship"
 msgstr "Många-till-många-förhållanden"
 
 #. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the
-#. label
+#. characters will prevent the default label_suffix to be appended to the label
 #: .\venv\Lib\site-packages\django\forms\boundfield.py:185
-
 msgid ":?.!"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:95
-
 msgid "This field is required."
 msgstr "Detta fält krävs."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:315
-
 msgid "Enter a whole number."
 msgstr "Ange ett helt nummer."
 
-#: .\venv\Lib\site-packages\django\forms\fields.py:486 .\venv\Lib\site-packages\django\forms\fields.py:1267
-
+#: .\venv\Lib\site-packages\django\forms\fields.py:486
+#: .\venv\Lib\site-packages\django\forms\fields.py:1267
 msgid "Enter a valid date."
 msgstr "Ange ett giltigt datum."
 
-#: .\venv\Lib\site-packages\django\forms\fields.py:509 .\venv\Lib\site-packages\django\forms\fields.py:1268
-
+#: .\venv\Lib\site-packages\django\forms\fields.py:509
+#: .\venv\Lib\site-packages\django\forms\fields.py:1268
 msgid "Enter a valid time."
 msgstr "Ange en giltig tid."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:536
-
 msgid "Enter a valid date/time."
 msgstr "Ange ett giltigt datum/tid."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:570
-
 msgid "Enter a valid duration."
 msgstr "Ange en giltig varaktighet."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:571
 #, python-brace-format
-
 msgid "The number of days must be between {min_days} and {max_days}."
 msgstr "Antalet dagar måste vara mellan {min_days} och {max_days}."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:640
-
 msgid "No file was submitted. Check the encoding type on the form."
 msgstr "Ingen fil skickades in. Kontrollera kodningstypen på formuläret."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:641
-
 msgid "No file was submitted."
 msgstr "Ingen fil skickades in."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:642
-
 msgid "The submitted file is empty."
 msgstr "Den skickade filen är tom."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:644
 #, python-format
-
 msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
-msgid_plural "Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
 msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:649
-
 msgid "Please either submit a file or check the clear checkbox, not both."
 msgstr "Skicka antingen en fil eller kontrollera kryssrutan Clear, inte båda."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:717
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+"Ladda upp en giltig bild. Filen du laddade upp var antingen inte en bild "
+"eller en skadad bild."
 
-msgid "Upload a valid image. The file you uploaded was either not an image or a corrupted image."
-msgstr "Ladda upp en giltig bild. Filen du laddade upp var antingen inte en bild eller en skadad bild."
-
-#: .\venv\Lib\site-packages\django\forms\fields.py:889 .\venv\Lib\site-packages\django\forms\fields.py:975
+#: .\venv\Lib\site-packages\django\forms\fields.py:889
+#: .\venv\Lib\site-packages\django\forms\fields.py:975
 #: .\venv\Lib\site-packages\django\forms\models.py:1592
 #, python-format
-
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr "Välj ett giltigt val. %(value)s är inte ett av de tillgängliga valen."
 
-#: .\venv\Lib\site-packages\django\forms\fields.py:977 .\venv\Lib\site-packages\django\forms\fields.py:1096
+#: .\venv\Lib\site-packages\django\forms\fields.py:977
+#: .\venv\Lib\site-packages\django\forms\fields.py:1096
 #: .\venv\Lib\site-packages\django\forms\models.py:1590
-
 msgid "Enter a list of values."
 msgstr "Ange en lista med värden."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:1097
-
 msgid "Enter a complete value."
 msgstr "Ange ett komplett värde."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:1339
-
 msgid "Enter a valid UUID."
 msgstr "Ange en giltig UUID."
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:1369
-
 msgid "Enter a valid JSON."
 msgstr "Ange en giltig JSON."
 
 #. Translators: This is the default suffix added to form field labels
 #: .\venv\Lib\site-packages\django\forms\forms.py:97
-
 msgid ":"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\forms.py:239
 #, python-format
-
 msgid "(Hidden field %(name)s) %(error)s"
 msgstr "(Hidden fält %(name)s) %(error)s"
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:61
 #, python-format
-
 msgid ""
-"ManagementForm data is missing or has been tampered with. Missing fields: %(field_names)s. You may need to file a bug report if the "
-"issue persists."
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
 msgstr ""
-"Ledningsformadata saknas eller har manipulerats med. Saknade fält: %(field_names)s. . Du kan behöva lämna in en felrapport om "
-"problemet kvarstår."
+"Ledningsformadata saknas eller har manipulerats med. Saknade fält: "
+"%(field_names)s. . Du kan behöva lämna in en felrapport om problemet "
+"kvarstår."
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:65
 #, python-format
-
 msgid "Please submit at most %(num)d form."
 msgid_plural "Please submit at most %(num)d forms."
 msgstr[0] ""
@@ -1439,101 +1607,93 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:70
 #, python-format
-
 msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\venv\Lib\site-packages\django\forms\formsets.py:484 .\venv\Lib\site-packages\django\forms\formsets.py:491
-
+#: .\venv\Lib\site-packages\django\forms\formsets.py:484
+#: .\venv\Lib\site-packages\django\forms\formsets.py:491
 msgid "Order"
 msgstr "Beställa"
 
 #: .\venv\Lib\site-packages\django\forms\models.py:901
 #, python-format
-
 msgid "Please correct the duplicate data for %(field)s."
 msgstr "Korrigera duplikatdata för %(field)s."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:906
 #, python-format
-
 msgid "Please correct the duplicate data for %(field)s, which must be unique."
 msgstr "Korrigera duplikatdata för %(field)s, som måste vara unika."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:913
 #, python-format
-
-msgid "Please correct the duplicate data for %(field_name)s which must be unique for the %(lookup)s in %(date_field)s."
-msgstr "Korrigera duplikatdata för %(field_name)s som måste vara unikt för %(lookup)s i %(date_field)s."
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+"Korrigera duplikatdata för %(field_name)s som måste vara unikt för "
+"%(lookup)s i %(date_field)s."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:922
-
 msgid "Please correct the duplicate values below."
 msgstr "Korrigera duplicerade värden nedan."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:1359
-
 msgid "The inline value did not match the parent instance."
 msgstr "Inline -värdet matchade inte förälderinstansen."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:1450
-
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "Välj ett giltigt val. Det valet är inte ett av de tillgängliga valen."
 
 #: .\venv\Lib\site-packages\django\forms\models.py:1594
 #, python-format
-
 msgid "“%(pk)s” is not a valid value."
 msgstr "“%(pk)s” är inte ett giltigt värde."
 
 #: .\venv\Lib\site-packages\django\forms\utils.py:229
 #, python-format
-
-msgid "%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it may be ambiguous or it may not exist."
-msgstr "%(datetime)s kunde inte tolkas i tidszon %(current_timezone)s; Det kan vara tvetydigt eller det kanske inte finns."
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+"%(datetime)s kunde inte tolkas i tidszon %(current_timezone)s; Det kan vara "
+"tvetydigt eller det kanske inte finns."
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:527
-
 msgid "Clear"
 msgstr "Rensa"
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:528
-
 msgid "Currently"
 msgstr "För närvarande"
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:529
-
 msgid "Change"
 msgstr "Ändra"
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:866
-
 msgid "Unknown"
 msgstr "Okänd"
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:867
-
 msgid "Yes"
 msgstr "Ja"
 
 #: .\venv\Lib\site-packages\django\forms\widgets.py:868
-
 msgid "No"
 msgstr "Inga"
 
 #. Translators: Please do not add spaces around commas.
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:873
-
 msgid "yes,no,maybe"
 msgstr "ja, nej, kanske"
 
-#: .\venv\Lib\site-packages\django\template\defaultfilters.py:903 .\venv\Lib\site-packages\django\template\defaultfilters.py:920
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:903
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:920
 #, python-format
-
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
@@ -1541,251 +1701,202 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:922
 #, python-format
-
 msgid "%s KB"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:924
 #, python-format
-
 msgid "%s MB"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:926
 #, python-format
-
 msgid "%s GB"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:928
 #, python-format
-
 msgid "%s TB"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:930
 #, python-format
-
 msgid "%s PB"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:74
-
 msgid "p.m."
 msgstr "p.m."
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:75
-
 msgid "a.m."
 msgstr "a.m."
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:80
-
 msgid "PM"
 msgstr "PM"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:81
-
 msgid "AM"
 msgstr "AM"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:153
-
 msgid "midnight"
 msgstr "midnatt"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:155
-
 msgid "noon"
 msgstr "middag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:7
-
 msgid "Monday"
 msgstr "Måndag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:8
-
 msgid "Tuesday"
 msgstr "Tisdag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:9
-
 msgid "Wednesday"
 msgstr "Onsdag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
-
 msgid "Thursday"
 msgstr "Torsdag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:11
-
 msgid "Friday"
 msgstr "Fredag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:12
-
 msgid "Saturday"
 msgstr "Lördag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:13
-
 msgid "Sunday"
 msgstr "Söndag"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:16
-
 msgid "Mon"
 msgstr "Mån"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:17
-
 msgid "Tue"
 msgstr "Tis"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:18
-
 msgid "Wed"
 msgstr "Ons"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
-
 msgid "Thu"
 msgstr "Tor"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
-
 msgid "Fri"
 msgstr "Fre"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:21
-
 msgid "Sat"
 msgstr "Lör"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:22
-
 msgid "Sun"
 msgstr "Sön"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:25
-
 msgid "January"
 msgstr "Januari"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:26
-
 msgid "February"
 msgstr "Februari"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:27
-
 msgid "March"
 msgstr "Marsch"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:28
-
 msgid "April"
 msgstr "April"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:29
-
 msgid "May"
 msgstr "Maj"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:30
-
 msgid "June"
 msgstr "Juni"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:31
-
 msgid "July"
 msgstr "Juli"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:32
-
 msgid "August"
 msgstr "Augusti"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:33
-
 msgid "September"
 msgstr "September"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:34
-
 msgid "October"
 msgstr "Oktober"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:35
-
 msgid "November"
 msgstr "November"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:36
-
 msgid "December"
 msgstr "December"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:39
-
 msgid "jan"
 msgstr "jan"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:40
-
 msgid "feb"
 msgstr "feb"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:41
-
 msgid "mar"
 msgstr "mar"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:42
-
 msgid "apr"
 msgstr "apr"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:43
-
 msgid "may"
 msgstr "maj"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:44
-
 msgid "jun"
 msgstr "jun"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:45
-
 msgid "jul"
 msgstr "jul"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:46
-
 msgid "aug"
 msgstr "aug"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:47
-
 msgid "sep"
 msgstr "sep"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:48
-
 msgid "oct"
 msgstr "okt"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:49
-
 msgid "nov"
 msgstr "nov"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:50
-
 msgid "dec"
 msgstr "dec"
 
@@ -1910,7 +2021,6 @@ msgid "December"
 msgstr "December"
 
 #: .\venv\Lib\site-packages\django\utils\ipv6.py:20
-
 msgid "This is not a valid IPv6 address."
 msgstr "Detta är inte en giltig IPv6 -adress."
 
@@ -1921,19 +2031,17 @@ msgid "%(truncated_text)s…"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\text.py:287
-
 msgid "or"
 msgstr "eller"
 
 #. Translators: This string is used as a separator between list elements
-#: .\venv\Lib\site-packages\django\utils\text.py:306 .\venv\Lib\site-packages\django\utils\timesince.py:135
-
+#: .\venv\Lib\site-packages\django\utils\text.py:306
+#: .\venv\Lib\site-packages\django\utils\timesince.py:135
 msgid ", "
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:8
 #, python-format
-
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] ""
@@ -1941,7 +2049,6 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:9
 #, python-format
-
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
 msgstr[0] ""
@@ -1949,7 +2056,6 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:10
 #, python-format
-
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
 msgstr[0] ""
@@ -1957,7 +2063,6 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:11
 #, python-format
-
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
 msgstr[0] ""
@@ -1965,7 +2070,6 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:12
 #, python-format
-
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
 msgstr[0] ""
@@ -1973,268 +2077,261 @@ msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:13
 #, python-format
-
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:29
-
 msgid "Forbidden"
 msgstr "Förbjuden"
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:30
-
 msgid "CSRF verification failed. Request aborted."
 msgstr "CSRF -verifiering misslyckades. Begär aborterad."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:34
-
 msgid ""
-"You are seeing this message because this HTTPS site requires a “Referer header” to be sent by your web browser, but none was sent. "
-"This header is required for security reasons, to ensure that your browser is not being hijacked by third parties."
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
 msgstr ""
-"Du ser detta meddelande eftersom den här HTTPS -webbplatsen kräver att en \"referenhuvud\" skickas av din webbläsare, men ingen "
-"skickades. Denna rubrik krävs av säkerhetsskäl för att se till att din webbläsare inte kapas av tredje parter."
+"Du ser detta meddelande eftersom den här HTTPS -webbplatsen kräver att en "
+"\"referenhuvud\" skickas av din webbläsare, men ingen skickades. Denna "
+"rubrik krävs av säkerhetsskäl för att se till att din webbläsare inte kapas "
+"av tredje parter."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:40
-
 msgid ""
-"If you have configured your browser to disable “Referer” headers, please re-enable them, at least for this site, or for HTTPS "
-"connections, or for “same-origin” requests."
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
 msgstr ""
-"Om du har konfigurerat din webbläsare för att inaktivera \"referenser\" -rubriker, vänligen aktivera dem, åtminstone för den här "
-"webbplatsen, eller för HTTPS-anslutningar, eller för \"samma ursprung\" -förfrågningar."
+"Om du har konfigurerat din webbläsare för att inaktivera \"referenser\" "
+"-rubriker, vänligen aktivera dem, åtminstone för den här webbplatsen, eller "
+"för HTTPS-anslutningar, eller för \"samma ursprung\" -förfrågningar."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:45
-
 msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or including the “Referrer-Policy: no-referrer” header, "
-"please remove them. The CSRF protection requires the “Referer” header to do strict referer checking. If you’re concerned about "
-"privacy, use alternatives like <a rel=\"noreferrer\" …> for links to third-party sites."
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
-"Om du använder <Meta name = \"ReferRer\" Content = \"no-referRer\"> tagg eller inklusive \"ReferRer-Policy: No-Referrer\" -huvudet, "
-"ta bort dem. CSRF -skyddet kräver att \"referen\" -huvudet gör strikt referenskontroll. Om du är orolig för integritet, använd "
-"alternativ som <a rel = \"noreferrer\" ...> för länkar till tredje parts webbplatser."
+"Om du använder <Meta name = \"ReferRer\" Content = \"no-referRer\"> tagg "
+"eller inklusive \"ReferRer-Policy: No-Referrer\" -huvudet, ta bort dem. CSRF "
+"-skyddet kräver att \"referen\" -huvudet gör strikt referenskontroll. Om du "
+"är orolig för integritet, använd alternativ som <a rel = \"noreferrer\" ...> "
+"för länkar till tredje parts webbplatser."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:54
-
 msgid ""
-"You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security "
-"reasons, to ensure that your browser is not being hijacked by third parties."
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
 msgstr ""
-"Du ser detta meddelande eftersom den här webbplatsen kräver en CSRF -cookie när du skickar in formulär. Denna cookie krävs av "
-"säkerhetsskäl för att se till att din webbläsare inte kapas av tredje parter."
+"Du ser detta meddelande eftersom den här webbplatsen kräver en CSRF -cookie "
+"när du skickar in formulär. Denna cookie krävs av säkerhetsskäl för att se "
+"till att din webbläsare inte kapas av tredje parter."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:60
-
 msgid ""
-"If you have configured your browser to disable cookies, please re-enable them, at least for this site, or for “same-origin” requests."
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
 msgstr ""
-"Om du har konfigurerat din webbläsare för att inaktivera cookies, vänligen aktivera dem, åtminstone för den här webbplatsen, eller "
-"för \"samma ursprung\" -förfrågningar."
+"Om du har konfigurerat din webbläsare för att inaktivera cookies, vänligen "
+"aktivera dem, åtminstone för den här webbplatsen, eller för \"samma "
+"ursprung\" -förfrågningar."
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:66
-
 msgid "More information is available with DEBUG=True."
 msgstr "Mer information finns med felsökning = sant."
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:44
-
 msgid "No year specified"
 msgstr "Inget år specificerat"
 
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:64 .\venv\Lib\site-packages\django\views\generic\dates.py:115
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:64
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:115
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:214
-
 msgid "Date out of range"
 msgstr "Datum utanför räckvidden"
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:94
-
 msgid "No month specified"
 msgstr "Ingen månad specificerad"
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:147
-
 msgid "No day specified"
 msgstr "Ingen dag specificerad"
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:194
-
 msgid "No week specified"
 msgstr "Ingen vecka specificerad"
 
-#: .\venv\Lib\site-packages\django\views\generic\dates.py:353 .\venv\Lib\site-packages\django\views\generic\dates.py:384
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:353
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:384
 #, python-format
-
 msgid "No %(verbose_name_plural)s available"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:680
 #, python-format
-
-msgid "Future %(verbose_name_plural)s not available because %(class_name)s.allow_future is False."
+msgid ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\generic\dates.py:720
 #, python-format
-
 msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\generic\detail.py:56
 #, python-format
-
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\generic\list.py:70
-
 msgid "Page is not “last”, nor can it be converted to an int."
-msgstr "Sidan är inte \"sista\", och den kan inte heller konverteras till en int."
+msgstr ""
+"Sidan är inte \"sista\", och den kan inte heller konverteras till en int."
 
 #: .\venv\Lib\site-packages\django\views\generic\list.py:77
 #, python-format
-
 msgid "Invalid page (%(page_number)s): %(message)s"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\generic\list.py:173
 #, python-format
-
 msgid "Empty list and “%(class_name)s.allow_empty” is False."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\static.py:49
-
 msgid "Directory indexes are not allowed here."
 msgstr "Katalogindex är inte tillåtna här."
 
 #: .\venv\Lib\site-packages\django\views\static.py:51
 #, python-format
-
 msgid "“%(path)s” does not exist"
 msgstr ""
 
-#: .\venv\Lib\site-packages\django\views\static.py:68 .\venv\Lib\site-packages\django\views\templates\directory_index.html:8
+#: .\venv\Lib\site-packages\django\views\static.py:68
+#: .\venv\Lib\site-packages\django\views\templates\directory_index.html:8
 #: .\venv\Lib\site-packages\django\views\templates\directory_index.html:11
 #, python-format
-
 msgid "Index of %(directory)s"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:204
-
 msgid "The install worked successfully! Congratulations!"
 msgstr "Installationen fungerade framgångsrikt! Grattis!"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
 #, python-format
-
 msgid ""
-"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" target=\"_blank\" rel=\"noopener\">release notes</a> for "
-"Django %(version)s"
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:208
 #, python-format
-
 msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not configured any URLs."
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
 msgstr ""
-"Du ser den här sidan eftersom <a href = \"https://docs.djangoproject.com/sv/%(version)s/ref/settings/#debug\" target = \"_ blank\" "
-"rel = \"noopener\"> felsök = true </a> är i dina inställningsfiler och du har inte konfigurerat några urls."
+"Du ser den här sidan eftersom <a href = \"https://docs.djangoproject.com/sv/"
+"%(version)s/ref/settings/#debug\" target = \"_ blank\" rel = \"noopener\"> "
+"felsök = true </a> är i dina inställningsfiler och du har inte konfigurerat "
+"några urls."
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:217
-
 msgid "Django Documentation"
 msgstr "Django -dokumentation"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:218
-
 msgid "Topics, references, &amp; how-to’s"
 msgstr "Ämnen, referenser och amp; How-to's"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:226
-
 msgid "Tutorial: A Polling App"
 msgstr "Tutorial: En polling -app"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:227
-
 msgid "Get started with Django"
 msgstr "Kom igång med Django"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:235
-
 msgid "Django Community"
 msgstr "Django community"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:236
-
 msgid "Connect, get help, or contribute"
 msgstr "Anslut, få hjälp eller bidra"
 
 #: .\venv\Lib\site-packages\django_libs\admin.py:17
-
 msgid "Not published"
 msgstr "Inte publicerad"
 
 #: .\venv\Lib\site-packages\django_libs\admin.py:19
-
 msgid "Is published"
 msgstr "Publiceras"
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\comment.html:4
-
 msgid "ago"
 msgstr "sedan"
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\form.html:5
-
 msgid "Please correct the errors below."
 msgstr "Korrigera felen nedan."
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\libs_image_widget.html:7
-
 msgid "Change file"
 msgstr "Ändra fil"
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\libs_image_widget.html:7
-
 msgid "Choose file"
 msgstr "Välj fil"
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\libs_image_widget.html:10
-
 msgid "Current selection:"
 msgstr "Nuvarande val:"
 
 #: .\venv\Lib\site-packages\django_libs\templates\django_libs\partials\libs_image_widget.html:21
-
 msgid "No file chosen"
 msgstr "Ingen fil vald"
 
 #: .\venv\Lib\site-packages\django_libs\tests\test_app\models.py:24
-
 msgid "Dummy Field"
 msgstr "Dammfält"
 
 #: .\venv\Lib\site-packages\tests\utils\custom_image\apps.py:8
-
 msgid "Custom Image"
 msgstr "Anpassad bild"
 
 #: .\venv\Lib\site-packages\tests\utils\extended_app\apps.py:8
-
 msgid "Extended App"
 msgstr "Utökad app"
 
 #: .\venv\Lib\site-packages\tests\utils\test_app\apps.py:8
-
 msgid "Test app"
 msgstr "Testapp"
+
+#~ msgid "Information about rental periods will be available soon..."
+#~ msgstr ""
+#~ "Information om hyresperioder kommer snart att finnas tillgänglig ..."
+
+#~ msgid "Information about different rental periods will be available soon..."
+#~ msgstr ""
+#~ "Information om olika hyresperioder kommer snart att finnas tillgänglig ..."
+
+#~ msgid "English"
+#~ msgstr "Engelska"
+
+#~ msgid "Swedish"
+#~ msgstr "Svensk"

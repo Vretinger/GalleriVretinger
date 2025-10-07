@@ -46,9 +46,9 @@
           <h1 class="gallery-title">{{ current_event.title }}</h1>
           <p class="gallery-description">{{ current_event.description }}</p>
           {% if event.is_drop_in %}
-            <p class="text-success"><strong>Drop-in Event:</strong> No sign-up needed! Come by anytime.</p>
+            <p class="text-success"><strong>Drop-in Event:</strong>{% trans "No sign-up needed! Come by anytime." %}</p>
           {% else %}
-            <a href="{% url 'book_event' current_event.id %}" class="btn btn-primary">Book a Spot</a>
+            <a href="{% url 'book_event' current_event.id %}" class="btn btn-primary">{% trans "Book a Spot" %}</a>
           {% endif %}
 
           {% if grouped_days %}
@@ -131,9 +131,9 @@
               <h4 class="mb-2">{{ event.title }}</h4>
               <p class="text-muted mb-2">{{ event.description|truncatewords:20 }}</p>
               {% if event.is_drop_in %}
-                <p class="text-success"><strong>Drop-in Event:</strong> No sign-up needed! Come by anytime.</p>
+                <p class="text-success"><strong>Drop-in Event:</strong>{% trans "No sign-up needed! Come by anytime." %}</p>
               {% else %}
-                <a href="{% url 'book_event' event.id %}" class="btn btn-primary">Book a Spot</a>
+                <a href="{% url 'book_event' event.id %}" class="btn btn-primary">{% trans "Book a Spot" %}</a>
               {% endif %}
               {% if event.days.exists %}
               <div class="text-gray-600 mb-2">

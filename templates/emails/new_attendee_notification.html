@@ -1,5 +1,5 @@
-<p>A new attendee has booked a spot for <strong>{{ event.title }}</strong>.</p>
-<p>Name: {{ attendee_name }}</p>
-<p>Email: {{ attendee_email }}</p>
-<p>Number of spots booked: {{ attendees }}</p>
-<p>Booking time: {{ timestamp }}</p>
+<p>{% trans "A new attendee has booked a spot for" %} <strong>{{ event.title }}</strong>.</p>
+<p>{% trans "Name:" %} {{ attendee_name }}</p>
+<p>"Email: {{ attendee_email }}</p>
+<p>{% trans "Number of spots booked:" %} {{ attendees }}</p>
+<p>{% trans "Booking time:" %} {{ timestamp }}</p>

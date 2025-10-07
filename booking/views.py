@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
@@ -7,6 +8,7 @@ from django.conf import settings
 from .models import Booking
 from events.models import Event, EventImage, EventDay
 from django.utils.dateparse import parse_date, parse_time
+from django.utils.translation import gettext as _
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 from cloudinary import Search
@@ -98,16 +100,12 @@ def my_bookings_view(request):
     })
 
 
-
-
-
-
 def booked_dates(request):
     """Return JSON with booked dates for calendar"""
     bookings = Booking.objects.all()
     events = [
         {
-            "title": "Booked",
+            "title": _("Booked"), 
             "start": str(b.start_date),
             "end": str(b.end_date),
             "color": "red"
@@ -207,8 +205,8 @@ def booking_page(request):
         except Exception as e:
             print("Error sending booking confirmation email:", e)
 
-        messages.success(request, "Your booking has been submitted!")
-        return redirect("my_bookings")
+        url = reverse("my_bookings") + "?show_modal=1"
+        return redirect(url)
     
 
     # 🔎 fetch images from your premises folder

@@ -12,6 +12,7 @@ document.addEventListener("rentalDatesSelected", (e) => {
     minDate: startDate,
     maxDate: endDate,
     appendTo: document.body,
+    locale: "{{ LANGUAGE_CODE }}",
     onClose: () => {
       createTimeInputs();
       validateForm();

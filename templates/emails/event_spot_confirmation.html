@@ -1,0 +1,19 @@
+
+<h1>{% trans "Spot Confirmed!" %}</h1>
+<p>{% trans "Dear" %} {{ attendee_name }},</p>
+<p>{% trans "Thank you for registering! Your spot for the event" %} <strong>{{ event.title }}</strong> {% trans "has been confirmed." %}</p>
+<div class="details">
+    <h4>{% trans "Schedule:" %}</h4>
+    <ul>
+    {% for day in event_days %}
+        <li>{{ day.date }}: {{ day.start_time|time:"H:i" }} – {{ day.end_time|time:"H:i" }}</li>
+    {% endfor %}
+    </ul>
+    <p>{% trans "Number of spots booked:" %} {{ attendees }}</p>
+</div>
+<p>{% trans "We look forward to seeing you there!" %}</p>
+<div class="footer">
+    {% trans "If you have any questions, please contact us at " %}{{ contact_email }}.<br>
+    &copy; {{ current_year }} {% trans "Vretinger Gallery" %}
+</div>
+   

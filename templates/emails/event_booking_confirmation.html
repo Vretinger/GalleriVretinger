@@ -1,19 +1,19 @@
-<h2>Hi {{ host_name }}!</h2>
+<h2>{% trans "Hi" %} {{ host_name }}!</h2>
 
-<p>Your event <strong>{{ event.title }}</strong> has been successfully created!</p>
+<p>{% trans "Your event" %} <strong>{{ event.title }}</strong> {% trans "has been successfully created!" %}</p>
 
-<h4>Event Details:</h4>
+<h4>{% trans "Event Details:" %}</h4>
 <p>{{ event.description }}</p>
 
-<h4>Schedule:</h4>
+<h4>{% trans "Schedule:" %}</h4>
 <ul>
   {% for day in event_days %}
     <li>{{ day.date }}: {{ day.start_time|time:"H:i" }} – {{ day.end_time|time:"H:i" }}</li>
   {% endfor %}
 </ul>
 
-<p>Maximum attendees: {{ event.max_attendees|default:"No limit" }}</p>
-<p>{% if event.is_drop_in %}This is an open drop-in event.{% else %}This event requires guests to sign up.{% endif %}</p>
+<p>{% trans "Maximum attendees:" %} {{ event.max_attendees|default:"No limit" }}</p>
+<p>{% if event.is_drop_in %}{% trans "This is an open drop-in event." %}{% else %}{% trans "This event requires guests to sign up." %}{% endif %}</p>
 
-<p>We look forward to hosting your event at Galleri Vretinger!</p>
-<p>— Galleri Vretinger</p>
+<p>{% trans "We look forward to hosting your event at Galleri Vretinger!" %}</p>
+<p>— {% trans "Galleri Vretinger" %}</p>

@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static i18n %}
+
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;" >
   <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
@@ -6,10 +8,10 @@
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit" class="btn btn-success w-100">Login</button>
+      <button type="submit" class="btn btn-success w-100">{% trans "Login" %}</button>
     </form>
     <p class="text-center mt-3">
-      Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
+      {% trans "Don't have an account?" %} <a href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
     </p>
   </div>
 </div>

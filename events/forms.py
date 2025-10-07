@@ -1,5 +1,6 @@
 from django import forms
 from .models import EventBooking
+from django.utils.translation import gettext_lazy as _
 
 class EventBookingForm(forms.ModelForm):
     class Meta:

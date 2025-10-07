@@ -34,9 +34,9 @@
 
           <p class="text-gray-800">{{ event.description|truncatewords:30 }}</p>
           {% if event.is_drop_in %}
-            <p class="text-success"><strong>Drop-in Event:</strong> No sign-up needed! Come by anytime.</p>
+            <p class="text-success"><strong>Drop-in Event:</strong>{% trans "No sign-up needed! Come by anytime." %}</p>
           {% else %}
-            <a href="{% url 'book_event' event.id %}" class="btn btn-primary">Book a Spot</a>
+            <a href="{% url 'book_event' event.id %}" class="btn btn-primary">{% trans "Book a Spot" %}</a>
           {% endif %}
         </div>
       </div>
@@ -52,4 +52,15 @@
       </div>
     {% endfor %}
   </div>
+{% if request.GET.show_modal %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const modalElement = document.getElementById("dynamicModal");
+    const modalInstance = new bootstrap.Modal(modalElement);
+    modalElement.querySelector("#dynamicModalTitle").textContent = "{% trans 'Thank You!' %}";
+    modalElement.querySelector("#dynamicModalMessage").textContent = "{% trans 'Your booking has been received. A confirmation will be sent to your email.' Check your spam folder aswell%}";
+    modalInstance.show();
+});
+</script>
+{% endif %}
 {% endblock %}

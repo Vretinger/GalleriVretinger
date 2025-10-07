@@ -3,6 +3,7 @@ import json
 from datetime import date
 from calendar import HTMLCalendar
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.contrib import messages
 from django.utils.dateparse import parse_date, parse_time
 from django.http import JsonResponse
@@ -13,14 +14,13 @@ from django.db.models import Min, Max
 import cloudinary.uploader
 from .models import Event, EventDay, EventImage, EventBooking
 from .forms import EventBookingForm
+from utils.email import send_email
 
 def create_event(request):
     if request.method == "POST":
         title = request.POST.get("event_title")
         description = request.POST.get("event_description")
         bg_image_public_id = request.POST.get("bg_image_uploaded")
-        print("Background image public_id:", bg_image_public_id)  # Debugging line
-
         # Save the Event first
         event = Event.objects.create(
             title=title,
@@ -138,32 +138,59 @@ def book_event(request, event_id):
 
     if event.is_drop_in:
         messages.info(request, "This event is open for everyone — no sign-up needed.")
-        return redirect('event_detail', event_id=event.id)
+        return redirect('event_list')
     
-    # Calculate total booked spots
+    # Calculate available spots
     total_booked = sum(b.num_guests for b in event.bookings.all())
     spots_left = (event.max_attendees or 0) - total_booked
 
     if event.max_attendees and spots_left <= 0:
         messages.error(request, "Sorry, this event is fully booked.")
-        return redirect('event_detail', event_id=event.id)
+        return redirect('event_list')
 
     if request.method == 'POST':
         form = EventBookingForm(request.POST)
         if form.is_valid():
             num_guests = form.cleaned_data.get('num_guests', 1)
+
+            # Check for spot availability
             if event.max_attendees and num_guests > spots_left:
                 form.add_error('num_guests', f"Only {spots_left} spots left.")
+            # Check for duplicate email
             elif EventBooking.objects.filter(event=event, email=form.cleaned_data['email']).exists():
                 messages.warning(request, "This email is already registered for the event.")
             else:
+                # Save booking
                 booking = form.save(commit=False)
                 booking.event = event
                 booking.num_guests = num_guests
                 booking.save()
+
                 messages.success(request, f"You successfully booked {num_guests} spot(s)!")
-                return redirect('event_detail', event_id=event.id)
+
+                # --- Send confirmation email ---
+                context = {
+                    "host_name": form.cleaned_data.get('name', form.cleaned_data['email']),
+                    "event": event,
+                }
+                try:
+                    send_email(
+                        subject=f"Your event '{event.title}' is confirmed!",
+                        template_name="emails/event_spot_confirmation.html",
+                        context=context,
+                        recipient_list=[form.cleaned_data['email']],
+                        from_email="booking@gallerivretinger.se",
+                    )
+                except Exception as e:
+                    print("Error sending booking confirmation email:", e)
+
+                # Redirect to a page with modal popup
+                url = reverse("event_list") + "?show_modal=1"
+                return redirect(url)
     else:
         form = EventBookingForm(initial={'num_guests': 1})
 
-    return render(request, 'events/book_event.html', {'event': event, 'form': form})
+    return render(request, "bookings/event_booking_form.html", {
+        "form": form,
+        "event": event,
+    })
