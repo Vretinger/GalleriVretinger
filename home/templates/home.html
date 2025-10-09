@@ -19,17 +19,21 @@
     </div>
     <div class="intro-text col-md-6 px-3">
       <h2 class="intro-title">{% trans "More than a gallery — a space for expression" %}</h2>
+      {% spaceless %}
       <p class="intro-description">
-        {% blocktrans %}
-          Vretinger Gallery is located in the heart of central Stockholm, 
-          a stone's throw from the central station, Drottninggatan, Norra Bantorget, Hotell Generator and Scalateatern. 
-          Just opposite you will also find two popular restaurants. 
-          Wallingatan is well-trafficked by residents, tourists and people whose work is in the surrounding areas. 
-          There is parking for electric cars next to the sidewalk right outside the gallery. 
+        {% blocktrans trimmed %}
+          Vretinger Gallery is located in the heart of central Stockholm,
+          a stone's throw from the central station, Drottninggatan, Norra Bantorget,
+          Hotell Generator and Scalateatern.
+          Just opposite you will also find two popular restaurants.
+          Wallingatan is well-trafficked by residents, tourists and people whose work is in the surrounding areas.
+          There is parking for electric cars next to the sidewalk right outside the gallery.
           <br><br>
-          The gallery itself gives a harmonious and cozy impression, is located at street level, has two large storefronts with deep window sills." 
+          The gallery itself gives a harmonious and cozy impression,
+          is located at street level, has two large storefronts with deep window sills.
         {% endblocktrans %}
       </p>
+      {% endspaceless %}
     </div>
   </div>
 </section>

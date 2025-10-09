@@ -30,11 +30,11 @@
             <li class="nav-item"><a class="nav-link" href="/gallery/">{% trans "Gallery" %}</a></li>
             <li class="nav-item"><a class="nav-link" href="/events/">{% trans "Events" %}</a></li>
             <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-            <li class="nav-item"><a class="nav-link" href="/booking/availability/">{% trans "booking" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="/booking/availability/">{% trans "Host an Event" %}</a></li>
             {% if user.is_authenticated %}
             <!-- Show when logged in -->
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'my_bookings' %}">{% trans "My Bookings" %}</a>
+              <a class="nav-link" href="{% url 'my_bookings' %}">{% trans "My Events" %}</a>
             </li>
             <li class="nav-item">
               <form method="post" action="{% url 'logout' %}">
