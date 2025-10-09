@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalElement = document.getElementById("dynamicModal");
     const modalInstance = new bootstrap.Modal(modalElement);
     modalElement.querySelector("#dynamicModalTitle").textContent = "{% trans 'Thank You!' %}";
-    modalElement.querySelector("#dynamicModalMessage").textContent = "{% trans 'Your booking has been received. A confirmation will be sent to your email.' Check your spam folder aswell%}";
+    modalElement.querySelector("#dynamicModalMessage").textContent = "{% trans 'Your booking has been received. A confirmation will be sent to your email. Check your spam folder aswell' %}";
     modalInstance.show();
 });
 </script>

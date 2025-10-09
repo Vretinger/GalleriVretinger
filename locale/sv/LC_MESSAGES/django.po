@@ -399,9 +399,9 @@ msgstr "Tack!"
 #: .\booking\templates\bookings\my_bookings.html:96
 #: .\events\templates\events\event_list.html:61
 msgid ""
-"Your booking has been received. A confirmation will be sent to your email."
+"Your booking has been received. A confirmation will be sent to your email. Check your spam folder aswell"
 msgstr ""
-"Din bokning har mottagits. En bekräftelse skickas till din e-postadress."
+"Din bokning har mottagits. En bekräftelse skickas till din e-postadress. Kolla även din spam brevlåda"
 
 #: .\booking\views.py:108
 msgid "Booked"
