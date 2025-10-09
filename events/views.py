@@ -112,20 +112,31 @@ def calendar_view(request, year=None, month=None):
 
 
 def event_list(request):
-    # Annotate each event with first and last day
-    events = (
-        Event.objects.annotate(
-            first_day=Min('days__date'),
-            last_day=Max('days__date')
-        )
-        .order_by('first_day')
-    )
+    today = now().date()
 
-    # Debug: make sure events exist
-    for e in events:
+    # Annotate events with first and last day
+    events = Event.objects.annotate(
+        first_day=Min('days__date'),
+        last_day=Max('days__date')
+    ).order_by('first_day')
+
+    # Split into upcoming and past events
+    upcoming_events = [e for e in events if e.last_day >= today]
+    passed_events = [e for e in events if e.last_day < today]
+
+    # Debug: print events for verification
+    print("Upcoming Events:")
+    for e in upcoming_events:
         print(e.title, e.first_day, e.last_day)
 
-    return render(request, 'events/event_list.html', {'events': events})
+    print("Passed Events:")
+    for e in passed_events:
+        print(e.title, e.first_day, e.last_day)
+
+    return render(request, 'events/event_list.html', {
+        'upcoming_events': upcoming_events,
+        'passed_events': passed_events
+    })
 
 
 def event_detail(request, event_id):

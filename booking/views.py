@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
 from django.contrib import messages
 from django.http import JsonResponse
 from utils.email import send_email
@@ -12,6 +13,9 @@ from django.utils.translation import gettext as _
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 from cloudinary import Search
+from io import BytesIO
+from .utils import generate_contract_pdf
+from django.core.mail import EmailMessage
 
 def availability_view(request):
     """Public view: show availability but don’t allow booking unless logged in"""
@@ -195,15 +199,23 @@ def booking_page(request):
         from_email = "booking@gallerivretinger.se"
 
         try:
-            send_email(
-            subject=f"Your event '{event.title}' is confirmed!",
-            template_name="emails/event_booking_confirmation.html",
-            context=context,
-            recipient_list=[request.user.email],
-            from_email=from_email,
-        )
+            # Generate contract PDF (auto language detection)
+            pdf_buffer = generate_contract_pdf(event, request.user)
+
+            # Build a custom EmailMessage so we can attach the PDF
+            email = EmailMessage(
+                subject=f"Your event '{event.title}' is confirmed!",
+                body=render_to_string("emails/event_booking_confirmation.html", context),
+                from_email=from_email,
+                to=[request.user.email],
+            )
+            email.attach("GalleriVretinger_Contract.pdf", pdf_buffer.getvalue(), "application/pdf")
+            email.content_subtype = "html"
+            email.send()
+
         except Exception as e:
             print("Error sending booking confirmation email:", e)
+
 
         url = reverse("my_bookings") + "?show_modal=1"
         return redirect(url)

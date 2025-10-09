@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery Vretinger\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-09 17:25+0200\n"
+"POT-Creation-Date: 2025-10-09 19:22+0200\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,18 +392,19 @@ msgid "Book an Event"
 msgstr "Boka ett evenemang"
 
 #: .\booking\templates\bookings\my_bookings.html:95
-#: .\events\templates\events\event_list.html:60
+#: .\events\templates\events\event_list.html:98
 msgid "Thank You!"
 msgstr "Tack!"
 
 #: .\booking\templates\bookings\my_bookings.html:96
-#: .\events\templates\events\event_list.html:61
 msgid ""
-"Your booking has been received. A confirmation will be sent to your email. Check your spam folder aswell"
+"Your booking has been received. A confirmation will be sent to your email. "
+"Check your spam folder aswell"
 msgstr ""
-"Din bokning har mottagits. En bekräftelse skickas till din e-postadress. Kolla även din spam brevlåda"
+"Din bokning har mottagits. En bekräftelse skickas till din e-postadress. "
+"Kolla även din spam brevlåda"
 
-#: .\booking\views.py:108
+#: .\booking\views.py:112
 msgid "Booked"
 msgstr "Bokad"
 
@@ -459,27 +460,53 @@ msgstr "Kommande evenemang"
 msgid "Explore our upcoming events and find something exciting to attend."
 msgstr "Utforska våra kommande evenemang och hitta något spännande att delta."
 
-#: .\events\templates\events\event_list.html:37 .\home\templates\home.html:53
+#: .\events\templates\events\event_list.html:36 .\home\templates\home.html:53
 #: .\home\templates\home.html:138
 msgid "No sign-up needed! Come by anytime."
 msgstr "Ingen anmälan behövs! Kom förbi när som helst."
 
-#: .\events\templates\events\event_list.html:39 .\home\templates\home.html:55
+#: .\events\templates\events\event_list.html:38 .\home\templates\home.html:55
 #: .\home\templates\home.html:140
 msgid "Book a Spot"
 msgstr "Boka en plats"
 
-#: .\events\templates\events\event_list.html:46
+#: .\events\templates\events\event_list.html:45
 msgid "No Upcoming Events"
 msgstr "Inga kommande evenemang"
 
-#: .\events\templates\events\event_list.html:47
+#: .\events\templates\events\event_list.html:46
 msgid "Please check back later for updates."
 msgstr "Kom tillbaka senare för uppdateringar."
 
-#: .\events\templates\events\event_list.html:49
+#: .\events\templates\events\event_list.html:48
 msgid "No events"
 msgstr "Inga evenemang"
+
+#: .\events\templates\events\event_list.html:59
+#, fuzzy
+#| msgid "Events"
+msgid "Past Events"
+msgstr "Tidigare Evenemang"
+
+#: .\events\templates\events\event_list.html:60
+msgid "Take a look at the events we've hosted recently."
+msgstr "Ta en titt på de evenemang vi har anordnat nyligen."
+
+#: .\events\templates\events\event_list.html:86
+msgid "This event has passed."
+msgstr "Detta evenemang har passerat."
+
+#: .\events\templates\events\event_list.html:99
+#, fuzzy
+#| msgid ""
+#| "Your booking has been received. A confirmation will be sent to your "
+#| "email. Check your spam folder aswell"
+msgid ""
+"Your booking has been received. A confirmation will be sent to your email. "
+"Check your spam folder as well."
+msgstr ""
+"Din bokning har mottagits. En bekräftelse skickas till din e-postadress. "
+"Kolla även din spam brevlåda"
 
 #: .\gallery\templates\gallery.html:6
 msgid "Art Gallery"
@@ -520,14 +547,14 @@ msgid ""
 "itself gives a harmonious and cozy impression, is located at street level, "
 "has two large storefronts with deep window sills."
 msgstr ""
-"Galleri Vretinger är beläget mitt i centrala Stockholm, ett stenkast "
-"från centralstationen, Drottninggatan, Norra Bantorget, Hotell "
-"Generator och Scalateatern. Precis mitt emot hittar du även två populära "
-"restauranger. Wallingatan är väl trafikerad av boende, turister och "
-"personer som arbetar i de kringliggande områdena. Det finns parkeringsplatser för "
-"elbilar intill trottoaren precis utanför galleriet. <br><br> Själva galleriet "
-"ger ett harmoniskt och mysigt intryck, ligger på gatuplan, "
-"och har två stora skyltfönster med djupa fönstersmygar."
+"Galleri Vretinger är beläget mitt i centrala Stockholm, ett stenkast från "
+"centralstationen, Drottninggatan, Norra Bantorget, Hotell Generator och "
+"Scalateatern. Precis mitt emot hittar du även två populära restauranger. "
+"Wallingatan är väl trafikerad av boende, turister och personer som arbetar i "
+"de kringliggande områdena. Det finns parkeringsplatser för elbilar intill "
+"trottoaren precis utanför galleriet. <br><br> Själva galleriet ger ett "
+"harmoniskt och mysigt intryck, ligger på gatuplan, och har två stora "
+"skyltfönster med djupa fönstersmygar."
 
 #: .\home\templates\home.html:92
 msgid ""
@@ -612,7 +639,7 @@ msgid "Login/Sign up"
 msgstr "Logga in/Skapa konto"
 
 #: .\templates\base.html:146
-#: .\templates\emails\event_booking_confirmation.html:19
+#: .\templates\emails\event_booking_confirmation.html:20
 #: .\templates\emails\event_spot_confirmation.html:17
 msgid "Vretinger Gallery"
 msgstr "Galleri Vretinger"
@@ -621,40 +648,40 @@ msgstr "Galleri Vretinger"
 msgid "Close"
 msgstr "Stäng"
 
-#: .\templates\emails\event_booking_confirmation.html:1
+#: .\templates\emails\event_booking_confirmation.html:2
 msgid "Hi"
 msgstr "Hej"
 
-#: .\templates\emails\event_booking_confirmation.html:3
+#: .\templates\emails\event_booking_confirmation.html:4
 msgid "Your event"
 msgstr "Ditt evenemang"
 
-#: .\templates\emails\event_booking_confirmation.html:3
+#: .\templates\emails\event_booking_confirmation.html:4
 msgid "has been successfully created!"
 msgstr "har skapats!"
 
-#: .\templates\emails\event_booking_confirmation.html:5
+#: .\templates\emails\event_booking_confirmation.html:6
 msgid "Event Details:"
 msgstr "Händelse detaljer:"
 
-#: .\templates\emails\event_booking_confirmation.html:8
+#: .\templates\emails\event_booking_confirmation.html:9
 #: .\templates\emails\event_spot_confirmation.html:6
 msgid "Schedule:"
 msgstr "Schema:"
 
-#: .\templates\emails\event_booking_confirmation.html:15
+#: .\templates\emails\event_booking_confirmation.html:16
 msgid "Maximum attendees:"
 msgstr "Maximalt antal deltagare:"
 
-#: .\templates\emails\event_booking_confirmation.html:16
+#: .\templates\emails\event_booking_confirmation.html:17
 msgid "This is an open drop-in event."
 msgstr "Detta är ett öppet drop-in-evenemang."
 
-#: .\templates\emails\event_booking_confirmation.html:16
+#: .\templates\emails\event_booking_confirmation.html:17
 msgid "This event requires guests to sign up."
 msgstr "Detta evenemang kräver att gästerna anmäler sig."
 
-#: .\templates\emails\event_booking_confirmation.html:18
+#: .\templates\emails\event_booking_confirmation.html:19
 msgid "We look forward to hosting your event at Vretinger Gallery!"
 msgstr "Vi ser fram emot att vara värd för ert evenemang på Galleri Vretinger!"
 
