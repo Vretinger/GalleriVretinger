@@ -201,7 +201,7 @@ def book_event(request, event_id):
     else:
         form = EventBookingForm(initial={'num_guests': 1})
 
-    return render(request, "bookings/event_booking_form.html", {
+    return render(request, "events/book_event.html", {
         "form": form,
         "event": event,
     })
