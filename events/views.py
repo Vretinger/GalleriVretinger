@@ -181,12 +181,13 @@ def book_event(request, event_id):
 
                 # --- Send confirmation email ---
                 context = {
-                    "host_name": form.cleaned_data.get('name', form.cleaned_data['email']),
+                    "guest_name": form.cleaned_data.get('name', form.cleaned_data['email']),
                     "event": event,
+                    "event_days": event_days,
                 }
                 try:
                     send_email(
-                        subject=f"Your event '{event.title}' is confirmed!",
+                        subject=f"Your spot for '{event.title}' is confirmed!",
                         template_name="emails/event_spot_confirmation.html",
                         context=context,
                         recipient_list=[form.cleaned_data['email']],
@@ -194,6 +195,32 @@ def book_event(request, event_id):
                     )
                 except Exception as e:
                     print("Error sending booking confirmation email:", e)
+
+                # Notify the event host
+                try:
+                    event_days = event.days.all().order_by("date")
+                    host = getattr(event.booking, "user", None)
+                    if host and host.email:
+                        # send host email
+
+                        context = {
+                            "host_name": host.get_full_name() or host.username,
+                            "event": event,
+                            "event_days": event_days,
+                            "guest_name": booking.name,
+                            "guest_email": booking.email,
+                            "num_guests": booking.num_guests,
+                        }
+
+                        send_email(
+                            subject=f"New booking for your event '{event.title}'",
+                            template_name="emails/event_new_booking_notification.html",
+                            context=context,
+                            recipient_list=[host.email],
+                            from_email="booking@gallerivretinger.se",
+                        )
+                except Exception as e:
+                    print("Error sending host notification email:", e)
 
                 # Redirect to a page with modal popup
                 url = reverse("event_list") + "?show_modal=1"

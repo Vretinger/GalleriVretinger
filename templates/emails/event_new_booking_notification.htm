@@ -1,0 +1,28 @@
+{% load i18n %}
+<h2>{% trans "New Booking for Your Event!" %}</h2>
+
+<p>{% trans "Hello" %} {{ host_name }},</p>
+
+<p>
+  {% trans "Someone has just booked a spot for your event" %} 
+  <strong>{{ event.title }}</strong>.
+</p>
+
+<h4>{% trans "Booking Details:" %}</h4>
+<ul>
+  <li>{% trans "Guest Name:" %} {{ guest_name }}</li>
+  <li>{% trans "Guest Email:" %} {{ guest_email }}</li>
+  <li>{% trans "Number of Guests:" %} {{ num_guests }}</li>
+</ul>
+
+<h4>{% trans "Event Schedule:" %}</h4>
+<ul>
+  {% for day in event_days %}
+    <li>{{ day.date }}: {{ day.start_time|time:"H:i" }} – {{ day.end_time|time:"H:i" }}</li>
+  {% endfor %}
+</ul>
+
+<p>{% trans "You can view and manage bookings from your dashboard." %}</p>
+
+<p>{% trans "Kind regards," %}<br>
+{% trans "Vretinger Gallery" %}</p>
