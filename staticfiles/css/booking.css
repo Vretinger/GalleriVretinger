@@ -60,7 +60,12 @@ label[for=brightness-range] {
   color: #333;
 }
 
+.booking-page {
+  background-color: #e5d4c3;
+}
+
 .booking-container {
+  background-color: #f5f5f5;
   padding: 2rem;
   min-height: 95vh;
   /* Stage 2 disabled/enabled state */

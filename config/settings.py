@@ -43,6 +43,11 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
+# Stripe
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLIC_KEY')
+
+
 AUTH_USER_MODEL = "users.CustomUser"
 LOGIN_URL = "login" 
 LOGIN_REDIRECT_URL = "home"

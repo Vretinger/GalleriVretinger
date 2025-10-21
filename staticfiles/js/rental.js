@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         minDate: "today",
         appendTo: document.body,
         disable: disabledRanges,
+        locale: "{{ LANGUAGE_CODE }}",
         onDayCreate: (dObj, dStr, fp, dayElem) => {
           const y = dayElem.dateObj.getFullYear(), m = String(dayElem.dateObj.getMonth() + 1).padStart(2, "0"), d = String(dayElem.dateObj.getDate()).padStart(2, "0");
           if (bookedDates.includes(`${y}-${m}-${d}`)) dayElem.classList.add("booked-day");

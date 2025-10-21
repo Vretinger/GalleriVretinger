@@ -148,6 +148,29 @@
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       
+      <div class="alert alert-info mb-4">
+        <h5>💳 {% trans "Payment Terms" %}</h5>
+        <p>
+          {% trans "Booking is secured upon payment. If your event is more than 14 days away:" %}
+        </p>
+        <ul>
+          <li>{% trans "Pay 50% of the total price now." %}</li>
+          <li>{% trans "Remaining 50% must be paid at the latest 14 days before the first day of your rental." %}</li>
+        </ul>
+        <p>
+          {% trans "If your event is within 14 days from today, the full amount must be paid at booking." %}
+        </p>
+        <p>
+          {% trans "Please note: all payments must be completed to confirm your booking according to the contract." %}
+        </p>
+        <p class="mb-0">
+          {% trans "More detailed information about the payment and terms will be included in the contract sent to your email after booking." %}
+        </p>
+        <p>
+          <strong>{% trans " Check your inbox and spam folder after booking!" %}</strong>
+        </p>
+      </div>
+
       <input id="rental-range" class="form-control mb-3" placeholder="{% trans 'Select rental start and end' %}">
 
       <!-- Hidden inputs -->
@@ -244,25 +267,45 @@
             </div>
           </div>
         </div>
-      </div>
+      
 
-      <hr>
-      <h3>{% trans "Event Homepage Preview" %}</h3>
-      <div id="event-preview" class="border rounded p-3 mb-4">
-        <div id="preview-background" style="position:relative; width:100%; min-height:300px;">
-          <div id="preview-background-blur" style="position:absolute; top:0; left:0; right:0; bottom:0; background-position:center; z-index:0;"></div>
-          <section id="preview-section" class="p-4 text-center text-white">
-            <h1 id="preview-title">{% trans "Event Title" %}</h1>
-            <p id="preview-description">{% trans "Event description will appear here." %}</p>
-            <p id="preview-times">{% trans "Event times: Not set" %}</p>
-            <div id="preview-images" class="d-flex flex-wrap justify-content-center gap-2"></div>
-          </section>
+        <hr>
+        <h3>{% trans "Event Homepage Preview" %}</h3>
+        <div id="event-preview" class="border rounded p-3 mb-4">
+          <div id="preview-background" style="position:relative; width:100%; min-height:300px;">
+            <div id="preview-background-blur" style="position:absolute; top:0; left:0; right:0; bottom:0; background-position:center; z-index:0;"></div>
+            <section id="preview-section" class="p-4 text-center text-white">
+              <h1 id="preview-title">{% trans "Event Title" %}</h1>
+              <p id="preview-description">{% trans "Event description will appear here." %}</p>
+              <p id="preview-times">{% trans "Event times: Not set" %}</p>
+              <div id="preview-images" class="d-flex flex-wrap justify-content-center gap-2"></div>
+            </section>
+          </div>
         </div>
-      </div>
 
-      <button id="finishBtn" type="submit" class="btn btn-primary" disabled>{% trans "Submit Booking" %}</button>
-      <div id="form-errors"></div>
-    </form>
+        <div class="mb-3">
+          <h4>{% trans "Price Preview" %}</h4>
+          <p>{% trans "Base Price:" %} <span id="base-price">0</span> SEK</p>
+          <p>{% trans "Discount:" %} <span id="discount-amount">0 SEK</span></p>
+          <p><strong>{% trans "Total Price:" %} <span id="total-price">0</span> SEK</strong></p>
+          <hr>
+          <div id="payment-breakdown">
+            <!-- Payment info will be dynamically inserted here -->
+          </div>
+        </div>
+
+
+
+        <div class="input-group mb-3">
+          <input type="text" id="coupon-code" name="discount_code" placeholder="Enter coupon code" class="form-control">
+          <button type="button" id="apply-coupon-btn" class="btn btn-outline-primary">{% trans "Apply Coupon" %}</button>
+        </div>
+        <div id="coupon-feedback" class="text-danger mb-3"></div>
+
+        <button id="finishBtn" type="submit" class="btn btn-primary" disabled>{% trans "Pay and Submit Booking" %}</button>
+        <div id="form-errors"></div>
+      </form>
+    </div>
   </div>
 </div>
 
