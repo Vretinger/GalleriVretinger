@@ -14,22 +14,22 @@ def calculate_booking_price(start_date, end_date):
         weekday = day.weekday()  # Monday=0, Sunday=6
 
         if weekday < 4:  # Mon–Thu
-            total += 1800
+            total += 1500
         elif weekday == 4:  # Fri
-            total += 2400
+            total += 1500
         elif weekday == 5:  # Sat
-            total += 2600
+            total += 1500
         else:  # Sun
-            total += 2400
+            total += 1500
         days.append(day)
 
     # --- Check for full weekend (Fri–Sun) ---
     if num_days == 3 and {d.weekday() for d in days} == {4, 5, 6}:
-        total = 6500  # full weekend package
+        total = 3000  # full weekend package
 
     # --- Check for full week (Mon–Sun) ---
     elif num_days == 7 and days[0].weekday() == 0:
-        total = 11000
+        total = 4500
 
     # --- Long bookings ---
     elif num_days >= 10:

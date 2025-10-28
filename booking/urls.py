@@ -10,4 +10,8 @@ urlpatterns = [
     path("payment-cancel/", views.payment_cancel, name="payment_cancel"),
     path('calculate_price/', views.calculate_price, name='calculate_price'),
     path('validate_coupon/', views.validate_coupon, name='validate_coupon'),
+    path("pay_remaining_balance/<int:booking_id>/", views.pay_remaining_balance, name="pay_remaining_balance"),
+    path("contract/<int:booking_id>/", views.sign_contract, name="sign_contract"),
+    path("contract/<int:booking_id>/save/", views.save_signature, name="save_signature"),
+    path("cancel_unpaid_booking/<int:booking_id>/", views.cancel_unpaid_booking, name="cancel_unpaid_booking"),
 ]

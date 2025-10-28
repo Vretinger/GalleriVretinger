@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5" style="min-height: 90vh;">
+  <p>⚠️ Note: Your booking is temporary until payment is completed. Leaving this page before payment will cancel your booking automatically.</p>
+  <h2>Rental Agreement</h2>
+  <p>Please read the terms below and sign at the bottom.</p>
+
+  <div class="contract-content border p-4 mb-3" style="max-height: 400px; overflow-y: auto;">
+    <p><strong>1. Rental Period:</strong> From {{ booking.start_date }} to {{ booking.end_date }}.</p>
+    <p><strong>2. Payment Terms:</strong> 50% deposit required, remainder due 14 days before event start.</p>
+    <p><strong>3. Cancellations:</strong> Deposits are non-refundable within 14 days of event start.</p>
+    <p><strong>4. Liability:</strong> Renter is responsible for damages to the premises.</p>
+    <p><strong>5. Use of Space:</strong> The renter agrees to use the gallery respectfully and lawfully.</p>
+  </div>
+
+  <p>Sign below:</p>
+  <canvas id="signature-pad" class="border" width="600" height="200"></canvas>
+  <div class="mt-2">
+    <button id="clear-btn" class="btn btn-secondary">Clear</button>
+    <button id="proceed-to-payment-btn" class="btn btn-primary">Proceed to Payment</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const canvas = document.getElementById("signature-pad");
+  const ctx = canvas.getContext("2d");
+  const clearBtn = document.getElementById("clear-btn");
+  const saveBtn = document.getElementById("proceed-to-payment-btn");
+  let drawing = false;
+  let goingToPayment = false;
+
+  // ---- Signature drawing logic ----
+  canvas.addEventListener("mousedown", () => (drawing = true));
+  canvas.addEventListener("mouseup", () => (drawing = false));
+  canvas.addEventListener("mousemove", draw);
+  clearBtn.addEventListener("click", clearCanvas);
+  saveBtn.addEventListener("click", saveSignature);
+
+  function draw(event) {
+    if (!drawing) return;
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#000";
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(event.offsetX, event.offsetY);
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  async function saveSignature() {
+    goingToPayment = true; // User is proceeding intentionally
+    const dataURL = canvas.toDataURL("image/png");
+    const csrfToken = "{{ csrf_token }}";
+
+    try {
+      const response = await fetch("{% url 'save_signature' booking.id %}", {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({ signature: dataURL }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        alert("✅ Signature saved! Redirecting to secure payment...");
+        window.location.href = data.redirect_url;
+      } else {
+        alert("Error saving signature. Please try again.");
+        goingToPayment = false; // Reset flag if saving failed
+      }
+    } catch (err) {
+      console.error("Signature save failed:", err);
+      goingToPayment = false;
+    }
+  }
+
+  // ---- Warn if leaving early ----
+  window.addEventListener("beforeunload", (event) => {
+    if (!goingToPayment) {
+      event.preventDefault();
+      event.returnValue = "Are you sure you want to leave? Your booking will be cancelled.";
+    }
+  });
+
+  // ---- Cleanup booking if they really leave ----
+  window.addEventListener("unload", () => {
+    if (!goingToPayment) {
+      navigator.sendBeacon("{% url 'cancel_unpaid_booking' booking.id %}");
+    }
+  });
+});
+</script>
+{% endblock %}

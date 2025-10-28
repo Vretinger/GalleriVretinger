@@ -115,19 +115,15 @@
             <div class="card-body">
               <h4>{% trans "Gallery Rental – Price List" %}</h4>
 
-              <h5>{% trans "Weekdays (Monday–Thursday)" %}</h5>
-              <p>{% trans "1,800 SEK per day." %}</p>
+              <h5>{% trans "Day prices" %}</h5>
+              <p>{% trans "1,500 SEK per day." %}</p>
 
               <h5>{% trans "Weekend (Friday–Sunday)" %}</h5>
-              <ul>
-                <li>{% trans "Friday: 2,400 SEK" %}</li>
-                <li>{% trans "Saturday: 2,600 SEK" %}</li>
-                <li>{% trans "Sunday: 2,400 SEK" %}</li>
-                <li>{% trans "Full Weekend Package (Fri–Sun): 6,500 SEK – Save 900 SEK compared to booking individual days!" %}</li>
-              </ul>
+              <p>{% trans "3000 SEK – Save 1500 SEK compared to booking individual days!" %}</p>
+
 
               <h5>{% trans "Full Week (Monday–Sunday)" %}</h5>
-              <p>{% trans "11,000 SEK (~1,570 SEK/day)." %}</p>
+              <p>{% trans "4500 SEK (~640 SEK/day)." %}</p>
 
               <h5>{% trans "Longer Bookings" %}</h5>
               <ul>
@@ -302,8 +298,15 @@
         </div>
         <div id="coupon-feedback" class="text-danger mb-3"></div>
 
-        <button id="finishBtn" type="submit" class="btn btn-primary" disabled>{% trans "Pay and Submit Booking" %}</button>
-        <div id="form-errors"></div>
+        <button 
+          id="finishBtn" 
+          type="submit" 
+          class="btn btn-primary" 
+          disabled
+        >
+          {% trans "View and Sign Contract" %}
+        </button>
+        <div id="form-errors" class="mt-3 text-danger"></div>
       </form>
     </div>
   </div>

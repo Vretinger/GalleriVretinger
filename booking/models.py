@@ -1,18 +1,29 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from datetime import timedelta
 
 class Booking(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # Payment stages
     initial_payment_done = models.BooleanField(default=False)
-    final_payment_due_date = models.DateField(null=True, blank=True)
-    final_payment_done = models.BooleanField(default=False)
     initial_payment_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    final_payment_done = models.BooleanField(default=False)
     final_payment_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    final_payment_due_date = models.DateField(null=True, blank=True)
+    contract_signed = models.BooleanField(default=False)
+    contract_signature = models.ImageField(upload_to='contracts/signatures/', null=True, blank=True)
+    signed_contract_pdf = models.URLField(max_length=500, null=True, blank=True)
+
+    
+    # Stripe tracking
+    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
+
+    # Booking details
     discount_code = models.CharField(max_length=50, null=True, blank=True)
     is_confirmed = models.BooleanField(default=False)
-    stripe_session_id = models.CharField(max_length=255, blank=True, null=True)
     is_confirmed = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField()
@@ -21,6 +32,48 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.user.username} | {self.start_date} → {self.end_date}"
+    
+    # ✅ Derived properties
+    @property
+    def is_upcoming(self):
+        return self.start_date > timezone.now().date()
+
+    @property
+    def days_until_start(self):
+        return (self.start_date - timezone.now().date()).days
+
+    @property
+    def payment_status(self):
+        """Return a readable payment status"""
+        if self.initial_payment_done and self.final_payment_done:
+            return "paid"
+        elif self.initial_payment_done:
+            return "partial"
+        return "unpaid"
+
+    @property
+    def remaining_balance(self):
+        """Calculate remaining balance for clarity"""
+        if self.final_payment_done:
+            return 0
+        if self.initial_payment_done and self.initial_payment_amount:
+            return float(self.total_price) - float(self.initial_payment_amount)
+        return float(self.total_price)
+
+    def set_final_payment_due(self):
+        """Automatically set due date if applicable"""
+        if self.days_until_start > 14:
+            self.final_payment_due_date = self.start_date - timedelta(days=14)
+        else:
+            self.final_payment_due_date = timezone.now().date()  # due immediately
+
+    def requires_final_payment(self):
+        """True if 50% paid, event upcoming, and final not yet done"""
+        return (
+            self.initial_payment_done
+            and not self.final_payment_done
+            and self.start_date > timezone.now().date()
+        )
 
 
 class Coupon(models.Model):
