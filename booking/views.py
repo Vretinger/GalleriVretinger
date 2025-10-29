@@ -24,6 +24,7 @@ from operator import attrgetter
 
 from cloudinary import Search, uploader
 from cloudinary.utils import cloudinary_url
+from cloudinary.uploader import rename as cloudinary_rename
 
 import stripe
 
@@ -63,7 +64,32 @@ def save_signature(request, booking_id):
 
         # ✅ Automatically create Stripe session after contract signing
         stripe.api_key = settings.STRIPE_SECRET_KEY
+
         try:
+            # Fetch event details that were stored temporarily in the session or POST (depending on your flow)
+            event_data = request.session.get("pending_event_data", {})
+
+            metadata = {
+                "booking_id": str(booking.id),
+                "payment_stage": "initial",
+                "title": event_data.get("title", ""),
+                "description": event_data.get("description", ""),
+                "bg_color": event_data.get("bg_color", "#ffffff"),
+                "blur_bg": str(event_data.get("blur_bg", False)).lower(),
+                "event_start": event_data.get("event_start", ""),
+                "event_end": event_data.get("event_end", ""),
+                "is_drop_in": str(event_data.get("is_drop_in", False)).lower(),
+                "max_attendees": str(event_data.get("max_attendees", "")),
+                "bg_image_uploaded": event_data.get("bg_image_uploaded", ""),
+                "uploaded_images": ",".join(event_data.get("uploaded_images", [])),
+            }
+
+            # Add start/end times for each event day if they exist
+            if "event_days" in event_data:
+                for date_str, times in event_data["event_days"].items():
+                    metadata[f"start_time_{date_str}"] = times["start"]
+                    metadata[f"end_time_{date_str}"] = times["end"]
+
             session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=[{
@@ -79,14 +105,14 @@ def save_signature(request, booking_id):
                 mode="payment",
                 success_url=request.build_absolute_uri(reverse("payment_success")) + "?session_id={CHECKOUT_SESSION_ID}",
                 cancel_url=request.build_absolute_uri(reverse("payment_cancel")),
-                metadata={"booking_id": str(booking.id), "payment_stage": "initial"},
+                metadata=metadata,
             )
             return JsonResponse({"success": True, "redirect_url": session.url})
+
         except Exception as e:
             print("Stripe error:", e)
             return JsonResponse({"success": False, "error": "Stripe session failed."})
 
-    return JsonResponse({"success": False}, status=400)
 
 
 # ---------------------------------------------------------------------
@@ -275,6 +301,26 @@ def booking_page(request):
             is_confirmed=False,
         )
 
+        request.session["pending_event_data"] = {
+            "title": request.POST.get("title"),
+            "description": request.POST.get("description"),
+            "bg_color": request.POST.get("bg_color"),
+            "blur_bg": request.POST.get("blur_bg") == "on",
+            "event_start": request.POST.get("event_start"),
+            "event_end": request.POST.get("event_end"),
+            "is_drop_in": request.POST.get("is_drop_in") == "on",
+            "max_attendees": request.POST.get("max_attendees"),
+            "bg_image_uploaded": request.POST.get("bg_image_uploaded"),
+            "uploaded_images": request.POST.getlist("uploaded_images"),
+            "event_days": {
+                date_str.replace("start_time_", ""): {
+                    "start": request.POST.get(f"start_time_{date_str}"),
+                    "end": request.POST.get(f"end_time_{date_str.replace('start_time_', 'end_time_')}"),
+                }
+                for date_str in request.POST if date_str.startswith("start_time_")
+            }
+        }
+
         # ✅ redirect to contract signing page
         messages.info(request, "Please sign the rental agreement before proceeding to payment.")
         return redirect("sign_contract", booking_id=booking.id)
@@ -338,13 +384,14 @@ def pay_remaining_balance(request, booking_id):
 # ---------------------------------------------------------------------
 
 def payment_success(request):
-    """Handle post-payment success for both initial and final payments."""
+    """Handle post-payment success and create event if needed."""
     session_id = request.GET.get("session_id")
     if not session_id:
         messages.error(request, "Missing payment session ID.")
         return redirect("booking_page")
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
+
     try:
         session = stripe.checkout.Session.retrieve(session_id)
         metadata = session.metadata
@@ -356,17 +403,78 @@ def payment_success(request):
         elif stage == "final":
             booking.final_payment_done = True
 
+        # ✅ Once fully paid, mark confirmed and create the event
         if booking.final_payment_amount == 0 or (booking.initial_payment_done and booking.final_payment_done):
             booking.is_confirmed = True
+            booking.save()
 
-        booking.save()
+            # Check if event already exists to prevent duplicates
+            from events.models import Event, EventDay, EventImage
+            existing_event = Event.objects.filter(booking=booking).first()
 
-        messages.success(request, "Payment received and booking updated successfully!")
+            if not existing_event:
+                print(f"Creating event for booking {booking.id}...")
+
+                # --- replicate your original event creation logic ---
+                event = Event.objects.create(
+                    booking=booking,
+                    title=metadata.get("title", "Untitled Event"),
+                    description=metadata.get("description", ""),
+                    bg_color=metadata.get("bg_color", "#ffffff"),
+                    blur_bg=metadata.get("blur_bg") == "on",
+                    start_datetime=metadata.get("event_start"),
+                    end_datetime=metadata.get("event_end"),
+                    is_drop_in=metadata.get("is_drop_in") == "on",
+                    max_attendees=metadata.get("max_attendees") or None,
+                )
+
+                # Handle background image
+                bg_image_id = metadata.get("bg_image_uploaded")
+                if bg_image_id:
+                    event.bg_image = bg_image_id
+                    event.save(update_fields=["bg_image"])
+
+                # Handle event days
+                for key, value in metadata.items():
+                    if key.startswith("start_time_"):
+                        date_str = key.replace("start_time_", "")
+                        start_time = value
+                        end_time = metadata.get(f"end_time_{date_str}")
+
+                        if start_time and end_time:
+                            EventDay.objects.create(
+                                event=event,
+                                date=parse_date(date_str),
+                                start_time=parse_time(start_time),
+                                end_time=parse_time(end_time),
+                            )
+
+                # Handle uploaded images
+                uploaded_ids = metadata.get("uploaded_images", "").split(",")
+                for public_id in uploaded_ids:
+                    if not public_id.strip():
+                        continue
+
+                    new_folder = f"users/{request.user.email}/events/{event.id}"
+                    new_public_id = f"{new_folder}/{public_id.split('/')[-1]}"
+
+                    try:
+                        result = cloudinary_rename(public_id, new_public_id, overwrite=True)
+                        EventImage.objects.create(event=event, image=result["public_id"])
+                    except Exception as e:
+                        print("Cloudinary move error:", e)
+                        EventImage.objects.create(event=event, image=public_id)
+
+                print(f"🎉 Event created for booking {booking.id}")
+
+        messages.success(request, "Payment completed and event successfully created!")
         return redirect("my_bookings")
+
     except Exception as e:
         print("Payment success error:", e)
-        messages.error(request, "Payment succeeded but processing failed.")
+        messages.error(request, "Payment succeeded but event creation failed.")
         return redirect("booking_page")
+
 
 
 @login_required

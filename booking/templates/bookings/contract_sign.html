@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
       if (data.success) {
-        alert("✅ Signature saved! Redirecting to secure payment...");
         window.location.href = data.redirect_url;
       } else {
         alert("Error saving signature. Please try again.");

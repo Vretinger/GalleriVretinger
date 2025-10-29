@@ -16,5 +16,7 @@
 <p>{% trans "Maximum attendees:" %} {{ event.max_attendees|default:"No limit" }}</p>
 <p>{% if event.is_drop_in %}{% trans "This is an open drop-in event." %}{% else %}{% trans "This event requires guests to sign up." %}{% endif %}</p>
 
+<p>{% trans "Please read and sign the attached contract, and send it to booking.confirmation@gallerivretinger.se within 78 hours to keep your booking." %}</p>
+
 <p>{% trans "We look forward to hosting your event at Vretinger Gallery!" %}</p>
 <p>— {% trans "Vretinger Gallery" %}</p>

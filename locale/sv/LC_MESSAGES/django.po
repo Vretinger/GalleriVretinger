@@ -483,8 +483,6 @@ msgid "No events"
 msgstr "Inga evenemang"
 
 #: .\events\templates\events\event_list.html:59
-#, fuzzy
-#| msgid "Events"
 msgid "Past Events"
 msgstr "Tidigare Evenemang"
 
