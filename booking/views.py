@@ -313,13 +313,14 @@ def booking_page(request):
             "bg_image_uploaded": request.POST.get("bg_image_uploaded"),
             "uploaded_images": request.POST.getlist("uploaded_images"),
             "event_days": {
-                date_str.replace("start_time_", ""): {
-                    "start": request.POST.get(f"start_time_{date_str}"),
-                    "end": request.POST.get(f"end_time_{date_str.replace('start_time_', 'end_time_')}"),
+                key.replace("start_time_", ""): {
+                    "start": request.POST.get(key),
+                    "end": request.POST.get(f"end_time_{key.replace('start_time_', '')}"),
                 }
-                for date_str in request.POST if date_str.startswith("start_time_")
+                for key in request.POST if key.startswith("start_time_")
             }
         }
+
 
         # ✅ redirect to contract signing page
         messages.info(request, "Please sign the rental agreement before proceeding to payment.")
@@ -383,6 +384,7 @@ def pay_remaining_balance(request, booking_id):
 # ✅ STRIPE SUCCESS & CANCEL
 # ---------------------------------------------------------------------
 
+@login_required
 def payment_success(request):
     """Handle post-payment success and create event if needed."""
     session_id = request.GET.get("session_id")
@@ -397,6 +399,9 @@ def payment_success(request):
         metadata = session.metadata
         booking = Booking.objects.get(id=metadata["booking_id"], user=request.user)
 
+        # Get pending event data from session
+        event_data = request.session.get("pending_event_data", {})
+
         stage = metadata.get("payment_stage", "initial")
         if stage == "initial":
             booking.initial_payment_done = True
@@ -408,49 +413,56 @@ def payment_success(request):
             booking.is_confirmed = True
             booking.save()
 
-            # Check if event already exists to prevent duplicates
+            # Prevent duplicates
             from events.models import Event, EventDay, EventImage
             existing_event = Event.objects.filter(booking=booking).first()
 
             if not existing_event:
-                print(f"Creating event for booking {booking.id}...")
 
-                # --- replicate your original event creation logic ---
+                event_data = request.session.get("pending_event_data")
+                if not event_data:
+                    messages.error(request, "Event data missing. Could not create event.")
+                    return redirect("my_bookings")
+
                 event = Event.objects.create(
                     booking=booking,
-                    title=metadata.get("title", "Untitled Event"),
-                    description=metadata.get("description", ""),
-                    bg_color=metadata.get("bg_color", "#ffffff"),
-                    blur_bg=metadata.get("blur_bg") == "on",
-                    start_datetime=metadata.get("event_start"),
-                    end_datetime=metadata.get("event_end"),
-                    is_drop_in=metadata.get("is_drop_in") == "on",
-                    max_attendees=metadata.get("max_attendees") or None,
+                    title=event_data.get("title", "Untitled Event"),
+                    description=event_data.get("description", ""),
+                    bg_color=event_data.get("bg_color", "#ffffff"),
+                    blur_bg=event_data.get("blur_bg", False),
+                    start_datetime=event_data.get("event_start"),
+                    end_datetime=event_data.get("event_end"),
+                    is_drop_in=event_data.get("is_drop_in", False),
+                    max_attendees=event_data.get("max_attendees") or None,
                 )
 
-                # Handle background image
-                bg_image_id = metadata.get("bg_image_uploaded")
+                # Create EventDay objects
+                for date_str, times in event_data.get("event_days", {}).items():
+                    start_time = times.get("start")
+                    end_time = times.get("end")
+                    if start_time and end_time:
+                        EventDay.objects.create(
+                            event=event,
+                            date=parse_date(date_str),
+                            start_time=parse_time(start_time),
+                            end_time=parse_time(end_time),
+                        )
+
+                # Create EventImage objects
+                for public_id in event_data.get("uploaded_images", []):
+                    EventImage.objects.create(event=event, image=public_id)
+
+                # Cleanup session
+                del request.session["pending_event_data"]
+
+                # ✅ Background image
+                bg_image_id = event_data.get("bg_image_uploaded") or metadata.get("bg_image_uploaded")
                 if bg_image_id:
                     event.bg_image = bg_image_id
                     event.save(update_fields=["bg_image"])
 
-                # Handle event days
-                for key, value in metadata.items():
-                    if key.startswith("start_time_"):
-                        date_str = key.replace("start_time_", "")
-                        start_time = value
-                        end_time = metadata.get(f"end_time_{date_str}")
-
-                        if start_time and end_time:
-                            EventDay.objects.create(
-                                event=event,
-                                date=parse_date(date_str),
-                                start_time=parse_time(start_time),
-                                end_time=parse_time(end_time),
-                            )
-
-                # Handle uploaded images
-                uploaded_ids = metadata.get("uploaded_images", "").split(",")
+                # ✅ Uploaded images
+                uploaded_ids = event_data.get("uploaded_images", []) or metadata.get("uploaded_images", "").split(",")
                 for public_id in uploaded_ids:
                     if not public_id.strip():
                         continue
@@ -465,8 +477,6 @@ def payment_success(request):
                         print("Cloudinary move error:", e)
                         EventImage.objects.create(event=event, image=public_id)
 
-                print(f"🎉 Event created for booking {booking.id}")
-
         messages.success(request, "Payment completed and event successfully created!")
         return redirect("my_bookings")
 
@@ -474,7 +484,6 @@ def payment_success(request):
         print("Payment success error:", e)
         messages.error(request, "Payment succeeded but event creation failed.")
         return redirect("booking_page")
-
 
 
 @login_required
