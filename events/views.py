@@ -180,6 +180,8 @@ def book_event(request, event_id):
                 messages.success(request, f"You successfully booked {num_guests} spot(s)!")
 
                 # --- Send confirmation email ---
+                event_days = event.days.all().order_by("date")  # ✅ Move this up before the emails
+
                 context = {
                     "guest_name": form.cleaned_data.get('name', form.cleaned_data['email']),
                     "event": event,
@@ -198,11 +200,8 @@ def book_event(request, event_id):
 
                 # Notify the event host
                 try:
-                    event_days = event.days.all().order_by("date")
                     host = getattr(event.booking, "user", None)
                     if host and host.email:
-                        # send host email
-
                         context = {
                             "host_name": host.get_full_name() or host.username,
                             "event": event,
@@ -221,6 +220,7 @@ def book_event(request, event_id):
                         )
                 except Exception as e:
                     print("Error sending host notification email:", e)
+
 
                 # Redirect to a page with modal popup
                 url = reverse("event_list") + "?show_modal=1"
