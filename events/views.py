@@ -120,11 +120,11 @@ def event_list(request):
         last_day=Max('days__date')
     ).order_by('first_day')
 
-    # Split into upcoming and past events
-    upcoming_events = [e for e in events if e.last_day >= today]
-    passed_events = [e for e in events if e.last_day < today]
+    # ✅ Safely filter events that have valid last_day
+    upcoming_events = [e for e in events if e.last_day and e.last_day >= today]
+    passed_events = [e for e in events if e.last_day and e.last_day < today]
 
-    # Debug: print events for verification
+    # Debugging (optional)
     print("Upcoming Events:")
     for e in upcoming_events:
         print(e.title, e.first_day, e.last_day)
@@ -137,6 +137,7 @@ def event_list(request):
         'upcoming_events': upcoming_events,
         'passed_events': passed_events
     })
+
 
 
 def event_detail(request, event_id):
