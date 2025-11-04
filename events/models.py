@@ -7,29 +7,18 @@ from datetime import timedelta
 import os
 
 class Event(models.Model):
-    """ LAYOUT_CHOICES = [
-        ('layout1', 'Layout 1 - Image left, text right'),
-        ('layout2', 'Layout 2 - Text over image'),
-        ('layout3', 'Layout 3 - Image grid'),
-    ] """
-
     booking = models.OneToOneField(Booking, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    short_description = models.TextField()
+    Full_description = models.TextField()
     is_drop_in = models.BooleanField(default=True, help_text="If unchecked, visitors must sign up for the event.")
     max_attendees = models.PositiveIntegerField(null=True, blank=True, help_text="Only required for sign-up events.")
 
-    """layout = models.CharField(max_length=20, choices=LAYOUT_CHOICES, default='layout1')"""
-
-    start_datetime = models.DateTimeField(blank=True, null=True)
-    end_datetime = models.DateTimeField(blank=True, null=True)
-
-    is_current_event = models.BooleanField(default=False)
     is_upcoming_event = models.BooleanField(default=True)
 
-    bg_image = CloudinaryField("bg_image", blank=True, null=True)
-    bg_color = models.CharField(max_length=7, default="#f5f5f5")
-    blur_bg = models.BooleanField(default=False)
+    potrait_image = CloudinaryField("potrait_image")
+    event_image = CloudinaryField("event_image", null=True, blank=True,)
+    is_gallery_event = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)  # Save the event first
@@ -52,10 +41,15 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
-
+    
+    
 class EventImage(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="images")
-    image = CloudinaryField("image")
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="images", null=True)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    image = CloudinaryField ('image', folder='artworks/')
+    price = models.PositiveIntegerField(null=True, blank=True)
+    art_id = models.CharField(max_length=100)  # Unique identifier for the artwork
 
     def __str__(self):
         return f"Image for {self.event.title}"

@@ -1,76 +1,72 @@
-.current-event {
-  margin: 2rem auto;
-  max-width: 600px;
+.event-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 
-  img {
-    width: 100%;
-    border-radius: 0.5rem;
-  }
-
-  h5 {
-    margin-top: 1rem;
-  }
-
-  p {
-    color: #555;
-  }
-}
-
-.upcoming-event-card {
-  margin-bottom: 1.5rem;
-}
-
-.event-card {
-  position: relative;
-  border-radius: 12px;
-  margin: 1rem auto;
-  max-width: 900px;
-  width: 100%;
-  min-height: 500px; // ensure a base height for empty events
-
-  // --- Background ---
-  .bg-preview {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: filter 0.3s ease, transform 0.3s ease;
-
-    &.blur {
-      filter: blur(6px);
-      transform: scale(1.05);
-    }
-
-    // Let it grow with content dynamically
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35); // dark overlay for text contrast
-      z-index: 1;
-    }
-  }
-
-  // --- Overlay content ---
-  .overlay-content {
+  .event-image-wrapper {
     position: relative;
-    z-index: 2;
-    color: #fff;
-    padding: 2rem;
-    border-radius: inherit;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.3),
-      rgba(0, 0, 0, 0.2) 60%,
-      rgba(0, 0, 0, 0.3)
-    );
-    backdrop-filter: blur(3px);
+    flex: 0 0 auto;
+    max-width: 300px; // adjust based on your layout
+
+    img.img-fluid {
+      border-radius: 0.5rem;
+      width: 100%;
+      height: auto;
+    }
+
+    .corner-overlay-right {
+      position: absolute;
+      bottom: -10px;
+      right: -0%;
+      width: 120px;
+      transform: translate(25%, 25%);
+      z-index: 3;
+
+      // Rounded corners
+      border-radius: 0.75rem; // adjust radius for desired roundness
+
+      // Floating effect
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); // soft shadow for depth
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      // make text wrap around the overlay shape
+      float: right;
+    }
+    .corner-overlay-left {
+      position: absolute;
+      bottom: -10px;
+      right: 80%; // adjust as needed for overlap
+      width: 120px;
+      transform: translate(25%, 25%);
+      z-index: 3;
+
+      // Rounded corners
+      border-radius: 0.75rem; // adjust radius for desired roundness
+
+      // Floating effect
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25); // soft shadow for depth
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      // Float for text wrap if needed
+      float: left;
+    }
+
   }
+
+  .event-info {
+    flex: 1 1 auto;
+    text-align: left;
+
+    h3 {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
 
   .gallery-title {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
@@ -124,5 +120,4 @@
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
   }
-}
 

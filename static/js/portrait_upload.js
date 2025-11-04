@@ -2,19 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const bgWidget = cloudinary.createUploadWidget({
     cloudName: "dcbvjzagi",
     uploadPreset: "GalleriVretinger",
-    asset_folder: "artworks/users/{{ user.user }}/events/event_image",
+    asset_folder: "artworks/users/{{ user.user }}/events/portrait",
     multiple: false
   }, (err, res) => {
     if (!err && res && res.event === "success") {
-      addUploadedEventImage(res.info);
+      addUploadedPortraitImage(res.info);
     }
   });
 
-  document.getElementById("event-upload-btn").addEventListener("click", () => bgWidget.open());
+  document.getElementById("portrait-upload-btn").addEventListener("click", () => bgWidget.open());
 
-  function addUploadedEventImage(info) {
+  function addUploadedPortraitImage(info) {
     // Save public_id in hidden input
-    const hiddenInput = document.getElementById("event-image-hidden");
+    const hiddenInput = document.getElementById("portrait-image-hidden");
     hiddenInput.value = info.public_id;
   }
 });

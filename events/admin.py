@@ -3,8 +3,8 @@ from .models import Event, EventImage
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title', 'start_date', 'start_time', 'end_date', 'end_time', 'is_current_event', 'is_drop_in')
-    list_filter = ('is_current_event','is_drop_in')
+    list_display = ('title', 'start_date', 'start_time', 'end_date', 'end_time', 'is_drop_in')
+    list_filter = ('is_upcoming_event','is_drop_in')
     search_fields = ('title',)
 
     def start_date(self, obj):
@@ -34,8 +34,3 @@ class EventAdmin(admin.ModelAdmin):
         return "-"
     end_time.admin_order_field = 'end_datetime'
     end_time.short_description = 'End Time'
-
-
-@admin.register(EventImage)
-class EventImageAdmin(admin.ModelAdmin):
-    list_display = ('event', 'image')

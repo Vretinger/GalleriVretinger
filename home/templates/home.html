@@ -48,7 +48,7 @@
       
       <div class="{{ bg_color }} py-5 shadow-lg">  {# full-width colored section #}
         <div class="container">          {# content stays centered and narrow #}
-          <div class="event-item row align-items-center py-4">
+          <div class="event-item event-section row align-items-center py-4">
             {% if forloop.counter|divisibleby:2 %}
               {% include "events/_event_right.html" %}
             {% else %}
