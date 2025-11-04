@@ -1,6 +1,7 @@
 // home.scss
+@use "sass:color";
+@use "variables" as *;
 
-@import 'variables';
 
 /* Hero Section */
 .hero-section {
@@ -17,9 +18,53 @@
   .hero-subtitle {
     margin-top: 1rem;
     font-size: 1.25rem;
-    color: darken($teal, 15%);
+    color: color.adjust($teal, $lightness: -15%);
   }
 }
+
+// 🎨 Event Section Styling
+.events-section {
+  background-color: #F5F5F5;
+  h2 {
+    margin-bottom: 3rem;
+    color: #212529; // dark text for contrast
+  }
+  .event-bg-1 {
+    background-color: #475160; // Dark Slate Gray
+    color: #ffffff;             // White text
+  }
+
+  .event-bg-2 {
+    background-color: #c6b299; // Light Beige
+    color: #212529;             // Dark text
+  }
+
+  .event-bg-3 {
+    background-color: #2e2e2e; // Charcoal Gray
+    color: #ffffff;             // White text
+  }
+
+  .event-bg-4 {
+    background-color: #856349; // Warm Taupe
+    color: #F0ECE2;             // Off-white text
+  }
+
+  .btn {
+    &.btn-primary, &.btn-info {
+      color: #ffffff;
+    }
+  }
+  .event-item {
+    max-width: 1100px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
+
 
 /* Intro Section */
 .intro-section {
@@ -77,7 +122,6 @@
         border-radius: 8px;
       }
 }
-
     .overlay-content {
       position: relative;
       z-index: 2;

@@ -16,6 +16,41 @@
   color: rgb(29.7620689655, 38.7379310345, 37.3206896552);
 }
 
+.events-section {
+  background-color: #F5F5F5;
+}
+.events-section h2 {
+  margin-bottom: 3rem;
+  color: #212529;
+}
+.events-section .event-bg-1 {
+  background-color: #475160;
+  color: #ffffff;
+}
+.events-section .event-bg-2 {
+  background-color: #c6b299;
+  color: #212529;
+}
+.events-section .event-bg-3 {
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+.events-section .event-bg-4 {
+  background-color: #856349;
+  color: #F0ECE2;
+}
+.events-section .btn.btn-primary, .events-section .btn.btn-info {
+  color: #ffffff;
+}
+.events-section .event-item {
+  max-width: 1100px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+.events-section .event-item:hover {
+  transform: translateY(-4px);
+}
+
 /* Intro Section */
 .intro-section {
   background-color: #3f524f;
