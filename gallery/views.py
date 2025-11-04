@@ -10,19 +10,16 @@ def gallery_view(request):
             .expression("folder:gallery/*")
             .sort_by("public_id", "desc")
             .max_results(50)
-            .with_field("metadata")  # ← must include this to get structured metadata
+            .with_field("metadata")
             .execute()
         )
 
         for res in response.get("resources", []):
             url = res.get("secure_url")
-            metadata = res.get("metadata", {})  # structured metadata dict
+            metadata = res.get("metadata", {})
 
-            # Use the exact field names from Cloudinary
             title = metadata.get("tittle") or "Untitled"
             price = metadata.get("price") or "N/A"
-
-            print(url, title, price)  # debug
 
             artworks.append({
                 "url": url,

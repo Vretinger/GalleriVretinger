@@ -31,12 +31,13 @@
             </p>
           {% endif %}
 
-          <p class="text-gray-800">{{ event.description|truncatewords:30 }}</p>
+          <p class="text-gray-800">{{ event.short_description }}</p>
           {% if event.is_drop_in %}
             <p class="text-success"><strong>Drop-in Event:</strong>{% trans "No sign-up needed! Come by anytime." %}</p>
           {% else %}
             <a href="{% url 'book_event' event.id %}" class="btn btn-primary">{% trans "Book a Spot" %}</a>
           {% endif %}
+          <a href="{% url 'event_detail' event.id %}" class="btn btn-outline-secondary px-4">Read More</a>
         </div>
       </div>
     {% empty %}
@@ -82,7 +83,7 @@
             </p>
           {% endif %}
 
-          <p class="text-gray-800">{{ event.description|truncatewords:30 }}</p>
+          <p class="text-gray-800">{{ event.short_description|truncatewords:30 }}</p>
           <span class="text-gray-500">{% trans "This event has passed." %}</span>
         </div>
       </div>

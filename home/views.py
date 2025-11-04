@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils.timezone import now
-from django.db.models import Min
+from django.db.models import Min, Max
 from events.models import Event
 
 def home_view(request):
@@ -8,7 +8,10 @@ def home_view(request):
 
     # ✅ Fetch up to 4 upcoming events (including any marked current)
     events = (
-        Event.objects.annotate(first_day=Min("days__date"))
+        Event.objects.annotate(
+            first_day=Min('days__date'),
+            last_day=Max('days__date')
+        )
         .filter(first_day__gte=today)
         .order_by("first_day")[:4]
     )

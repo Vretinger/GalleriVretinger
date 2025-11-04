@@ -8,6 +8,15 @@
 <div class="event-info col-md-9 pe-md-5 text-center text-md-end order-1 order-md-2">
   <h3 class="fw-bold mb-3">{{ event.title }}</h3>
   <p class="mb-4">{{ event.short_description }}</p>
+  {% if event.first_day and event.last_day %}
+    <p class="text-gray-600 mb-2">
+      {% if event.first_day == event.last_day %}
+        {{ event.first_day|date:"M d, Y" }}
+      {% else %}
+        {{ event.first_day|date:"M d, Y" }} – {{ event.last_day|date:"M d, Y" }}
+      {% endif %}
+    </p>
+  {% endif %}
 </div>
 
 <div class="d-flex justify-content-center justify-content-md-end gap-3 order-5 pt-3 mt-3 mt-md-0">

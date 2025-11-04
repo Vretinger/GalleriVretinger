@@ -1,0 +1,40 @@
+.art-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 10px; // base row height
+  gap: 16px;
+
+  .art-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+
+      // For masonry effect
+      grid-row-end: span var(--span);
+    }
+
+    .art-info {
+      padding: 8px 12px;
+      text-align: center;
+
+      .art-title {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .art-price {
+        color: #666;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

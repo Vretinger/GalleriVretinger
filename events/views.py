@@ -142,6 +142,12 @@ def event_list(request):
 
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
+
+    events = Event.objects.annotate(
+        first_day=Min('days__date'),
+        last_day=Max('days__date')
+    ).order_by('first_day')
+    
     return render(request, 'events/event_detail.html', {'event': event})
 
 
