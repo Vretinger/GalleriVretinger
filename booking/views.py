@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import base64, json
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -147,9 +147,12 @@ def availability_view(request):
 
 @login_required
 def my_bookings_view(request):
-    """Display user's current and past bookings."""
+    """Display user's current and past bookings, separating ended events."""
     bookings = Booking.objects.filter(user=request.user)
-    booking_events = []
+    today = date.today()
+
+    active_events = []
+    ended_events = []
 
     for booking in bookings:
         events = Event.objects.filter(booking=booking)
@@ -168,26 +171,36 @@ def my_bookings_view(request):
                         current_group = [d]
                 grouped_days.append(current_group)
 
-            # Background style (image or color)
-            bg_url = event.bg_image and cloudinary_url(event.bg_image.public_id)[0]
-            bg_style = (
-                f"background-image: url('{bg_url}');"
-                if bg_url
-                else f"background-color: {event.bg_color or '#f5f5f5'};"
-            )
-            bg_style += "background-size: cover; background-position: center; width:100%; min-height:300px;"
-            if event.blur_bg:
-                bg_style += "filter: blur(4px);"
-
-            booking_events.append({
+            item = {
                 "booking": booking,
                 "event": event,
                 "grouped_days": grouped_days,
-                "bg_style": bg_style,
                 "images": event.images.all(),
-            })
+            }
 
-    return render(request, "bookings/my_bookings.html", {"booking_events": booking_events})
+            # Use last day to classify ended events
+            last_day = days[-1].date if days else date.min
+            if last_day < today:
+                ended_events.append(item)
+            else:
+                active_events.append(item)
+
+    # Sort both lists by first day of the event
+    active_events.sort(
+        key=lambda e: e["grouped_days"][0][0].date if e["grouped_days"] else date.max
+    )
+    ended_events.sort(
+        key=lambda e: e["grouped_days"][0][0].date if e["grouped_days"] else date.max
+    )
+
+    return render(
+        request,
+        "bookings/my_bookings.html",
+        {
+            "active_events": active_events,
+            "ended_events": ended_events,
+        }
+    )
 
 
 # ---------------------------------------------------------------------

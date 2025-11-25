@@ -25,10 +25,10 @@ function validateForm() {
   }
 
   // Check event title
-  const description = document.getElementById("event-description")?.value.trim();
+  const description = document.getElementById("event-ShortDescription")?.value.trim();
   if (!description) {
     valid = false;
-    errors.push("Please enter an event description.");
+    errors.push("Please enter an short event description.");
   }
 
   // Check per-day times

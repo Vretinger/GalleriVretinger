@@ -1,0 +1,20 @@
+<div class="event-image-wrapper col-md-3 .offset-3 ms-5 ms-md-0 order-2 order-md-2">
+  <img src="{{ e.event.potrait_image.url }}" class="img-fluid" alt="What to Expect">
+  {% if event.event_image.url %}
+    <img src="{{ e.event.event_image.url }}" class="corner-overlay-left mb-5 mb-md-0" alt="Decoration">
+  {% endif %}
+</div>
+
+<div class="event-info col-md-9 pe-md-5 text-center text-md-start order-1 order-md-1">
+  <h3 class="fw-bold mb-3">{{ e.event.title }}</h3>
+  <p class="mb-4">{{ e.event.short_description }}</p>
+  {% if e.event.first_day and e.event.last_day %}
+    <p class="text-gray-600 mb-2">
+      {% if e.event.first_day == e.event.last_day %}
+        {{ e.event.first_day|date:"M d, Y" }}
+      {% else %}
+        {{ e.event.first_day|date:"M d, Y" }} – {{ e.event.last_day|date:"M d, Y" }}
+      {% endif %}
+    </p>
+  {% endif %}
+</div>
