@@ -10,7 +10,9 @@ class Event(models.Model):
     booking = models.OneToOneField(Booking, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     short_description = models.TextField()
-    Full_description = models.TextField()
+    full_description = models.TextField()
+    start_datetime = models.DateTimeField(null=True, blank=True)
+    end_datetime   = models.DateTimeField(null=True, blank=True)
     is_drop_in = models.BooleanField(default=True, help_text="If unchecked, visitors must sign up for the event.")
     max_attendees = models.PositiveIntegerField(null=True, blank=True, help_text="Only required for sign-up events.")
 
@@ -29,15 +31,6 @@ class Event(models.Model):
             start_datetime__gte=now,
             start_datetime__lte=now + timedelta(days=7)
         ).order_by("start_datetime")
-
-        # Reset all
-        Event.objects.filter(is_current_event=True).update(is_current_event=False)
-
-        # Mark the soonest one as current
-        if upcoming_events.exists():
-            first_event = upcoming_events.first()
-            first_event.is_current_event = True
-            super(Event, first_event).save()
 
     def __str__(self):
         return self.title

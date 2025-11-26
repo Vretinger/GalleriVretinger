@@ -5,6 +5,7 @@ from calendar import HTMLCalendar
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.dateparse import parse_date, parse_time
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -16,15 +17,47 @@ from .models import Event, EventDay, EventImage, EventBooking
 from .forms import EventBookingForm
 from utils.email import send_email
 
+
+# Only superusers
+def superuser_required(view_func):
+    return user_passes_test(lambda u: u.is_superuser)(view_func)
+
+@superuser_required
+def edit_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+
+    if request.method == "POST":
+        event.title = request.POST.get("title")
+        event.short_description = request.POST.get("short_description")
+        event.full_description = request.POST.get("full_description")
+        event.is_drop_in = bool(request.POST.get("is_drop_in"))
+        max_attendees = request.POST.get("max_attendees")
+        event.max_attendees = int(max_attendees) if max_attendees else None
+        event.save()
+        return redirect("admin_dashboard")
+
+    return render(request, "admin/edit_event.html", {"event": event})
+
+@superuser_required
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    if request.method == "POST":
+        event.delete()
+        return redirect("admin_dashboard")
+    return render(request, "admin/delete_event.html", {"event": event})
+
+
 def create_event(request):
     if request.method == "POST":
         title = request.POST.get("event_title")
-        description = request.POST.get("event_description")
+        short_description = request.POST.get("event_short_description")
+        full_description = request.POST.get("event_full_description")
         bg_image_public_id = request.POST.get("bg_image_uploaded")
         # Save the Event first
         event = Event.objects.create(
             title=title,
-            description=description,
+            full_description=full_description,
+            short_description=short_description,
             bg_image=bg_image_public_id if bg_image_public_id else None,
         )
 

@@ -1,0 +1,26 @@
+<h2>Edit Event: {{ event.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Title</label>
+        <input type="text" name="title" class="form-control" value="{{ event.title }}">
+    </div>
+    <div class="mb-3">
+        <label>Short Description</label>
+        <textarea name="short_description" class="form-control">{{ event.short_description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Full Description</label>
+        <textarea name="full_description" class="form-control">{{ event.full_description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Drop-In?</label>
+        <input type="checkbox" name="is_drop_in" {% if event.is_drop_in %}checked{% endif %}>
+    </div>
+    <div class="mb-3">
+        <label>Max Attendees</label>
+        <input type="number" name="max_attendees" class="form-control" value="{{ event.max_attendees }}">
+    </div>
+    <button class="btn btn-primary">Save</button>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+</form>

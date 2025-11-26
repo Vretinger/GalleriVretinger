@@ -31,23 +31,36 @@
             <li class="nav-item"><a class="nav-link" href="/gallery/">{% trans "Gallery" %}</a></li>
             <li class="nav-item"><a class="nav-link" href="/events/">{% trans "Events" %}</a></li>
             <li class="nav-item"><a class="nav-link" href="/contact/">{% trans "Contact" %}</a></li>
-            <li class="nav-item"><a class="nav-link" href="/booking/availability/">{% trans "Host an Event" %}</a></li>
-            {% if user.is_authenticated %}
-            <!-- Show when logged in -->
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'my_bookings' %}">{% trans "My Events" %}</a>
-            </li>
-            <li class="nav-item">
+            {% if user.is_superuser %}
+              <li class="nav-item">
+                  <a class="nav-link text-danger fw-bold" href="/admin-panel/">{% trans "Admin Panel" %}</a>
+              </li>
+              <li class="nav-item">
               <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-link nav-link">{% trans "Sign out" %}</button>
               </form>
             </li>
-          {% else %}
-            <!-- Show when not logged in -->
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">{% trans "Login/Sign up" %}</a>
-            </li>
+            {% else %}
+              <li class="nav-item">
+                  <a class="nav-link" href="/booking/availability/">{% trans "Host an Event" %}</a>
+              </li>
+              {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_bookings' %}">{% trans "My Events" %}</a>
+                    </li>
+                    <li class="nav-item">
+                      <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link nav-link">{% trans "Sign out" %}</button>
+                      </form>
+                    </li>
+              {% else %}
+                <!-- Show when not logged in -->
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">{% trans "Login/Sign up" %}</a>
+                </li>
+              {% endif %}
           {% endif %}
 
             <!-- Language switcher inside collapse for small screens -->

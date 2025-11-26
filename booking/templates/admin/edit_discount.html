@@ -1,0 +1,37 @@
+<h2>Edit Discount Code: {{ discount.code }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Code</label>
+        <input type="text" name="code" class="form-control" value="{{ discount.code }}">
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea name="description" class="form-control">{{ discount.description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Type</label>
+        <select name="discount_type" class="form-select">
+            <option value="percentage" {% if discount.discount_type=="percentage" %}selected{% endif %}>Percentage</option>
+            <option value="fixed" {% if discount.discount_type=="fixed" %}selected{% endif %}>Fixed Amount</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Value</label>
+        <input type="number" step="0.01" name="discount_value" class="form-control" value="{{ discount.discount_value }}">
+    </div>
+    <div class="mb-3">
+        <label>Valid From</label>
+        <input type="datetime-local" name="valid_from" class="form-control" value="{{ discount.valid_from|date:'Y-m-d\\TH:i' }}">
+    </div>
+    <div class="mb-3">
+        <label>Valid Until</label>
+        <input type="datetime-local" name="valid_until" class="form-control" value="{{ discount.valid_until|date:'Y-m-d\\TH:i' }}">
+    </div>
+    <div class="mb-3">
+        <label>Active</label>
+        <input type="checkbox" name="active" {% if discount.active %}checked{% endif %}>
+    </div>
+    <button class="btn btn-warning">Save</button>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+</form>

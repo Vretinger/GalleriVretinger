@@ -4,13 +4,15 @@ import base64, json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.core.files.base import ContentFile
+from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.dateparse import parse_date, parse_time
 from django.conf import settings
@@ -33,6 +35,11 @@ from utils.email import send_email
 from .models import Booking, Coupon
 from events.models import Event, EventImage, EventDay
 from .utils.pricing import calculate_booking_price, apply_discount_code
+
+
+# Only superusers
+def superuser_required(view_func):
+    return user_passes_test(lambda u: u.is_superuser)(view_func)
 
 
 # ---------------------------------------------------------------------
@@ -261,6 +268,54 @@ def validate_coupon(request):
         })
     except Coupon.DoesNotExist:
         return JsonResponse({"valid": False, "discount": 0, "type": None, "value": None})
+    
+
+@superuser_required
+def add_discount(request):
+    if request.method == "POST":
+        code = request.POST.get("code")
+        description = request.POST.get("description")
+        discount_type = request.POST.get("discount_type")
+        discount_value = request.POST.get("discount_value")
+        valid_from = request.POST.get("valid_from")
+        valid_until = request.POST.get("valid_until")
+
+        Coupon.objects.create(
+            code=code,
+            description=description,
+            discount_type=discount_type,
+            discount_value=discount_value,
+            valid_from=valid_from,
+            valid_until=valid_until or None
+        )
+        return redirect("admin_dashboard")
+
+    return render(request, "admin/add_discount.html")
+
+@superuser_required
+def edit_discount(request, discount_id):
+    discount = get_object_or_404(Coupon, id=discount_id)
+
+    if request.method == "POST":
+        discount.code = request.POST.get("code")
+        discount.description = request.POST.get("description")
+        discount.discount_type = request.POST.get("discount_type")
+        discount.discount_value = request.POST.get("discount_value")
+        discount.valid_from = request.POST.get("valid_from")
+        discount.valid_until = request.POST.get("valid_until") or None
+        discount.active = bool(request.POST.get("active"))
+        discount.save()
+        return redirect("admin_dashboard")
+
+    return render(request, "admin/edit_discount.html", {"discount": discount})
+
+@superuser_required
+def delete_discount(request, discount_id):
+    discount = get_object_or_404(Coupon, id=discount_id)
+    if request.method == "POST":
+        discount.delete()
+        return redirect("admin_dashboard")
+    return render(request, "admin/delete_discount.html", {"discount": discount})
 
 
 # ---------------------------------------------------------------------
@@ -316,7 +371,8 @@ def booking_page(request):
 
         request.session["pending_event_data"] = {
             "title": request.POST.get("title"),
-            "description": request.POST.get("description"),
+            "short_description": request.POST.get("short_description"),
+            "full_description": request.POST.get("full_description"),
             "bg_color": request.POST.get("bg_color"),
             "blur_bg": request.POST.get("blur_bg") == "on",
             "event_start": request.POST.get("event_start"),
@@ -349,6 +405,73 @@ def booking_page(request):
         premises_images = []
 
     return render(request, "bookings/booking_calendar.html", {"premises_images": premises_images})
+
+
+# ---------------------------------------------------------------------
+# Admin setup
+# ---------------------------------------------------------------------
+
+
+@superuser_required
+def admin_booking_page(request):
+
+    if request.method == "POST":
+
+        # 1) Create booking
+        booking = Booking.objects.create(
+            user=request.user,
+            start_date=request.POST.get("start_date"),
+            end_date=request.POST.get("end_date"),
+            purpose="Event booking",
+            total_price=0,
+            is_confirmed=True,
+        )
+
+        # 2) Create EVENT (general info only)
+        event = Event.objects.create(
+            booking=booking,
+            title=request.POST.get("title"),
+            short_description=request.POST.get("ShortDescription"),
+            full_description=request.POST.get("LongDescription"),
+            start_datetime=request.POST.get("event_start"),
+            end_datetime=request.POST.get("event_end"),
+            is_drop_in=request.POST.get("is_drop_in") == "on",
+            max_attendees=request.POST.get("max_attendees") or None,
+            potrait_image=request.POST.get("portrait_image_uploaded") or None,
+            event_image=request.POST.get("event_image_uploaded") or None,
+        )
+
+        for key, value in request.POST.items():
+            if key.startswith("start_time_"):
+                date_str = key.replace("start_time_", "")
+                start_time = value
+                end_time = request.POST.get(f"end_time_{date_str}")
+
+                if start_time and end_time:
+                    EventDay.objects.create(
+                        event=event,
+                        date=parse_date(date_str),
+                        start_time=parse_time(start_time),
+                        end_time=parse_time(end_time),
+                    )
+
+        messages.success(request, "Event created successfully 🎉")
+        return redirect("my_bookings")
+
+    return render(request, "bookings/admin_booking.html")
+
+
+@superuser_required
+def admin_dashboard(request):
+    now = timezone.now().date()  # today
+    events = Event.objects.filter(days__date__gte=now).distinct().order_by('days__date')
+    coupons = Coupon.objects.all()
+    
+    return render(request, "admin/admin_dashboard.html", {
+        "events": events,
+        "coupons": coupons
+    })
+
 
 
 # ---------------------------------------------------------------------

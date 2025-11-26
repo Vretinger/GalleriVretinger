@@ -14,4 +14,7 @@ urlpatterns = [
     path("contract/<int:booking_id>/", views.sign_contract, name="sign_contract"),
     path("contract/<int:booking_id>/save/", views.save_signature, name="save_signature"),
     path("cancel_unpaid_booking/<int:booking_id>/", views.cancel_unpaid_booking, name="cancel_unpaid_booking"),
+    path("admin/discounts/add/", views.add_discount, name="add_discount"),
+    path("admin/discounts/edit/<int:discount_id>/", views.edit_discount, name="edit_discount"),
+    path("admin/discounts/delete/<int:discount_id>/", views.delete_discount, name="delete_discount"),
 ]
